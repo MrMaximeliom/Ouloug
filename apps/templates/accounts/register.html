@@ -32,7 +32,32 @@
 
                     <form role="form" method="post" action="">
 
-                        {% csrf_token %}                    
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            {{ form.first_name }}
+                        </div>
+                        <span class="text-error">{{ form.first_name.errors }}</span>
+                        <div class="input-group mb-3">
+                            {{ form.second_name }}
+                        </div>
+                        <span class="text-error">{{ form.second_name.errors }}</span>
+                        <div class="input-group mb-3">
+                            {{ form.third_name }}
+                        </div>
+                        <span class="text-error">{{ form.third_name.errors }}</span>
+                        <div class="input-group mb-3">
+                            {{ form.fourth_name }}
+                        </div>
+                        <span class="text-error">{{ form.fourth_name.errors }}</span>
+                        <div class="input-group mb-3">
+                            {{ form.phone_number }}
+                        </div>
+                        <span class="text-error">{{ form.phone_number.errors }}</span>
+
+
+
+
+
 
                         <div class="input-group mb-3">
                             {{ form.username }}
@@ -45,9 +70,9 @@
                         <span class="text-error">{{ form.email.errors }}</span>
 
                         <div class="input-group mb-4">
-                            {{ form.password1 }}
+                            {{ form.password }}
                         </div>
-                        <span class="text-error">{{ form.password1.errors }}</span>
+                        <span class="text-error">{{ form.password.errors }}</span>
 
                         <div class="input-group mb-4">
                             {{ form.password2 }}

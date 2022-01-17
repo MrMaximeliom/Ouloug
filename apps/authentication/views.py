@@ -10,16 +10,17 @@ from .forms import LoginForm, SignUpForm
 
 
 def login_view(request):
-    form = LoginForm(request.POST or None)
-
+    form = LoginForm(request.POST)
     msg = None
-
     if request.method == "POST":
 
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password = form.cleaned_data.get("password")
-            user = authenticate(username=username, password=password)
+            # username = form.cleaned_data.get("username")
+            # password = form.cleaned_data.get("password")
+            username = request.POST['username']
+            password = request.POST['password']
+            print("username is: ",username," password is: ",password)
+            user = authenticate(request,username=username, password=password)
             if user is not None:
                 login(request, user)
                 return redirect("/")
@@ -38,7 +39,11 @@ def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            print('first password',user.password)
+            user.set_password(user.password)
+            print("\nafter hashing:",user.password)
+            user.save()
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
