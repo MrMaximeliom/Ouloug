@@ -17,14 +17,21 @@ admin.site.index_title = "Ouloug Administration"
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
     path("", include("apps.authentication.urls")), # Auth routes - login / register
-    path("", include("apps.home.urls")),             # UI Kits Html files
-    #url for change password
-    path( 'change-password/',auth_views.PasswordChangeView.as_view( template_name='change-password.html',
-            success_url = '/'
-        ),
-        name='change_password'
-    ),
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='templates/accounts/password_reset_done.html'), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="templates/accounts/password_reset_confirm.html"), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='templates/accounts/password_reset_complete.html'), name='password_reset_complete')     
+    path("", include("apps.home.urls")),  # UI Kits Html files
+    # url for change password
+    path('change-password/', auth_views.PasswordChangeView.as_view(template_name='change-password.html',
+                                                                   success_url='/'
+                                                                   ),
+         name='change_password'
+         ),
+    path('password_reset/done/',
+         auth_views.PasswordResetDoneView.as_view(template_name='accounts/password_reset_done.html'),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_confirm.html"),
+         name='password_reset_confirm'),
+    path('reset/done/',
+         auth_views.PasswordResetCompleteView.as_view(template_name='accounts/password_reset_complete.html'),
+         name='password_reset_complete')
+    # UI Kits Html files
 ]

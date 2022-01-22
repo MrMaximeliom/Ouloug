@@ -30,11 +30,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.home',
-    'apps.authentication'
+    'apps.authentication',
+    'crispy_forms',
+    'apps.address',
+    'apps.customers',
+    'apps.packages',
+    'apps.services',
+    'apps.teams',
+    'apps.telecoms',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # During development only
 
+# TODO: change email backend to smtp before deplyoing
+# file based email backend
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(os.path.join(CORE_DIR, 'sent_emails'))
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -52,9 +62,6 @@ LOGIN_REDIRECT_URL = "home"  # Route defined in home/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in home/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 AUTH_USER_MODEL = 'authentication.User'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #Configuring the settings.py to send emails
-
-
 
 
 TEMPLATES = [
@@ -129,13 +136,6 @@ STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
 
-#add email settings
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mmusa3914@gmail.com'
-EMAIL_HOST_PASSWORD = ''
 #############################################################
 #############################################################
