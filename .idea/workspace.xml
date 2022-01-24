@@ -5,64 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Ouloug.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ouloug.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/adminportal/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/adminportal/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/password_rest_done.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/password_reset_done.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/password_rest_email.txt" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/password_reset_email.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/rest_passowrd.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/reset_password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/rest_passowrd_confirm.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/password_reset_confirm.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/rest_password_complete.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/password_reset_complete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/teams/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/migrations/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/tests.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/telecoms/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +30,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ouloug_venv" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
