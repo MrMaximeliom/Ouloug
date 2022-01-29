@@ -40,14 +40,13 @@ INSTALLED_APPS = [
     'apps.telecoms',
     'captcha',
 
+    'captcha_runner',
+
 ]
 
 
 
-#captcha code api keys :
 
-RECAPTCHA_PUBLIC_KEY = '6LfjeiweAAAAAFMPVPGexYIALfiMBhxdaOO7sRxO'
-RECAPTCHA_PRIVATE_KEY = '6LfjeiweAAAAAFLh0XOtljrp-rcENeoAm5zXdY9r'
 
 
 # TODO: change email backend to smtp before deplyoing
@@ -154,6 +153,16 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
+
+
+#captcha code api keys :
+
+
+RECAPTCHA_PUBLIC_KEY = '6LfjeiweAAAAAFMPVPGexYIALfiMBhxdaOO7sRxO'
+RECAPTCHA_PRIVATE_KEY = '6LfjeiweAAAAAFLh0XOtljrp-rcENeoAm5zXdY9r'
+
+
+RECAPTCHA_REQUIRED_SCORE = 0.85
 
 
 #############################################################

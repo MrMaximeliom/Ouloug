@@ -17,6 +17,9 @@ admin.site.index_title = "Ouloug Administration"
 urlpatterns = [
     path('admin/', admin.site.urls),          # Django admin route
 
+    path("", include("captcha_runner.urls")),
+
+
     path("", include("apps.authentication.urls")), # Auth routes - login / register
     path("", include("apps.home.urls")),  # UI Kits Html files
     # url for change password
