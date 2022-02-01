@@ -7436,7 +7436,7 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
 }
 .auth-wrapper .auth-content {
   position: relative;
-  width: 390px;
+ /* width: 390px;*/
   padding: 15px;
   z-index: 5;
 }
@@ -10598,3 +10598,5 @@ div.code-toolbar > .toolbar span:hover {
 		box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
 	}
 }
+
+

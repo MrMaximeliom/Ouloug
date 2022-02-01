@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'apps.teams',
     'apps.telecoms',
     'captcha',
-
-    'captcha_runner',
+    # 'captcha_runner',
 
 ]
 
@@ -102,9 +101,9 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbadtiic6m50cr',
-        'USER': 'fpnqcauvjflolq',
-        'PASSWORD': 'e2fc0276ae20838cf6930ced7c8849a2317e97bbba684a944c3dcadddf929bb7',
+        'NAME': 'd7c9432a8bngos',
+        'USER': 'yunjwvyqibxcpc',
+        'PASSWORD': 'a2767f6523a30079245c4514d20ab577524048cb27cc1086c2ece3dc5a74ad3a',
         'HOST': 'ec2-184-73-243-101.compute-1.amazonaws.com',
         'PORT': '5432',
     }
