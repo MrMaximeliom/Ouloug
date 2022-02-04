@@ -5,7 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django import forms
 from .models import User
-from captcha.fields import ReCaptchaField
+
 
 
 class LoginForm(forms.Form):
@@ -26,7 +26,7 @@ class LoginForm(forms.Form):
 
 
 class SignUpForm(forms.ModelForm):
-    captcha = ReCaptchaField()
+
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -96,7 +96,7 @@ class SignUpForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password', 'password2','first_name',
-                  'second_name','third_name','fourth_name','phone_number','captcha')
+                  'second_name','third_name','fourth_name','phone_number')
     def create(self, validated_data):
         from .models import User
         print("creating new user")
