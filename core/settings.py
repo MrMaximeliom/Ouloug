@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
 
 
-
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 
 # TODO: change email backend to smtp before deplyoing
