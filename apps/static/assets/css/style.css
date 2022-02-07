@@ -1533,11 +1533,20 @@ p.text-muted {
 .b-brand .b-bg i {
   color: #fff;
 }
-.b-brand .b-title {
-  margin-left: 10px;
+.b-brand {
+ margin-left: 10px;
   font-weight: 100;
   color: #fff;
   font-size: 18px;
+}
+
+.b-title {
+
+  font-weight: 100;
+  color: #fff;
+  font-size: 18px;
+  white-space: break-spaces;
+margin-top: 2rem;
 }
 
 .navbar-collapsed .b-brand .b-title {
@@ -10599,4 +10608,7 @@ div.code-toolbar > .toolbar span:hover {
 	}
 }
 
-
+/* adding styles to side bar logo*/
+.sidebar-image{
+width:2rem;
+}

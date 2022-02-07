@@ -116,3 +116,36 @@ class City(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "city"
+"""
+User_Country Model:
+it's used to link users with countries
+"""
+# we need to add functions
+class UserCountry(models.Model):
+    # this field is a foreign key references the user model
+    # which represents the user linked to the country
+    user = models.ForeignKey(User, on_delete=models.SET_NULL,
+                              blank=True, null=True)
+    # this field is a foreign key references the Country model
+    # which represents the country which the user linked to
+    country = models.ForeignKey(Country, on_delete=models.SET_NULL,
+                              blank=True, null=True)
+    # this field is a foreign key referenced from the User model
+    # which represents the user that added this record
+    added_by = models.ForeignKey(User,on_delete=models.SET_NULL,
+                                 null=True,blank=True,related_name="adding_user")
+    # this field represents the date and time when this record was added
+    added_datetime = models.DateTimeField(auto_now=True,blank=True,null=True)
+    # this field is a foreign key from the User model ,
+    # which represents the last user that modified this record
+    last_modified_by = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
+    # this field represents the date and time when this record was last modified
+    last_modification_datetime = models.DateTimeField(auto_now_add=True)
+    # this field represents the city's status
+    status = models.BooleanField()
+    def __str__(self):
+        # objects of this model will be referenced by user's name and the country(s) which he/she is linked to
+        return self.user.username + "--" + self.country.name
+    class Meta:
+        # this is the actual model's name in the database
+        db_table = "user_country"
