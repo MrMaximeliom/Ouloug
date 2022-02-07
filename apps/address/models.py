@@ -133,12 +133,12 @@ class UserCountry(models.Model):
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User,on_delete=models.SET_NULL,
-                                 null=True,blank=True,related_name="adding_user")
+                                 null=True,blank=True,related_name="added_by_user")
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True,blank=True,null=True)
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
-    last_modified_by = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
+    last_modified_by = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True,related_name="last_modified_by")
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
     # this field represents the city's status
