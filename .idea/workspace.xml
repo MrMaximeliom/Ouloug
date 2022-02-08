@@ -8,6 +8,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,17 +1,18 @@
 
 
 from django.db import models
-from .models import  TelecomOperator , Currency , Service , User
-# Create your models here.
-
+from apps.telecoms.models import  TelecomOperator
+from apps.services.models import  Service
+from apps.authentication.models import User
+from apps.address.models import Currency
 
 """
 Package Model:
 it's used to define the package provided by the telecom operator
 """
 PACKAGE_STATUS = (
-    ("Call Center", "Call Center"),
-    ("Communication", "Commuinication")
+    ("call_center", "Call Center"),
+    ("communication", "Commuinication")
 )
 
 class Package(models.Model):
@@ -107,11 +108,11 @@ it's used to define the billing cycle type for each package,
 monthly, every three months,annually,etc .. 
 """
 BILLING_TYPE = (
-    ("Daily", "Daily"),
-    ("Monthly", "Monthly"),
-    ("Quarterly", "Quarterly"),
-    ("Semi Annually", "Semi Annually"),
-    ("Annually", "Annually"),
+    ("daily", "Daily"),
+    ("monthly", "Monthly"),
+    ("quarterly", "Quarterly"),
+    ("semi_annually", "Semi Annually"),
+    ("annually", "Annually"),
 )
 
 
@@ -119,11 +120,11 @@ class PackageBillingType(models.Model):
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="adding_user")
+                                 on_delete=models.SET_NULL, related_name="user_added_package_billing_type")
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_modifier")
+                                         related_name="last_user_modified_package_billing")
     # this field is a foreign key references the package model
     # which represents the package
     package = models.ForeignKey(Package, on_delete=models.CASCADE)

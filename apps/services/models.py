@@ -2,7 +2,8 @@
 
 from django.db import models
 
-from .models  import  Country , User 
+from apps.address.models  import  Country
+from apps.authentication.models import User
 
 # Create your models here.
 
@@ -14,8 +15,8 @@ it's used to define all services in the Ouloug system
 and description and the type of value expected
 """
 SERVICE_STATUS = (
-    ("Active", "active"),
-    ("Not Active", "not active"),
+    ("active", "active"),
+    ("not_active", "not active"),
 
 )
 
@@ -32,11 +33,11 @@ class Service(models.Model):
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="adding_user")
+                                 on_delete=models.SET_NULL, related_name="user_added_service")
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_modifier")
+                                         related_name="last_user_modified_service")
     # this field represents the description
     description = models.TextField()
     # this field represents the description in Arabic

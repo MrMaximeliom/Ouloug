@@ -22,4 +22,5 @@
 - Deploy all models 
 - With one error with import models from other apps
 - Register all models in an admin
+- Handling issues related to deploying new models , hint there are still some errors needs to be delt with
 

@@ -1,12 +1,11 @@
 from django.contrib import admin
 
-from .models import PackageBillingType , TelecomNumber , CustomerTelecomNumber
+from apps.teams.models import Team
 
 # Register your models here.
 
-admin.site.register(PackageBillingType)
-admin.site.register(TelecomNumber)
-admin.site.register(CustomerTelecomNumber)
+admin.site.register(Team)
+
 
 
 

@@ -1,35 +1,28 @@
-
-
 from django.db import models
-
-
-from apps.home import City , Country , AgentShift , Team  , Currency 
-
-from home.models import User
-
-from packages.models import Package , PackageBillingType , PackageService
-
-# Create your models here.
-
-
+from apps.address.models import City, Country
+from apps.authentication.models import User
+from apps.packages.models import Package, PackageBillingType, PackageService
+from apps.teams.models import Team
+from apps.address.models import Currency
+from apps.telecoms.models import TelecomNumber
 
 """
 Customer Model:
 it's used to save the customer's details
 """
 CUSTOMER_PURCHASE_STATUS = (
-    ('Paid', 'Paid'),
-    ("Pending", "Pending"),
-    ("Trial", "Trial")
+    ('paid', 'Paid'),
+    ("pending", "Pending"),
+    ("trial", "Trial")
 )
 CUSTOMER_ACCOUNT_STATUS = (
-    ("Not Confirmed", "Not Confirmed"),
-    ("Active", "Active"),
-    ("Suspended", "Suspended"),
-    ("Closed", "Closed"),
-    ("Blocked", "Blocked"),
-    ("Dormant", "Dormant"),
-    ("Stopped", "Stopped")
+    ("not_confirmed", "Not Confirmed"),
+    ("active", "Active"),
+    ("suspended", "Suspended"),
+    ("closed", "Closed"),
+    ("blocked", "Blocked"),
+    ("dormant", "Dormant"),
+    ("stopped", "Stopped")
 )
 
 
@@ -85,6 +78,71 @@ class Customer(models.Model):
         db_table = "customer"
 
 
+"""
+Agent Shift Model:
+it's used to specify the default shift/work
+time for the agent per team/department
+"""
+AGENT_CHOICES = (
+    ("active", "Active"),
+    ("not_active", "Not Active"),
+
+)
+
+
+class AgentShift(models.Model):
+    # this is a foreign key field referenced from Country model
+    # which is used to represent the country model
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    # this is a foreign key field referenced from team model
+    # which is used to represent the team model
+    team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    # this field represents the shift number
+    number = models.IntegerField()
+    # this field represents the shift name
+    name = models.CharField(max_length=200)
+    # this field represents the shift name in Arabic
+    arabic_name = models.CharField(max_length=200)
+    # this field represents the starting date of the shift/work
+    start_date = models.DateField()
+    # this field represents the ending date of the shift/work
+    end_date = models.DateField()
+    # this field represents the starting time of the shift
+    start_time = models.TimeField()
+    # this field represents the ending time of the shift
+    end_time = models.TimeField()
+    # this field represents the status
+    status = models.CharField(max_length=10,
+                              choices=AGENT_CHOICES)
+    # this a boolean field which represents
+    # if the shift is working on Saturdays or not
+    is_saturday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Sundays or not
+    is_sunday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Mondays or not
+    is_monday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Tuesdays or not
+    is_tuesday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Wednesdays or not
+    is_wednesday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Thursdays or not
+    is_thursday_on = models.BooleanField()
+    # this a boolean field which represents
+    # if the shift is working on Fridays or not
+    is_friday_on = models.BooleanField()
+
+    def __str__(self):
+        # objects of this model will be referenced using their names
+        return self.name
+
+    class Meta:
+        # this is the actual model's name in the database
+        db_table = "agent_shift"
 
 
 """
@@ -135,11 +193,11 @@ username to access the SIP account and password, and account
 to access the portal.
 """
 LOGIN_STATUS = (
-    ("Login", "Login"),
-    ("Logout", "Logout"),
-    ("Break", "Break"),
-    ("Busy", "Busy"),
-    ("On leave", "On leave"),
+    ("login", "Login"),
+    ("logout", "Logout"),
+    ("break", "Break"),
+    ("busy", "Busy"),
+    ("on_leave", "On leave"),
 
 )
 
@@ -182,20 +240,20 @@ Customer Call Model:
 it's used to save call transactions for customers
 """
 CALL_DIRECTION = (
-    ("Inbound", "Inbound"),
-    ("Outbound", "Outbound")
+    ("inbound", "Inbound"),
+    ("outbound", "Outbound")
 )
 CALL_TYPE = (
-    ("Normal", "Normal"),
-    ("Group", "Group")
+    ("normal", "Normal"),
+    ("group", "Group")
 )
 CALL_STATUS = (
-    ("Complete", "Complete"),
-    ("Not Answered", "Not Answered"),
-    ("Rejected", "Rejected"),
-    ("Busy", "Busy"),
-    ("Waiting", "Waiting"),
-    ("Not Completed", "Not Completed"),
+    ("complete", "Complete"),
+    ("not_answered", "Not Answered"),
+    ("rejected", "Rejected"),
+    ("busy", "Busy"),
+    ("waiting", "Waiting"),
+    ("not_completed", "Not Completed"),
 )
 
 
@@ -235,18 +293,16 @@ class CustomerCall(models.Model):
         db_table = "customer_call"
 
 
-
-
 """
 Customer Package Model:
 it's used to save subscribed package by the customer
 """
 SUBSCRIPTION_STATUS = (
-    ("Active", "Active"),
-    ("Trial", "Trial"),
-    ("Suspended", "Suspended"),
-    ("Not Paid", "Not Paid"),
-    ("Deleted", "Deleted"),
+    ("active", "Active"),
+    ("trial", "Trial"),
+    ("suspended", "Suspended"),
+    ("not_paid", "Not Paid"),
+    ("deleted", "Deleted"),
 )
 
 
@@ -285,7 +341,6 @@ class CustomerPackage(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "customer_package"
-
 
 
 """
@@ -423,8 +478,8 @@ table but the customer can rename an add custom team name for his own
 management
 """
 CUSTOMER_TEAM_STATUS = (
-    ("Active", "Active"),
-    ("Not Active", "Not Active")
+    ("active", "Active"),
+    ("not_active", "Not Active")
 )
 
 
@@ -467,22 +522,41 @@ class CustomerTeam(models.Model):
 
 
 """
-Telecom Number Model:
-it's used to list of telephone numbers that is provided by the telecom
-operator and is available to customers to select
+Customer Telecom Number Model:
+it's used to associate the telecom/phone number with the customer.
+the selected phone number by customer
 """
-TELECOM_NUMBER_TYPE = (
-    ("Fix-Line", "Fix-Line"),
-    ("Short-Code4", "Short-Code4"),
-    ("Short-Code5", "Short-Code5"),
-    ("Short-Code6", "Short-Code6"),
-    ("Mobile", "Mobile")
-)
-TELECOM_NUMBER_STATUS = (
-    ("Available", "Available"),
-    ("Taken", "Taken"),
-    ("Withdraw", "Withdraw"),
+CUSTOMER_TELECOM_NUMBER_STATUS = (
+    ("active", "Active"),
+    ("stop", "Stop"),
+    ("withdraw", "Withdraw"),
 )
 
 
+class CustomerTelecomNumber(models.Model):
+    # this is foreign key field references the customer model
+    # which represents the customer
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    # this is foreign key field references the telecom number model
+    # which represents the telecom number
+    telecom_number = models.ForeignKey(TelecomNumber, on_delete=models.CASCADE)
+    # this field represents the actual telephone number
+    actual_telephone_number = models.CharField(max_length=80)
+    # this field represents the memo
+    memo = models.TextField()
+    # this field represents the taken date
+    taken_date = models.DateTimeField()
+    # this field represents withdrawal date
+    withdraw_date = models.DateTimeField()
+    # this field represents the status
+    status = models.CharField(max_length=50,
+                              choices=CUSTOMER_TELECOM_NUMBER_STATUS)
 
+    def __str__(self):
+        # objects of this model will be referenced by customer's
+        # name and telecom's number name
+        return self.customer.name + " -- " + self.telecom_number.name
+
+    class Meta:
+        # this is the actual name of the model in the database
+        db_table = "customer_telecom_number"
