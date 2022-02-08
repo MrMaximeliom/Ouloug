@@ -1,9 +1,8 @@
-'''
 
 
 from django.db import models
 
-from . import Country , User 
+from .models  import  Country , User 
 
 # Create your models here.
 
@@ -62,4 +61,3 @@ class Service(models.Model):
         db_table = "service"
 
 
-'''

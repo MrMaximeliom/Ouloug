@@ -1,10 +1,13 @@
-'''
+
 
 from django.db import models
 
 
-from apps.home import User , City , Country , AgentShift , Team , Package , PackageBillingType , Currency , PackageService
+from apps.home import City , Country , AgentShift , Team  , Currency 
 
+from home.models import User
+
+from packages.models import Package , PackageBillingType , PackageService
 
 # Create your models here.
 
@@ -483,5 +486,3 @@ TELECOM_NUMBER_STATUS = (
 
 
 
-
-'''

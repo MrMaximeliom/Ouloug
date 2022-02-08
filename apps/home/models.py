@@ -1,4 +1,3 @@
-'''
 
 # -*- encoding: utf-8 -*-
 """
@@ -221,4 +220,3 @@ COUNTRY_STATUS = (
 )
 
 
-'''

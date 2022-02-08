@@ -1,7 +1,7 @@
-'''
+
 
 from django.db import models
-from . import TelecomOperator , Currency , Service , User
+from .models import  TelecomOperator , Currency , Service , User
 # Create your models here.
 
 
@@ -145,5 +145,3 @@ class PackageBillingType(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "package_billing_type"
-
-'''

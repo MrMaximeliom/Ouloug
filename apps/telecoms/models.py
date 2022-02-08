@@ -1,8 +1,7 @@
-'''
 
 from django.db import models
 
-from . import User 
+from home.models  import  User 
 
 # Create your models here.
 
@@ -50,4 +49,3 @@ class TelecomOperator(models.Model):
 
 
 
-'''

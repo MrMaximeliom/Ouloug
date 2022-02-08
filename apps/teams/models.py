@@ -1,8 +1,8 @@
-'''
+
 
 from django.db import models
 
-from . import User , Package , Customer
+from .models  import  User , Package , Customer
 
 
 # Create your models here.
@@ -137,4 +137,3 @@ class CustomerTelecomNumber(models.Model):
         # this is the actual name of the model in the database
         db_table = "customer_telecom_number"
 
-'''
