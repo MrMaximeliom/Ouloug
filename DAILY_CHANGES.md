@@ -13,3 +13,13 @@
 ### Changes
 
 - Resolving issues related to user country model foreign keys
+
+
+
+## 2022-2-08
+### Changes
+
+- Deploy all models 
+- With one error with import models from other apps
+- Register all models in an admin
+
