@@ -31,24 +31,24 @@ class Package(models.Model):
     # this field represents the name of the package in Arabic
     arabic_name = models.CharField(max_length=200)
     # this field represents the priority of indexing
-    priority = models.IntegerField(max_length=200)
+    priority = models.IntegerField()
 
     # this field represents the type of the package
     type = models.CharField(max_length=80, choices=PACKAGE_STATUS)
     # this field represents the status of the package
     status = models.BooleanField(editable=True)
     # this field represents the price of the package
-    price = models.DecimalField(max_digits=10)
+    price = models.DecimalField(decimal_places=10,max_digits=12)
     # this is a boolean field represents weather
     # there is a free trial or not
     grace = models.BooleanField()
     # this field represents the number of days for free trial
-    grace_period_day = models.IntegerField(max_length=200)
+    grace_period_day = models.IntegerField()
     # this is a boolean field represents weather there is
     # a discount or not
-    discount = models.IntegerField(max_length=200)
+    discount = models.IntegerField()
     # this field represents the discount price
-    discount_price = models.DecimalField(max_digits=10)
+    discount_price = models.DecimalField(decimal_places=10,max_digits=12)
 
     def __str__(self):
         # objects of this model will be referenced by their name
@@ -86,9 +86,9 @@ class PackageService(models.Model):
     index = models.IntegerField()
     # the actual price of the service per the value of type unit this
     # price is retrieved from service model
-    price = models.DecimalField(max_digits=20)
+    price = models.DecimalField(decimal_places=10,max_digits=12)
     # this field represents the price amount
-    total_price = models.DecimalField(max_digits=20)
+    total_price = models.DecimalField(decimal_places=10,max_digits=12)
     # this is a boolean field represents the status
     status = models.BooleanField()
 
@@ -129,11 +129,11 @@ class PackageBillingType(models.Model):
     # which represents the package
     package = models.ForeignKey(Package, on_delete=models.CASCADE)
     # this field represents the serial
-    serial = models.IntegerField(max_length=200)
+    serial = models.IntegerField()
     # this field represents the billing type
     billing_type = models.CharField(max_length=200, choices=BILLING_TYPE)
     # this field represents the percentage added price
-    percentage_added_price = models.DecimalField(max_digits=40)
+    percentage_added_price = models.DecimalField(decimal_places=10,max_digits=12)
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)
     # this field represents the date and time when this record was last modified

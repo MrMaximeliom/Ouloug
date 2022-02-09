@@ -49,11 +49,11 @@ class Customer(models.Model):
     # this field represents the business logo
     logo = models.CharField(max_length=200)
     # this field represents the official registration number of the business
-    registration_number = models.IntegerField(max_length=200)
+    registration_number = models.IntegerField()
     # this field represents the date of establishing the business
     established_date = models.DateField(max_length=200)
     # this field represents the admin mobile number
-    admin_mobile_number = models.IntegerField(max_length=40)
+    admin_mobile_number = models.IntegerField()
     # this field represents the account status
     account_status = models.CharField(max_length=80, choices=CUSTOMER_ACCOUNT_STATUS)
     # this field represents the purchase status
@@ -320,9 +320,9 @@ class CustomerPackage(models.Model):
     # which represents the currency
     currency = models.ForeignKey(Currency, models.CASCADE)
     # this field represents the total amount of subscription
-    subscription_amount = models.DecimalField(max_digits=20)
+    subscription_amount = models.DecimalField(decimal_places=10,max_digits=12)
     # this field represents the pending amount to be paid by the customer
-    due_amount = models.DecimalField(max_digits=20)
+    due_amount = models.DecimalField(decimal_places=10,max_digits=12)
     # this field represents the date and time when a record was created
     customer_package_datetime = models.DateTimeField(auto_now=True)
     # this field represents the starting active subscription
@@ -359,7 +359,7 @@ class CustomerPayment(models.Model):
     # this field represents the transaction's date and time
     transaction_datetime = models.DateTimeField(auto_now=True)
     # this field represents the transaction's amount
-    transaction_amount = models.DecimalField(max_digits=40)
+    transaction_amount = models.DecimalField(decimal_places=10,max_digits=12)
     # this field is a foreign key references the currency model
     # which represents the currency
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
@@ -424,9 +424,9 @@ class CustomerCallParticipant(models.Model):
     # this field represents the end time
     end_time = models.TimeField(blank=True)
     # this field represents the time duration
-    time_duration = models.DecimalField(max_digits=40)
+    time_duration = models.DurationField()
     # this field represents the call status
-    call_status = models.CharField(max_length=10,
+    call_status = models.CharField(max_length=40,
                                    choices=CALL_STATUS)
 
     def __str__(self):
@@ -454,9 +454,9 @@ class CustomerPackageService(models.Model):
     # this field represents the subscription type value
     subscription_type_value = models.IntegerField()
     # this field represents the service price
-    service_price = models.DecimalField(max_digits=40)
+    service_price = models.DecimalField(decimal_places=10,max_digits=12)
     # this field represents the total price amount
-    total_price = models.DecimalField(max_digits=40)
+    total_price = models.DecimalField(decimal_places=10,max_digits=12)
     # this field is a foreign key referenced from the currency model
     # which represents the currency
     currency_code = models.ForeignKey(Currency, on_delete=models.CASCADE)

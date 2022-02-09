@@ -198,7 +198,7 @@ class Currency(models.Model):
     # this field represents the currency symbol in accounting written in Arabic
     arabic_symbol = models.CharField(max_length=10)
     # this field represents the digits number in decimal number which is used to represent a currency
-    decimal_digits_number = models.DecimalField(max_digits=200)
+    decimal_digits_number = models.DecimalField(decimal_places=8,max_digits=9)
 
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)

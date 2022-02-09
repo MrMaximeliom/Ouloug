@@ -14,8 +14,6 @@
 
 - Resolving issues related to user country model foreign keys
 
-
-
 ## 2022-2-08
 ### Changes
 
@@ -24,3 +22,8 @@
 - Register all models in an admin
 - Handling issues related to deploying new models , hint there are still some errors needs to be delt with
 
+## 2022-2-09
+### Changes
+
+- Make-migrations for all models
+- Resolving all issues related to models
