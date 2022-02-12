@@ -27,3 +27,11 @@
 
 - Make-migrations for all models
 - Resolving all issues related to models
+
+
+
+## 2022-2-12
+### Changes
+
+- Add some code in views.py for dahborad use it's with comment
+- Make some empty html files for all dashboard related 

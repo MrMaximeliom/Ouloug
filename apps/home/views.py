@@ -105,7 +105,7 @@ def password_reset_request(request):
     
 
 
-#This code for login from decorators and some dashborad view for admin site only 'oulgamin'
+#This code for login from decorators and some dashborad view for admin site only 'oulgamin' and ashborad
 
 
 '''
@@ -159,6 +159,14 @@ def home(request):
     conutries      = Conutry.objects.all()
     conutries_count = conutries.count()
 
+    customers      = Customers.objects.all()
+    customers_count = customers.count()
+
+
+    
+    teams      = Teams.objects.all()
+    teams_count = teams.count()
+
     currencies       = Currency.objects.all()
     currencies_count  = currencies.count()
 
@@ -177,6 +185,12 @@ def allconutries(request):
     context        = {'conutries':conutries}
 
     return render(request, 'allconutries.html', context)
+
+
+@login_required(login_url='login')
+def allcustomers(request):
+    customers      = Customer.objects.all()
+    context        = {'customers':customers}
 
 
 
