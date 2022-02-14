@@ -65,7 +65,7 @@ class SignUpForm(forms.ModelForm):
     phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Phone Number",
+                "placeholder": "Starts without country code)",
                 "class": "form-control"
             }
         ))
@@ -87,7 +87,8 @@ class SignUpForm(forms.ModelForm):
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "Password check",
-                "class": "form-control"
+                "class": "form-control",
+                "disabled":"disabled"
             }
 
 

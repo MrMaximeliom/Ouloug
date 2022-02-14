@@ -12,11 +12,9 @@
     {% else %}
         <h2 class="text-white pb-2">Welcome back, {{request.user}}!</h2>
     {% endif %}
-    
+
 </div>
 
-{% for group in user.groups.all %}
-{% if group.name == 'oulogadmin' %}
 
 
     <div class="pcoded-content">
@@ -134,8 +132,6 @@
                                 </div>
                             </div>
                         </div>
-                        {% endif %}
-                        {% endfor %}
 
 
                         <!--[ year  sales section ] end-->

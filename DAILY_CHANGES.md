@@ -35,3 +35,8 @@
 
 - Add some code in views.py for dahborad use it's with comment
 - Make some empty html files for all dashboard related 
+
+## 2022-2-14
+### Changes
+
+- Add check validation for form registration 

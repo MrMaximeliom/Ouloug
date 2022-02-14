@@ -4,21 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="Handling issues related to deploying models">
+    <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="Resolving all isuues in models">
+      <change afterPath="$PROJECT_DIR$/Util/constants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/permissions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/address/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/packages/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/static/assets/js/authentication/signup_form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/customers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/packages/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/packages/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/assets/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/css/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/allcountries.html" beforeDir="false" afterPath="$PROJECT_DIR$/Util/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/allcustomers.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/currencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/js/authentication/handle_forms.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/home/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/payments.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/states.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/teams.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/includes/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/layouts/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
+    <option name="RESET_MODE" value="KEEP" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/apps/authentication/models.py" root0="FORCE_HIGHLIGHTING" />
@@ -102,7 +140,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644355358246</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Resolving all isuues in models">
+      <created>1644430723150</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1644430723150</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Resolving all isuues in models">
+      <created>1644430897556</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1644430897556</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -119,6 +171,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes are specified in the DAILY_CHANGES.md file" />
     <MESSAGE value="Handling issues related to deploying models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Handling issues related to deploying models" />
+    <MESSAGE value="Resolving all isuues in models" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolving all isuues in models" />
   </component>
 </project>

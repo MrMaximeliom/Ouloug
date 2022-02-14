@@ -5,3 +5,21 @@ justify-content:center;
 .site-logo img{
 width:30rem;
 }
+.text-error-holder{
+width:11rem;
+margin-bottom:.2rem;
+}
+.text-error{
+color:hsl(0, 76%, 50%);
+}
+/* Show red borders when filled, but invalid */
+input[data-state="invalid"]
+{  border-color: hsl(0, 76%, 50%);}
+/* Show green borders when valid */
+input[data-state="valid"]
+{  border-color: hsl(120, 76%, 50%);}
+li[data-state="invalid"]
+{  color: hsl(0, 76%, 50%);}
+/* Show green borders when valid */
+li[data-state="valid"]
+{  color: hsl(120, 76%, 50%);}

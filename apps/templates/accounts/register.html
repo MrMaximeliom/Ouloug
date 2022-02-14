@@ -7,6 +7,11 @@
     {% block stylesheets %}
        <link rel="stylesheet" href="/static/assets/css/register.css">
     {% endblock stylesheets %}
+   {% block javascripts %}
+{{ data_js|json_script:"my-data" }}
+<script src="/static/assets/js/authentication/handle_forms.js" defer type="module"></script>
+<script src="/static/assets/js/authentication/signup_form.js" defer type="module"></script>
+{% endblock javascripts %}
 {% block content %}   
 
     <div class="auth-wrapper">
@@ -39,89 +44,152 @@
                     <br />
                     <br />
 
-                    <form role="form" method="post" action="">
+
+                    <form role="form" method="post" action="" autocomplete="off" id="signUpForm">
 
                         {% csrf_token %}
-                        <div class="row justify-form-fields">
+<!-- row contains first name and last name -->
+      <div class="container-fluid">
+                        <div class="row justify-form-fields mb-3">
 
-                    <div class="col-auto">
-                         <div class="input-group mb-3">
+                    <div class="col-auto mb-2">
+                         <div class="input-group ">
                             {{ form.first_name }}
                         </div>
-                        <span class="text-error">{{ form.first_name.errors }}</span>
-                        <div class="input-group mb-3">
+                        <div class="text-error-holder">
+                      <span class="text-error" id="first_name_error">{{ form.first_name.errors }}</span>
+
+                        </div>
+                    </div>
+                             <div class="clearfix visible-xs"></div>
+                              <div class="col-auto mb-2">
+                        <div class="input-group">
                             {{ form.second_name }}
                         </div>
-                        <span class="text-error">{{ form.second_name.errors }}</span>
+                                         <div  class="text-error-holder">
+                             <span class="text-error" id="second_name_error">{{ form.second_name.errors }}</span>
+
+                            </div>
+
                     </div>
-                            <div class="col-auto">
-                        <div class="input-group mb-3">
+
+                        </div>
+<!--     row contains third name and fourth name                   -->
+                              <div class="row justify-form-fields  mb-3">
+                            <div class="col-auto mb-2">
+                        <div class="input-group">
                             {{ form.third_name }}
                         </div>
-                        <span class="text-error">{{ form.third_name.errors }}</span>
-                        <div class="input-group mb-3">
+                                <div  class="text-error-holder">
+                        <span class="text-error" id="third_name_error">{{ form.third_name.errors }}</span>
+                                </div>
+                            </div>
+                            <div class="clearfix visible-xs"></div>
+
+                                  <div class="col-auto mb-2">
+                        <div class="input-group" >
                             {{ form.fourth_name }}
                         </div>
-                        <span class="text-error">{{ form.fourth_name.errors }}</span>
+                                      <div  class="text-error-holder">
+                            <span class="text-error" id="fourth_name_error">{{ form.fourth_name.errors }}</span>
+
+                                      </div>
 
                     </div>
 
                                 </div>
-                        <div class="row justify-form-fields">
-                            <div class="col-auto">
-                                  <div class="input-group mb-3">
-                            {{ form.phone_number }}
+<!--         row contains phone number and username               -->
+                        <div class="row  mb-3">
+                            <div class="col-auto mb-2">
+                                  <div class="input-group ">
+
+                                                <select class="input-group-text form-select form-control form-select-sm select"  id="phone_number_select">
+                                                    <option value="sudan">
+                                                       &#x1F1F8;&#x1F1E9;  +249</option>
+                                                    <option value="egypt">&#x1F1EA;&#x1F1EC; +201</option>
+                                                    <option value="UAE">&#x1F1E6;&#x1F1EA; +971</option>
+                                                </select>
+
+
                         </div>
-                                 <span class="text-error">{{ form.phone_number.errors }}</span>
+
                             </div>
-                              <div class="col-auto">
-                        <div class="input-group mb-3">
+                                                         <div class="clearfix visible-xs"></div>
+
+                              <div class="col-auto mb-2">
+                        <div class="input-group">
+                           {{ form.phone_number }}
+                        </div>
+                                 <div class="text-error-holder">
+                               <span class="text-error" id="phone_number_error">{{ form.phone_number.errors }}</span>
+
+                                </div>
+                            </div>
+                        </div>
+          <div  class="row  mb-3">
+                             <div class="col-auto mb-2">
+                        <div class="input-group">
                             {{ form.username }}
                         </div>
-                        <span class="text-error">{{ form.username.errors }}</span>
+                                   <div class="text-error-holder">
+                        <span class="text-error" id="username_error">{{ form.username.errors }}</span>
+                                   </div>
                             </div>
                         </div>
-  <div class="row justify-form-fields">
+<!--     row contains password and confirm password                   -->
+  <div class="row justify-form-fields mb-3">
 
-         <div class="col-auto">
-                        <div class="input-group mb-4">
+         <div class="col-auto  mb-2">
+                        <div class="input-group">
                             {{ form.password }}
                         </div>
-                        <span class="text-error">{{ form.password.errors }}</span>
+              <div class="text-error-holder">
+                        <span class="text-error" id="password_error">{{ form.password.errors }}</span>
+              </div>
+         </div>
+                                   <div class="clearfix visible-xs"></div>
 
-                        <div class="input-group mb-4">
+      <div class="col-auto">
+
+                        <div class="input-group ">
                             {{ form.password2 }}
                         </div>
-                        <span class="text-error">{{ form.password2.errors }}</span>
-                            </div>
-                          <div class="col-auto">
+              <div class="text-error-holder">
+                        <span class="text-error" id="confirm_password_error">{{ form.password2.errors }}</span>
 
-                        <div class="input-group mb-3">
+                            </div>
+      </div>
+  </div>
+                         <div class="row justify-form-fields mb-3">
+
+                          <div class="col-auto mb-2">
+
+                        <div class="input-group">
                             {{ form.email }}
                         </div>
-                        <span class="text-error">{{ form.email.errors }}</span>
+                              <div class="text-error-holder">
+                                                        <span class="text-error" id="email_error">{{ form.email.errors }}</span>
+
+                              </div>
 
                             </div>
 
 
                           </div>
-                        <div class="col-auto">
+      </div>
 
-                               <div class="input-group mb-3">
-                            {{ form.captcha }}
-                        </div>
-                        <span class="text-error">{{ form.captcha.errors }}</span>
-                        </div>
-                        
+
+
                         <div class="form-group text-left">
                             <div class="checkbox checkbox-fill d-inline">
-                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1">
+                                <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" required>
                                 <label for="checkbox-fill-a1" class="cr"> Agree with <a href="#">terms</a></label>
                             </div>
                         </div>
-                        <button type="submit" name="register" class="btn btn-primary shadow-2 mb-4">Register</button>
+                        <button type="submit" name="register" id="registerBtn" class="btn btn-primary shadow-2 mb-4">Register</button>
 
                     </form>
+
 
                     <p class="mb-0 text-muted">Already have an account? <a href="{% url 'login' %}" >Login</a></p>
                     <br />
