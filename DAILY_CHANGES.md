@@ -40,3 +40,9 @@
 ### Changes
 
 - Add check validation for form registration 
+
+
+## 2022-2-15
+### Changes
+
+- Create forms for the apps and make the views of those forms with empty html pages
