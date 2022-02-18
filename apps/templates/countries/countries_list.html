@@ -1,0 +1,89 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- [ breadcrumb ] start -->
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">{% trans 'Countries' %}</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#">{% trans 'Countries' %}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- [ breadcrumb ] end -->
+ {% if object_list|length %}
+              <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Countries Table</h5>
+                                <span class="d-block m-t-5">use class <code>table</code> inside table element</span>
+                            </div>
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{% trans 'Name' %}</th>
+                                                <th>{% trans 'Arabic Name' %}</th>
+                                                <th>{% trans 'Access Code' %}</th>
+                                                <th>{% trans 'Service Country?' %}</th>
+                                                <th>{% trans 'Status' %}</th>
+                                                <th>{% trans 'Added By' %}</th>
+                                                <th>{% trans 'Added Date and Time' %}</th>
+                                                <th>{% trans 'Last Modification' %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for object in object_list %}
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>{{object.name}}</td>
+                                                <td>{{object.arabic_name}}</td>
+                                                <td>{{object.access_code}}</td>
+                                                <td>{{object.is_service_country}}</td>
+                                                <td>{{object.status}}</td>
+                                                <td>{{object.added_by.username}}</td>
+                                                <td>{{object.added_datetime}}</td>
+                                                <td>{{object.last_modification_datetime}}</td>
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+            {% else %}
+<h3 class="delete-warning">{% trans 'There are no countries yet ... you can add new ones from ' %}
+    <a href="{% url 'addCountries' %}">{% trans 'Here' %}</a></h3>
+
+            {% endif %}
+
+
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

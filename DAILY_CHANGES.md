@@ -46,3 +46,13 @@
 ### Changes
 
 - Create forms for the apps and make the views of those forms with empty html pages
+
+## 2022-2-17
+### Changes
+
+- Add messages section in base html file
+- Add Countries Master Page with its subpages (All Countries - Add Countries - Edit Country - Remove Countries)
+- Remove the sing up link from the login page (The signup process will be conducted from within the system ,by Ouloug admin only)
+- Customize authorization groups to 'ouloug_admin' and 'ouloug_monitor'
+- Customize User model and add Groups model inheritance to it
+- Adding Group Required Mixin to Countries View List 

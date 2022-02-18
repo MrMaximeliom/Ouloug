@@ -4,35 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="Resolving all isuues in models">
-      <change afterPath="$PROJECT_DIR$/Util/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/permissions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/address/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/packages/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/static/assets/js/authentication/signup_form.js" afterDir="false" />
+    <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="Adding validation to registration form">
+      <change afterPath="$PROJECT_DIR$/Util/GroupPermissions/GroupRequiredMixin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/GroupPermissions/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/countries/add_countries.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/countries/countries_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/authentication/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/authentication/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/customers/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/static/assets/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/telecoms/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/static/assets/js/pcoded.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/js/pcoded.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/accounts/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/allcountries.html" beforeDir="false" afterPath="$PROJECT_DIR$/Util/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/allcustomers.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/currencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/js/authentication/handle_forms.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/home/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/home/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/payments.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/states.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/teams.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/home/page-blank.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/home/page-blank.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/includes/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-card-low.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-card-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-card.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-card.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-content-image-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-content-image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-intro.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-1-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-2-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-3-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-4-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-5-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-login-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen-low.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/django-dashboard-dattaable-screen.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +60,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -80,13 +99,15 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/uniseal" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/templates/countries" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -154,8 +175,25 @@
       <option name="project" value="LOCAL" />
       <updated>1644430897556</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Adding validation to registration form">
+      <created>1644867287397</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1644867287397</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -172,6 +210,7 @@
     <MESSAGE value="changes are specified in the DAILY_CHANGES.md file" />
     <MESSAGE value="Handling issues related to deploying models" />
     <MESSAGE value="Resolving all isuues in models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolving all isuues in models" />
+    <MESSAGE value="Adding validation to registration form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding validation to registration form" />
   </component>
 </project>

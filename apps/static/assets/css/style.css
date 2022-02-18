@@ -65,6 +65,9 @@ body {
   background: #f4f7fa;
   position: relative;
 }
+.active{
+color:#1dc4e9 !important;
+}
 
 *:focus {
   outline: none;

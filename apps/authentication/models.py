@@ -2,6 +2,7 @@ from django.contrib.auth.models import (
     BaseUserManager, AbstractBaseUser
 )
 from django.db import models
+from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 import uuid
 
@@ -74,7 +75,7 @@ USER_STATUS = (
 )
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser,PermissionsMixin):
     # this field represents the primary key of the model
     id = models.UUIDField(
         primary_key=True,

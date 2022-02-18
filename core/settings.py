@@ -52,7 +52,7 @@ DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 # file based email backend
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(os.path.join(CORE_DIR, 'sent_emails'))
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

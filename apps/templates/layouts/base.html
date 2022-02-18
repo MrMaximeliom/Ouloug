@@ -3,7 +3,7 @@
 
 <head>
     <title>
-        Ouloug Administration Portal{% block title %}{% endblock %}
+        Ouloug Administration Portal -- {% block title %}{% endblock %}
     </title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -60,8 +60,35 @@
 
     <div class="pcoded-main-container">
         <div class="pcoded-wrapper">
+                           <div class="text-center text-md-center mb-4 mt-md-0">
+                                <br />
+                 {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success'%}
+                <div class="alert alert-success" role="alert" id="message">
+                    {{message}}
+</div>
+            {% elif message.tags == 'info'%}
+                <div class="alert alert-info" role="alert">
+                    {{message}}
+</div>
+            {% elif message.tags == 'warning'%}
+                <div class="alert alert-warning" role="alert">
+                    {{message}}
+</div>
+            {% elif message.tags == 'error'%}
+                <div class="alert alert-danger" role="alert">
+                    {{message}}
+</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+                            </div>
 
-            {% block content %}{% endblock content %}
+                          {% block content %}{% endblock content %}
+
+
+
 
         </div>
     </div>
