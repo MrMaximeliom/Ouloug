@@ -42,6 +42,7 @@ class Country(models.Model):
         # objects of this model will be referenced by their names
         return str(self.name)
 
+
     class Meta:
         # this is the model's actual name in the database
         db_table = "country"

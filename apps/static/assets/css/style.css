@@ -65,9 +65,7 @@ body {
   background: #f4f7fa;
   position: relative;
 }
-.active{
-color:#1dc4e9 !important;
-}
+
 
 *:focus {
   outline: none;
@@ -10614,4 +10612,13 @@ div.code-toolbar > .toolbar span:hover {
 /* adding styles to side bar logo*/
 .sidebar-image{
 width:2rem;
+}
+
+.active{
+color:#1dc4e9 !important;
+}
+/* adding class card-flex-header in List Pages like (Country List View) */
+.card-flex-header{
+display:flex;
+justify-content : space-between;
 }

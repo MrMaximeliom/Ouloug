@@ -56,3 +56,11 @@
 - Customize authorization groups to 'ouloug_admin' and 'ouloug_monitor'
 - Customize User model and add Groups model inheritance to it
 - Adding Group Required Mixin to Countries View List 
+
+
+## 2022-2-19
+### Changes
+
+- Add group required to countries' pages
+- Allow only ouloug admin to make CRUD operations in Countries' pages
+- Allow ouloug monitors to make only Read operations in Countries' pages

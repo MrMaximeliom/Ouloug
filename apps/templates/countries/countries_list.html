@@ -2,7 +2,7 @@
 
 {% block title %}{{title}}{% endblock %}
 {% load static i18n %}
-
+{% load check_user_group %}
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 
@@ -30,10 +30,18 @@
  {% if object_list|length %}
               <div class="col-xl-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header card-flex-header">
+                                <div>
                                 <h5>Countries Table</h5>
-                                <span class="d-block m-t-5">use class <code>table</code> inside table element</span>
+                                       </div>
+                                {% if request.user|has_group:"ouloug_admin" %}
+                                    <div>
+                                <a href="{% url 'addCountries' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
+
+                           </div>
+                                  {% endif %}
                             </div>
+
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
                                     <table class="table">
@@ -48,6 +56,10 @@
                                                 <th>{% trans 'Added By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
                                                 <th>{% trans 'Last Modification' %}</th>
+                                                  {% if request.user|has_group:"ouloug_admin"  %}
+                                                <th>{% trans 'Update' %}</th>
+                                                <th>{% trans 'Delete' %}</th>
+                                                {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -62,6 +74,16 @@
                                                 <td>{{object.added_by.username}}</td>
                                                 <td>{{object.added_datetime}}</td>
                                                 <td>{{object.last_modification_datetime}}</td>
+                                                  {% if request.user|has_group:"ouloug_admin"  %}
+                                                <td>
+<a href="#" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
+
+                                                </td>
+                                                <td>
+ <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
+
+                                                </td>
+                                                {% endif %}
                                             </tr>
                                         {% endfor %}
 
@@ -74,8 +96,12 @@
 
 
             {% else %}
-<h3 class="delete-warning">{% trans 'There are no countries yet ... you can add new ones from ' %}
+               {% if request.user|has_group:"ouloug_admin"  %}
+<h3 class="delete-warning">{{no_records_admin}}
     <a href="{% url 'addCountries' %}">{% trans 'Here' %}</a></h3>
+            {% else %}
+            <h3 class="delete-warning">{{no_records_monitor}}
+            {% endif %}
 
             {% endif %}
 

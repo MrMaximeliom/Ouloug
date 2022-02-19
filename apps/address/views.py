@@ -3,37 +3,19 @@ from django.views.generic import ListView,FormView
 from .forms import CountryForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-
 from django.contrib.auth.mixins import PermissionRequiredMixin
-# from Util.GroupPermissions import GroupRequiredMixin
-class VoteListView(PermissionRequiredMixin, ListView):
-  permission_required = 'school.add_vote'
-  # Or multiple of permissions<br>permission_required = ('school .add_vote', 'school .change_vote'
+from Util.static_strings import NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE,NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE
 
-class CountryFormView(FormView):
-    template_name = 'countries/add_countries.html'
-    form_class = CountryForm
-    success_url = 'countries'
-
-    def form_valid(self, form):
-        form.save()
-        messages.success(self.request, "Offer Added Successfully")
-        return super().form_valid(form)
-
-    extra_context = {
-        'masters': 'active',
-        'countries': 'active',
-        'add_offers': 'active',
-        'title':'Add Countries'
-    }
-# Create your views here.
-class CountryListView(PermissionRequiredMixin,ListView):
-    model = Country
-    template_name = "countries/countries_list.html"
-    active_flag = 'all_offers'
-    title = "Countries"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    permission_required = ('ouloug_admin','ouloug_monitor')
+"""
+CountryGroupPermission Class:
+This class is used to specify users' groups
+allowed to access the country view pages
+"""
+class CountryGroupPermission(PermissionRequiredMixin):
+    # by default allow only users of ouloug_admin and ouloug_monitor
+    #  to access the countries' pages
+    permission_required = ('ouloug_admin', 'ouloug_monitor')
+    # check if the logged-in user has the access permission or not
     def has_permission(self):
         groups = self.get_permission_required()
         user_groups = self.request.user.groups.values('name')
@@ -42,14 +24,78 @@ class CountryListView(PermissionRequiredMixin,ListView):
                 if user_group['name'] == group:
                     return True
 
+
+"""
+CountryFormView:
+This class is used to represent the add country view , 
+it allows only ouloug_admin users to access it
+"""
+class CountryFormView(CountryGroupPermission,FormView):
+    # specify template name used to add new countries
+    template_name = 'countries/add_countries.html'
+    # specify the form used
+    form_class = CountryForm
+    # specify the page to return to after successfully adding new country
+    success_url = 'countries'
+    # specify user's groups allowed to access this view
+    permission_required = ('ouloug_admin')
+    # check if the form is valid or not after submitting it
+    def post(self, request, *args, **kwargs):
+        form = CountryForm(request.POST)
+        if self.form_valid(form):
+            print("valid")
+        else:
+            for field, items in form.errors.items():
+                for item in items:
+                    messages.error(request, '{}: {}'.format(field, item))
+        return super().get(request)
+
+
+
+    def form_valid(self, form):
+        # return added country name
+        country_name = self.request.POST['name']
+        # save form data if form is valid
+        form.save()
+        # present success message to the user
+        messages.success(self.request, f"Country {country_name} Added Successfully")
+        # return the control to the original overridden function in the super class
+        return super().form_valid(form)
+    # priovided the required extra context for the view
     extra_context = {
-        'title':title,
-        'masters':'active',
-        'countries':'active'
+        'masters': 'active',
+        'countries': 'active',
+        'add_offers': 'active',
+        'title':'Add Countries'
     }
 
 
 
+"""
+CountryListView:
+This class is used to view all added countries in the system,
+it allows users only from ouloug_admin and ouloug_monitor groups to 
+access.
+"""
+class CountryListView(CountryGroupPermission,ListView):
+    # specify the model used in the view
+    model = Country
+    # specify the template in the view
+    template_name = "countries/countries_list.html"
+    # adding active flag for the sidebar active link
+    active_flag = 'all_offers'
+    # adding the view's title
+    title = "Countries"
+    permission_denied_message = _("Sorry you do not have access to this page")
+    # adding the required extra context
+    extra_context = {
+        'title':title,
+        'masters':'active',
+        'countries':'active',
+        'no_records_admin':NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE,
+        'no_records_monitor':NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE
+    }
+    # return default queryset used in this view
     def get_queryset(self):
         return Country.objects.all().order_by('-id')
 
