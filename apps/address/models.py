@@ -37,7 +37,6 @@ class Country(models.Model):
     added_datetime = models.DateTimeField(auto_now_add=True)
     # this field represents the last modification date and time for a record
     last_modification_datetime = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         # objects of this model will be referenced by their names
         return str(self.name)
