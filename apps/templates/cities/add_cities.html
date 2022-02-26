@@ -17,12 +17,12 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">{% trans 'Countries' %}</h5>
+                                <h5 class="m-b-10">{% trans 'Cities' %}</h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="{% url 'countriesList' %}">{% trans 'Countries' %}</a></li>
-                                <li class="breadcrumb-item"><a href="#">{% trans 'Add Countries' %}</a></li>
+                                <li class="breadcrumb-item"><a href="{% url 'countriesList' %}">{% trans 'Cities' %}</a></li>
+                                <li class="breadcrumb-item"><a href="#">{% trans 'Add Cities' %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -36,7 +36,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Country' %}</h5>
+                                <h5>{% trans 'Add City' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -47,27 +47,23 @@
                                             <div class="form-group">
                                                 {{form.name|as_crispy_field}}
 
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
                                                 {{form.arabic_name|as_crispy_field}}
                                             </div>
                                               <div class="form-group">
-                                                {{form.code|as_crispy_field}}
-                                            </div>
-                                              <div class="form-group">
                                                 {{form.access_code|as_crispy_field}}
                                             </div>
                                               <div>
-                                               {{form.status|as_crispy_field}}
+                                               {{form.state|as_crispy_field}}
 
                                             </div>
 
                                             <div class="form-group ">
-                                                {{form.is_service_country|as_crispy_field}}
+                                                {{form.status|as_crispy_field}}
 
                                             </div>
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Country' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add City' %}</button>
                                         </form>
                                     </div>
                                 </div>

@@ -59,94 +59,51 @@ def check_phone_number(phone):
 #     #     self.tempDir = dir_name
 #     # def getTempDir(self):
 #     #     return self.tempDir
-# class SearchMan:
-#     search_error = False
-#
-#     def __init__(self,model):
-#         from django.core.paginator import Paginator
-#         from django.db.models import Count
-#         if model == "User":
-#             from accounts.models import User
-#             users = User.objects.all().order_by("id")
-#             self.paginator = Paginator(users, 5)
-#         if model == "Product":
-#             from product.models import Product
-#             products = Product.objects.all().order_by("id")
-#             self.paginator = Paginator(products, 5)
-#         if model == "Supplier":
-#             from supplier.models import Supplier
-#             suppliers = Supplier.objects.all().order_by("id")
-#             self.paginator = Paginator(suppliers, 5)
-#         if model == "Project":
-#             from project.models import Project
-#             projects = Project.objects.all().order_by("id")
-#             self.paginator = Paginator(projects, 5)
-#         if model == "Application":
-#             from project.models import Application
-#             applications = Application.objects.annotate(num_projects=Count('project')).order_by('-num_projects')
-#             self.paginator = Paginator(applications, 5)
-#         if model == "Category":
-#             from category.models import Category
-#             categories = Category.objects.annotate(num_products=Count('product')).order_by('-num_products')
-#             self.paginator = Paginator(categories, 5)
-#         if model == "Country":
-#             from address.models import Country
-#             countries = Country.objects.all().order_by('id')
-#             self.paginator = Paginator(countries, 5)
-#         if model == "State":
-#             from address.models import State
-#             states = State.objects.annotate(num_cities=Count('city')).order_by('-num_cities')
-#             self.paginator = Paginator(states, 5)
-#         if model == "City":
-#             from address.models import City
-#             cities = City.objects.annotate(num_areas=Count('area')).order_by('-num_areas')
-#             self.paginator = Paginator(cities, 5)
-#         if model == "Area":
-#             from address.models import Area
-#             areas = Area.objects.all().order_by('id')
-#             self.paginator = Paginator(areas, 5)
-#         if model == "Selling Point":
-#             from sellingPoint.models import SellingPoint
-#             selling = SellingPoint.objects.all().order_by('id')
-#             self.paginator = Paginator(selling, 5)
-#         if model == "Notifications":
-#             from notifications.models import Notifications
-#             notifications = Notifications.objects.all().order_by('id')
-#             self.paginator = Paginator(notifications, 60)
-#         if model == "ProductVideos":
-#             from application_videos.models import ProductApplicationVideos
-#             videos = ProductApplicationVideos.objects.all().order_by('id')
-#             self.paginator = Paginator(videos, 5)
-#
-#
-#
-#
-#     def setPaginator(self,query):
-#         from django.core.paginator import Paginator
-#         self.paginator = Paginator(query, 60)
-#
-#     def getPaginator(self):
-#         return self.paginator
-#     search = False
-#     search_phrase = ''
-#     search_option = ''
-#     def setSearch(self,bool):
-#         self.search = bool
-#     def getSearch(self):
-#         return self.search
-#     def setSearchPhrase(self,phrase):
-#         self.search_phrase = phrase
-#     def getSearchPhrase(self):
-#         return  self.search_phrase
-#     def setSearchOption(self, option):
-#         self.search_option = option
-#     def getSearchOption(self):
-#         return self.search_option
-#     def setSearchError(self,bool):
-#         self.search_error=bool
-#     def getSearchError(self):
-#         return self.search_error
-#
+class SearchMan:
+    search_error = False
+
+    def __init__(self,model):
+        from django.core.paginator import Paginator
+        from django.db.models import Count
+        if model == "Country":
+            from apps.address.models import Country
+            countries = Country.objects.all().order_by("id")
+            self.paginator = Paginator(countries, 5)
+        if model == "City":
+            from apps.address.models import City
+            cities = City.objects.all().order_by("id")
+            self.paginator = Paginator(cities, 5)
+
+
+
+
+
+    def setPaginator(self,query):
+        from django.core.paginator import Paginator
+        self.paginator = Paginator(query, 60)
+
+    def getPaginator(self):
+        return self.paginator
+    search = False
+    search_phrase = ''
+    search_option = ''
+    def setSearch(self,bool):
+        self.search = bool
+    def getSearch(self):
+        return self.search
+    def setSearchPhrase(self,phrase):
+        self.search_phrase = phrase
+    def getSearchPhrase(self):
+        return  self.search_phrase
+    def setSearchOption(self, option):
+        self.search_option = option
+    def getSearchOption(self):
+        return self.search_option
+    def setSearchError(self,bool):
+        self.search_error=bool
+    def getSearchError(self):
+        return self.search_error
+
 # def createExelFile(report_name,headers,request=None,**kwargs):
 #     from django.contrib import messages
 #     import xlsxwriter , os

@@ -25,7 +25,10 @@ USERNAME_BAD_FORMAT = _("Username Contains at Least 6 Characters With Only Alpha
 
 
 
-# NO RECORDS FOUND STRINGS
+# NO RECORDS FOUND STRINGS - Country Pages
 NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE = _("There are no countries yet ... you can add new ones from ")
 NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE = _("There are no countries yet to view")
 
+# NO RECORDS FOUND STRINGS - City Pages
+NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can add new ones from ")
+NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE = _("There are no cities yet to view")

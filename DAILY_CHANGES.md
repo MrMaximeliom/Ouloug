@@ -64,3 +64,9 @@
 - Add group required to countries' pages
 - Allow only ouloug admin to make CRUD operations in Countries' pages
 - Allow ouloug monitors to make only Read operations in Countries' pages
+
+## 2022-2-25
+### Changes
+
+- Change permission system from user_group to user_type in Country Pages
+- Add pagination code to Country Pages

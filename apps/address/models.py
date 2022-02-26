@@ -102,7 +102,7 @@ class City(models.Model):
     # this field represents the city's name
     name = models.CharField(max_length=145)
     # this field represents the city's name in Arabic
-    arabic_name = models.TextField()
+    arabic_name = models.CharField(max_length=145)
     # this field represents the telephone access code
     access_code = models.IntegerField()
     # this field is a foreign key referenced from the User model

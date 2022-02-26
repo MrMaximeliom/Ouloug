@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'apps.teams',
     'apps.telecoms',
     'captcha',
-    # 'captcha_runner',
+    'mathfilters',
 
 ]
 

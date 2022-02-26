@@ -5,13 +5,12 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import gettext_lazy as _
 import uuid
+from Util.lists_of_data import USER_TYPES,USER_STATUS
 
 """
 User Account Manager:
 used as a user manager for the User model
 """
-
-
 class SpecialUserAccountManager(BaseUserManager):
     # this function is responsible for creating users
     # the parameters passed to it are required to create user object
@@ -56,25 +55,6 @@ class SpecialUserAccountManager(BaseUserManager):
 User Model:
 it's used to save user's data
 """
-USER_TYPES = (
-    ("customer", "Customer"),
-    ("customer_administrator", "Administrator Customer"),
-    ("agent", "Agent"),
-    ("team_leader", "Team Leader"),
-    ("administrator", "Administrator"),
-    ("special_administrator", "Special Administrator"),
-    ("monitor", "Monitor"),
-)
-USER_STATUS = (
-    ("first_login","First Login"),
-    ("active", "Active"),
-    ("not_active", "Not Active"),
-    ("suspended", "Suspended"),
-    ("blocked", "Blocked"),
-    ("deleted", "Deleted"),
-)
-
-
 class User(AbstractBaseUser,PermissionsMixin):
     # this field represents the primary key of the model
     id = models.UUIDField(

@@ -10622,3 +10622,7 @@ color:#1dc4e9 !important;
 display:flex;
 justify-content : space-between;
 }
+/* adding class for disabled items*/
+.disabled-item{
+display:none;
+}

@@ -5,19 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="changes are specified in details in the DAILY_CHANGES.md file">
-      <change afterPath="$PROJECT_DIR$/apps/authentication/templatetags/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/authentication/templatetags/check_user_group.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/templates/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util/lists_of_data.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/authentication/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/cities/add_cities.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/cities/cities_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/includes/pagination_code.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/static_strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/static/assets/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/static/assets/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/countries/add_countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/countries/add_countries.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/countries/countries_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +80,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/templates/cities" />
+      <recent name="$PROJECT_DIR$/apps/templates/includes" />
       <recent name="$PROJECT_DIR$/apps/templates" />
       <recent name="$PROJECT_DIR$/apps/templates/countries" />
       <recent name="$PROJECT_DIR$" />
@@ -167,7 +175,28 @@
       <option name="project" value="LOCAL" />
       <updated>1645217311179</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changes are specified in details in the DAILY_CHANGES.md file">
+      <created>1645304882977</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1645304882977</updated>
+    </task>
+    <task id="LOCAL-00009" summary="changes are specified in details in the DAILY_CHANGES.md file">
+      <created>1645304903876</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1645304903876</updated>
+    </task>
+    <task id="LOCAL-00010" summary="changes are specified in details in the DAILY_CHANGES.md file">
+      <created>1645304982485</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1645304982485</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">

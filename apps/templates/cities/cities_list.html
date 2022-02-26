@@ -16,11 +16,11 @@
                     <div class="row align-items-center">
                         <div class="col-md-12">
                             <div class="page-header-title">
-                                <h5 class="m-b-10">{% trans 'Countries' %}</h5>
+                                <h5 class="m-b-10">{% trans 'Cities' %}</h5>
                             </div>
                             <ul class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="feather icon-home"></i></a></li>
-                                <li class="breadcrumb-item"><a href="#">{% trans 'Countries' %}</a></li>
+                                <li class="breadcrumb-item"><a href="#">{% trans 'Cities' %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -32,12 +32,12 @@
                         <div class="card">
                             <div class="card-header card-flex-header">
                                 <div>
-                                <h5>Countries Table</h5>
+                                <h5>Cities Table</h5>
                                        </div>
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addCountries' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
+                                <a href="{% url 'addCities' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New City' %}</a>
 
                            </div>
                                   {% endif %}
@@ -52,7 +52,6 @@
                                                 <th>{% trans 'Name' %}</th>
                                                 <th>{% trans 'Arabic Name' %}</th>
                                                 <th>{% trans 'Access Code' %}</th>
-                                                <th>{% trans 'Service Country?' %}</th>
                                                 <th>{% trans 'Status' %}</th>
                                                 <th>{% trans 'Added By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
@@ -70,7 +69,6 @@
                                                 <td>{{object.name}}</td>
                                                 <td>{{object.arabic_name}}</td>
                                                 <td>{{object.access_code}}</td>
-                                                <td>{{object.is_service_country}}</td>
                                                 <td>{{object.status}}</td>
                                                 <td>{{object.added_by.username}}</td>
                                                 <td>{{object.added_datetime}}</td>
@@ -103,7 +101,7 @@
 
                {% if request.user.user_type == "administrator"  %}
 <h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addCountries' %}">{% trans 'Here' %}</a></h3>
+    <a href="{% url 'addCities' %}">{% trans 'Here' %}</a></h3>
             {% else %}
             <h3 class="delete-warning">{{no_records_monitor}}</h3>
             {% endif %}

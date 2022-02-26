@@ -1,4 +1,6 @@
 {% load check_user_group %}
+{% load static i18n %}
+
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
@@ -36,15 +38,17 @@
 <!--                        </ul>-->
 <!--                    </li>-->
 <!--   allow only for ouloug monitor and ouloug admin groups                 -->
-{% if request.user|has_group:"ouloug_monitor" or request.user|has_group:"ouloug_admin"  %}
+<!--                    if request.user|has_group:"ouloug_monitor" or request.user|has_group:"ouloug_admin" -->
+{% if request.user.is_authenticated  %}
+                    {% if request.user.user_type == "administrator" or request.user.user_type == "monitor" %}
 
 
                              <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link {{masters}} "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Masters</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="{% url 'countriesList' %}" class="{{countries}}">Countries</a></li>
-                            <li class=""><a href="/ui-badges.html" class="">States</a></li>
-                            <li class=""><a href="/ui-breadcrumb-pagination.html" class="">Cities</a></li>
+                            <li class=""><a href="{% url 'countriesList' %}" class="{{countries}}">{% trans 'Countries' %}</a></li>
+                            <li class=""><a href="/ui-breadcrumb-pagination.html" class="">States</a></li>
+                            <li class=""><a href="{% url 'citiesList' %}" class="{{cities}}">{% trans 'Cities' %}</a></li>
                             <li class=""><a href="/ui-collapse.html" class="">Currencies</a></li>
                             <li class=""><a href="/ui-tabs.html" class="">Business Types</a></li>
                             <li class=""><a href="/ui-typography.html" class="">Teams/Departments</a></li>
@@ -52,6 +56,7 @@
                             <li class=""><a href="/ui-icons.html" class="">Billing Cycle</a></li>
                         </ul>
                     </li>
+                    {% endif %}
                     {% endif %}
                     <li class="nav-item pcoded-menu-caption">
                         <label>Ouloug Services</label>
@@ -84,7 +89,11 @@
                             <li class=""><a href="/ui-collapse.html" class="">Telecom Phone Numbers</a></li>
                         </ul>
                     </li>
-                         {% if request.user|has_group:"ouloug_monitor" or request.user|has_group:"ouloug_admin"  %}
+<!--                    if request.user|has_group:"ouloug_monitor" or request.user|has_group:"ouloug_admin" -->
+                         {% if request.user.is_authenticated  %}
+                    {% if user.user_type == "administrator" or user.user_type == "monitor"%}
+
+
                                                                <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Integration Reports</span></a>
                         <ul class="pcoded-submenu">
@@ -94,6 +103,7 @@
                             <li class=""><a href="/ui-collapse.html" class="">Payments</a></li>
                         </ul>
                     </li>
+                    {% endif %}
                     {% endif %}
                                                      <li class="nav-item pcoded-menu-caption">
                         <label>Settings</label>
