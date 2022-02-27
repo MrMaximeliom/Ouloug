@@ -32,3 +32,7 @@ NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE = _("There are no countries yet to 
 # NO RECORDS FOUND STRINGS - City Pages
 NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can add new ones from ")
 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE = _("There are no cities yet to view")
+
+# NO RECORDS FOUND STRINGS - State Pages
+NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new oness from ")
+NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")

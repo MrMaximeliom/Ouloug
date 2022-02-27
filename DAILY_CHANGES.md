@@ -70,3 +70,9 @@
 
 - Change permission system from user_group to user_type in Country Pages
 - Add pagination code to Country Pages
+
+## 2022-2-27
+### Changes
+
+- Adding pages of States and its views
+- Change base html page

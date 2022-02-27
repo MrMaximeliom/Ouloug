@@ -85,13 +85,40 @@
     {% endif %}
                             </div>
 
-                          {% block content %}{% endblock content %}
 
-
-
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+                       <!-- [ breadcrumb ] start -->
+              <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">{% block pages_name %}{% endblock pages_name %}</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{% url 'home' %}"><i class="feather icon-home"></i></a></li>
+                                 {% block header%}
+                                   {% endblock header %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+              </div>
+             {% block content %}
+            {% endblock content %}
 
         </div>
     </div>
+
+            <!-- [ breadcrumb ] end -->
+        </div>
+    </div>
+
+
+
+
+
 
     {% include 'includes/scripts.html' %}
 
