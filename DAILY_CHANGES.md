@@ -76,3 +76,9 @@
 
 - Adding pages of States and its views
 - Change base html page
+
+## 2022-3-1
+### Changes
+
+- Resolving bugs related to adding new cities and new states
+- Adding pages of Services and its views

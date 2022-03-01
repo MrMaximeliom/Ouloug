@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Cities' %}
+{% trans 'Services' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'address/cities/city_includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addCities' %}">{% trans 'Add Cities' %}</a></li>
+ {% include 'service/service_includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'addServices' %}">{% trans 'Add Services' %}</a></li>
 
 
 {% endblock header %}
@@ -24,7 +24,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add City' %}</h5>
+                                <h5>{% trans 'Add Service' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -40,18 +40,27 @@
                                                 {{form.arabic_name|as_crispy_field}}
                                             </div>
                                               <div class="form-group">
-                                                {{form.access_code|as_crispy_field}}
+                                                {{form.country|as_crispy_field}}
+                                            </div >
+                                            <div class="form-group">
+                                               {{form.description|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.arabic_description|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.subscription_type|as_crispy_field}}
+
                                             </div>
                                               <div class="form-group">
-                                               {{form.state|as_crispy_field}}
+                                               {{form.status|as_crispy_field}}
 
                                             </div>
 
-                                            <div class="form-group ">
-                                                {{form.status|as_crispy_field}}
 
-                                            </div>
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add City' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Service' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -61,6 +70,9 @@
                 </div>
             </div>
                     </div>
+
+
+
 
 {% endblock content %}
 

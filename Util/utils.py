@@ -1,4 +1,7 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse
+from django.shortcuts import redirect
+
 
 class EnablePartialUpdateMixin:
     """Enable partial updates
@@ -73,6 +76,14 @@ class SearchMan:
             from apps.address.models import City
             cities = City.objects.all().order_by("id")
             self.paginator = Paginator(cities, 5)
+        if model == "State":
+            from apps.address.models import State
+            states = State.objects.all().order_by("id")
+            self.paginator = Paginator(states, 5)
+        if model == "Service":
+            from apps.services.models import Service
+            services = Service.objects.all().order_by("id")
+            self.paginator = Paginator(services, 5)
 
 
 
@@ -104,67 +115,31 @@ class SearchMan:
     def getSearchError(self):
         return self.search_error
 
-# def createExelFile(report_name,headers,request=None,**kwargs):
-#     from django.contrib import messages
-#     import xlsxwriter , os
-#     from string import ascii_uppercase
-#     from datetime import date
-#     from datetime import datetime
-#     # get current day to link it to excel file name
-#     today = date.today()
-#     # get current time to link it to excel file name
-#     now = datetime.now()
-#     current_time = now.strftime("%H_%M_%S")
-#     path  = os.path.dirname(os.path.abspath(__file__)) + "/Reports"
-#     if not os.path.isdir(path):
-#         os.mkdir(path)
-#     file_name = report_name+'_'+str(today)+'_'+str(current_time)+".xlsx"
-#     complete_file_name = os.path.abspath(path)+"/"+file_name
-#     print("file name is ",file_name)
-#     print("complete file name is: ",complete_file_name)
-#     workBok = xlsxwriter.Workbook(complete_file_name,options={'remove_timezone': True})
-#     sheet = workBok.add_worksheet()
-#     AlphabetLetters = ''.join(c for c in ascii_uppercase)
-#     for c in range(len(headers)):
-#         sheet.write(f"{AlphabetLetters[c]}1",headers[c])
-#     x_position = -1
-#     for key, value in kwargs.items():
-#         x_position = x_position+1
-#         for item in range(len(value)):
-#             sheet.write(item + 1,  x_position, value[item])
-#     try:
-#         workBok.close()
-#         file_creation_status = True
-#         print("created")
-#         if request is not None:
-#             messages.success(request, f"Report Successfully Created ")
-#
-#         return file_creation_status,str(complete_file_name),str(file_name)
-#
-#     except:
-#         file_creation_status = False
-#     return file_creation_status,str(complete_file_name),str(file_name)
-#
-#
-#     # return workBok
-#
-#
-# def download_file(request,file_path,file_name):
-#     import mimetypes
-#     path = open(file_path, 'rb')
-#     # # Set the mime type
-#     mime_type, _ = mimetypes.guess_type(file_path)
-#     # # Set the return value of the HttpResponse
-#     response = HttpResponse(path, content_type=mime_type)
-#     # # Set the HTTP header for sending to browser
-#     response['Content-Disposition'] = "attachment; filename=%s" % file_name
-#     # # Return the response value
-#     return response
-#
-# def delete_temp_folder():
-#
-#     import os.path
-#     myPath = os.path.dirname(os.path.abspath(__file__)) + "/Reports"
-#     for root, dirs, files in os.walk(myPath):
-#         for file in files:
-#             os.remove(os.path.join(root, file))
+"""
+OulougGroupPermission Class:
+This class is used to specify allowed user types for system models
+"""
+
+
+class OulougGroupPermission(PermissionRequiredMixin):
+    # by default allow only users of ouloug_admin and ouloug_monitor
+    #  to access the countries' pages
+    permission_required = ('administrator', 'monitor')
+
+    # check if the logged-in user has the access permission or not
+    def has_permission(self):
+        user_types = self.get_permission_required()
+        # check user type
+        for user_type in user_types:
+            if self.request.user.is_authenticated:
+                if self.request.user.user_type == user_type:
+                    return True
+            else:
+                return redirect('login')
+
+        # groups = self.get_permission_required()
+        # user_groups = self.request.user.groups.values('name')
+        # for group in groups:
+        #     for user_group in user_groups:
+        #         if user_group['name'] == group:
+        #             return True

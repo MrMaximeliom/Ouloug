@@ -5,24 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ad95e061-f2fa-4b5f-833c-94b168bbe0f4" name="Changes" comment="changes are specified in details in the DAILY_CHANGES.md file">
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/cities/city_includes/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/countries/country_includes/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/states/add_states.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/states/state_includes/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Ouloug.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ouloug.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/services/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/services/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/service/add_services.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/service/service_includes/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/apps/templates/service/services_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/static_strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/cities/add_cities.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/cities/add_cities.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/cities/cities_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/cities/cities_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/countries/add_countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/add_countries.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/address/cities/add_cities.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/cities/add_cities.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,16 +71,16 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MrshPay" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/services" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/services" />
+      <recent name="$PROJECT_DIR$/apps/templates/service" />
       <recent name="$PROJECT_DIR$/apps/templates/address/states" />
       <recent name="$PROJECT_DIR$/apps/templates/cities" />
       <recent name="$PROJECT_DIR$/apps/templates/includes" />
-      <recent name="$PROJECT_DIR$/apps/templates" />
-      <recent name="$PROJECT_DIR$/apps/templates/countries" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/apps/templates/address" />
@@ -195,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645304982485</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changes are specified in details in the DAILY_CHANGES.md file">
+      <created>1645949940680</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1645949940680</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
