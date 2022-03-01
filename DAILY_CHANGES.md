@@ -82,3 +82,4 @@
 
 - Resolving bugs related to adding new cities and new states
 - Adding pages of Services and its views
+- Adding change Service Status Logic

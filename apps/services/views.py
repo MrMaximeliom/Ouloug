@@ -1,5 +1,6 @@
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+
 
 from Util.utils import SearchMan, OulougGroupPermission
 from .models import Service
@@ -191,3 +192,12 @@ class ServiceFormView(OulougGroupPermission, FormView):
         'services': 'active',
         'title': _('Add Services')
     }
+def changeServiceStatus(request,pk,status):
+    service = get_object_or_404(Service, pk=pk)
+    if status == 'active':
+        service.status = 'active'
+    elif status == 'not_active':
+        service.status = 'not_active'
+    service.save()
+    messages.success(request,f"service <<{service.name}>> updated successfully")
+    return redirect('servicesList')

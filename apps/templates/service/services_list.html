@@ -74,7 +74,13 @@
 
                                                 </td>
                                                 <td>
- <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
+                                                    {% if object.status == 'active' %}
+ <a href="{% url 'changeServiceStatus' pk=object.id  status='not_active'%}" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Deactivate Service' %}</a>
+                                                    {% else %}
+<a href="{% url 'changeServiceStatus' pk=object.id status='active'%}" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Activate Service' %}</a>
+
+
+                                                    {% endif %}
 
                                                 </td>
                                                 {% endif %}
