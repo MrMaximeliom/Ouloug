@@ -1,0 +1,107 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Teams' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'address/teams/includes/header.html' %}
+
+{% endblock header %}
+
+{% block content %}
+
+
+            <!-- [ breadcrumb ] end -->
+ {% if object_list|length %}
+              <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header card-flex-header">
+                                <div>
+                                <h5>Teams Table</h5>
+                                       </div>
+
+                                {% if request.user.user_type == "administrator" %}
+                                    <div>
+                                <a href="{% url 'addTeams' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Teams' %}</a>
+
+                           </div>
+                                  {% endif %}
+                            </div>
+
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>{% trans 'Name' %}</th>
+                                                <th>{% trans 'Arabic Name' %}</th>
+                                                <th>{% trans 'Country' %}</th>
+                                                <th>{% trans 'Status' %}</th>
+                                                <th>{% trans 'Added By' %}</th>
+                                                <th>{% trans 'Added Date and Time' %}</th>
+                                                <th>{% trans 'Last Modification' %}</th>
+                                                  {% if request.user.user_type == "administrator"  %}
+                                                <th>{% trans 'Update' %}</th>
+                                                <th>{% trans 'Delete' %}</th>
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for object in object_list %}
+                                            <tr>
+                                                <th scope="row">{{forloop.counter}}</th>
+                                                <td>{{object.name}}</td>
+                                                <td>{{object.arabic_name}}</td>
+                                                <td>{{object.country.name}}</td>
+                                                <td>{{object.status}}</td>
+                                                <td>{{object.added_by.username}}</td>
+                                                <td>{{object.added_datetime}}</td>
+                                                <td>{{object.last_modification_datetime}}</td>
+
+                                                  {% if request.user.user_type == "administrator"  %}
+                                                <td>
+<a href="#" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
+
+                                                </td>
+                                                <td>
+ <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
+
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              {% include 'includes/pagination_code.html' %}
+
+
+
+            {% else %}
+
+               {% if request.user.user_type == "administrator"  %}
+<h3 class="delete-warning">{{no_records_admin}}
+    <a href="{% url 'addTeam' %}">{% trans 'Here' %}</a></h3>
+            {% else %}
+            <h3 class="delete-warning">{{no_records_monitor}}</h3>
+            {% endif %}
+
+            {% endif %}
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

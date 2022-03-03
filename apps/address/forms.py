@@ -1,6 +1,8 @@
 from apps.address.models import Country,State,City,Currency
 from django import forms
 
+from apps.teams.models import Team
+
 # Country Form used to do CRUD operations to the Country Model
 class CountryForm(forms.ModelForm):
     class Meta:
@@ -28,3 +30,23 @@ class CurrencyForm(forms.ModelForm):
         model = Currency
         fields = "__all__"
         exclude = ("added_datetime","last_modification_datetime",)
+
+
+
+# Bsiness_Type Form used to do CRUD operations to the Bsiness_Type  Model
+class Bsiness_TypeForm(forms.ModelForm):
+    class Meta:
+        model = Currency
+        fields = "__all__"
+        exclude = ("added_datetime","last_modification_datetime",)
+
+
+
+
+# Currency Form used to do CRUD operations to the Teams Model
+class TeamsForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = "__all__"
+        exclude = ("added_datetime","last_modification_datetime",)
+

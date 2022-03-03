@@ -560,3 +560,30 @@ class CustomerTelecomNumber(models.Model):
     class Meta:
         # this is the actual name of the model in the database
         db_table = "customer_telecom_number"
+
+
+
+# bussines type mmodel
+
+'''
+class BusnessType(models.Model):
+
+    # this is foreign key field references the added-by
+
+    added_by = models.ForeignKey(User, null=True, blank=True,
+                                 on_delete=models.SET_NULL, related_name="adding_user")
+
+    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
+                                         related_name="last_modifier")
+    # this field represents the business type name
+    type_name = models.CharField(max_length=240)
+    arabic_type_name = models.CharField(max_length=240)
+    other_flag = models.CharField(max_length=1)
+
+    added_datetime = models.DateTimeField(auto_now=True)
+    last_modification_datetime = models.DateTimeField(auto_now_add=True)
+
+
+
+
+'''

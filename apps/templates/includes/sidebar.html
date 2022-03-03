@@ -49,9 +49,9 @@
                             <li class=""><a href="{% url 'countriesList' %}" class="{{countries}}">{% trans 'Countries' %}</a></li>
                             <li class=""><a href="{% url 'statesList' %}" class="{{states}}">States</a></li>
                             <li class=""><a href="{% url 'citiesList' %}" class="{{cities}}">{% trans 'Cities' %}</a></li>
-                            <li class=""><a href="/ui-collapse.html" class="">Currencies</a></li>
+                            <li class=""><a href="{% url 'currenciesList' %}" class="{{currencies}}">Currencies</a></li>
                             <li class=""><a href="/ui-tabs.html" class="">Business Types</a></li>
-                            <li class=""><a href="/ui-typography.html" class="">Teams/Departments</a></li>
+                            <li class=""><a href="{% url 'teamsList' %}" class="">Teams/Departments</a></li>
                             <li class=""><a href="/ui-icons.html" class="">Telecom Operator</a></li>
                             <li class=""><a href="/ui-icons.html" class="">Billing Cycle</a></li>
                         </ul>

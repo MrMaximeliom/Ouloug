@@ -34,5 +34,15 @@ NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can
 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE = _("There are no cities yet to view")
 
 # NO RECORDS FOUND STRINGS - State Pages
-NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new oness from ")
+NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new ones from ")
 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")
+
+
+# NO RECORDS FOUND STRINGS - Currency Pages
+NO_RECORDS_FOR_CURRENCY_MODEL_ADMIN_MESSAGE = _("There are no currencies yet ... you can add new ones from ")
+NO_RECORDS_FOR_CURRENCY_MODEL_MONITOR_MESSAGE = _("There are no currencies yet to view")
+
+
+# NO RECORDS FOUND STRINGS - Bussines_type Pages
+NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no Bussines_type yet ... you can add new ones from ")
+NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no Bussines_type yet to view")
