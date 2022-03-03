@@ -72,12 +72,12 @@ class State(models.Model):
     # this field is a foreign key references the User model ,
     # which represents the User that added this state
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL,
-                                 null=True, related_name="user_added_state")
+                                 null=True,blank=True, related_name="user_added_state")
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
-    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,
+    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,blank=True,
                                          related_name="last_user_modified_state")
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)

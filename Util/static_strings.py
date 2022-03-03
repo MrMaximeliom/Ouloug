@@ -26,14 +26,15 @@ USERNAME_BAD_FORMAT = _("Username Contains at Least 6 Characters With Only Alpha
 
 
 # NO RECORDS FOUND STRINGS - Country Pages
-NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE = _("There are no countries yet ... you can add new ones from ")
+NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE = _("There are no countries yet ... you can add new countries from ")
 NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE = _("There are no countries yet to view")
 
 # NO RECORDS FOUND STRINGS - City Pages
-NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can add new ones from ")
+NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can add new cities from ")
 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE = _("There are no cities yet to view")
 
 # NO RECORDS FOUND STRINGS - State Pages
+<<<<<<< HEAD
 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new ones from ")
 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")
 
@@ -46,3 +47,11 @@ NO_RECORDS_FOR_CURRENCY_MODEL_MONITOR_MESSAGE = _("There are no currencies yet t
 # NO RECORDS FOUND STRINGS - Bussines_type Pages
 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no Bussines_type yet ... you can add new ones from ")
 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no Bussines_type yet to view")
+=======
+NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new states from ")
+NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")
+
+# NO RECORDS FOUND STRINGS - Service Pages
+NO_RECORDS_FOR_SERVICE_MODEL_ADMIN_MESSAGE = _("There are no services yet ... you can add new services from ")
+NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE = _("There are no services yet to view")
+>>>>>>> 124588d13003da8f7aee8642fc3a7f680eff8941

@@ -46,8 +46,7 @@ class Service(models.Model):
     subscription_type = models.CharField(max_length=200)
     # this field represents the status
     status = models.CharField(max_length=30,
-                              choices=SERVICE_STATUS,
-                              default="1")
+                              choices=SERVICE_STATUS)
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)
     # this field represents the date and time when this record was last modified
@@ -60,5 +59,6 @@ class Service(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "service"
+
 
 

@@ -70,9 +70,9 @@
 <!--                        <a href="/ui-tables.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Table</span></a>-->
 <!--                    </li>-->
                                            <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Ouloug Services</span></a>
+                        <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Ouloug Services</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="/ui-button.html" class="">Services</a></li>
+                            <li class=""><a href="{% url 'servicesList' %}" class="{{services}}">Services</a></li>
                             <li class=""><a href="/ui-badges.html" class="">Packages</a></li>
                             <li class=""><a href="/ui-breadcrumb-pagination.html" class="">Agent Shifts</a></li>
                             <li class=""><a href="/ui-collapse.html" class="">Telecom Phone Numbers</a></li>
