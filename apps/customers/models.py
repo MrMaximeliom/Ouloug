@@ -565,7 +565,7 @@ class CustomerTelecomNumber(models.Model):
 
 # bussines type mmodel
 
-'''
+
 class BusnessType(models.Model):
 
     # this is foreign key field references the added-by
@@ -583,7 +583,3 @@ class BusnessType(models.Model):
     added_datetime = models.DateTimeField(auto_now=True)
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
 
-
-
-
-'''
