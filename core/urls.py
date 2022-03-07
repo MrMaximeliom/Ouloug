@@ -28,6 +28,7 @@ urlpatterns = [
 
     path("", include("apps.teams.urls")),  # UI Kits Html files
     path("", include("apps.packages.urls")),  # UI Kits Html files
+    path("", include("apps.customers.urls")),  # UI Kits Html files
     # url for change password
     path('change-password/', auth_views.PasswordChangeView.as_view(template_name='change-password.html',
                                                                    success_url='/'

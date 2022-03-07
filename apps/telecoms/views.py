@@ -1,16 +1,8 @@
-from django.shortcuts import redirect
-
 from Util.utils import SearchMan
 
 from apps.teams.models import Team
-from .models import Country, City, State, Currency, TelecomOperator
-from django.views.generic import ListView,FormView
-from forms import CountryForm, CityForm, StateForm, CurrencyForm, TeamsForm
-
-from .models import Country, City, State
+from .models import TelecomOperator
 from django.views.generic import ListView, FormView
-from forms import CountryForm, CityForm, StateForm , TelcomForm
-
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from Util.static_strings import (

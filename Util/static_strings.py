@@ -55,3 +55,11 @@ NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE = _("There are no services yet to v
 # NO RECORDS FOUND STRINGS - Package Pages
 NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE = _("There are no packages yet ... you can add new packages from ")
 NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE = _("There are no packages yet to view")
+
+# NO RECORDS FOUND STRINGS - Teams Pages
+NO_RECORDS_FOR_TEAM_MODEL_ADMIN_MESSAGE = _("There are no teams yet ... you can add new teams from ")
+NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE = _("There are no teams yet to view")
+
+# NO RECORDS FOUND STRINGS - Agent Shift Pages
+NO_RECORDS_FOR_AGENT_SHIFT_MODEL_ADMIN_MESSAGE = _("There are no agent shifts yet ... you can add new agent shifts from ")
+NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE = _("There are no agent shifts yet to view")
