@@ -83,3 +83,9 @@
 - Resolving bugs related to adding new cities and new states
 - Adding pages of Services and its views
 - Adding change Service Status Logic
+
+## 2022-3-7
+### Changes
+
+- Adding pages of Packages and its views
+- Adding change Package Status Logic

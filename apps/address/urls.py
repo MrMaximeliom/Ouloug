@@ -1,6 +1,6 @@
 from django.urls import path
 from apps.address.views import (CountryListView,CountryFormView,
-                                CityFormView,CityListView,StateFormView,StateListView , CurrencyListView , CurrencyFormView, TeamListView, TeamsFormView)
+                                CityFormView,CityListView,StateFormView,StateListView , CurrencyListView , CurrencyFormView)
 urlpatterns = [
     path('countries/', CountryListView.as_view(), name="countriesList"),
     path('countries/addCountries', CountryFormView.as_view(), name="addCountries"),
@@ -16,8 +16,6 @@ urlpatterns = [
     #path('currencies/', CurrencyListView.as_view(), name="currenciesList"),
   #  path('states/addCurrencies', CurrencyFormView.as_view(), name="addCurrencies"),
 
-    path('teams/', TeamListView.as_view(), name="teamsList"),
-    path('teams/addTeams', TeamsFormView.as_view(), name="addTeams"),
 ]
 
 

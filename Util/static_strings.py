@@ -34,24 +34,24 @@ NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE = _("There are no cities yet ... you can
 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE = _("There are no cities yet to view")
 
 # NO RECORDS FOUND STRINGS - State Pages
-<<<<<<< HEAD
-NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new ones from ")
+NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new states from ")
 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")
 
 
 # NO RECORDS FOUND STRINGS - Currency Pages
-NO_RECORDS_FOR_CURRENCY_MODEL_ADMIN_MESSAGE = _("There are no currencies yet ... you can add new ones from ")
+NO_RECORDS_FOR_CURRENCY_MODEL_ADMIN_MESSAGE = _("There are no currencies yet ... you can add new currencies from ")
 NO_RECORDS_FOR_CURRENCY_MODEL_MONITOR_MESSAGE = _("There are no currencies yet to view")
 
 
-# NO RECORDS FOUND STRINGS - Bussines_type Pages
-NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no Bussines_type yet ... you can add new ones from ")
-NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no Bussines_type yet to view")
-=======
-NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE = _("There are no states yet ... you can add new states from ")
-NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE = _("There are no states yet to view")
+# NO RECORDS FOUND STRINGS - Business_type Pages
+NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_ADMIN_MESSAGE = _("There are no business types yet ... you can add new business types from ")
+NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_MONITOR_MESSAGE = _("There are no business types yet to view")
+
 
 # NO RECORDS FOUND STRINGS - Service Pages
 NO_RECORDS_FOR_SERVICE_MODEL_ADMIN_MESSAGE = _("There are no services yet ... you can add new services from ")
 NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE = _("There are no services yet to view")
->>>>>>> 124588d13003da8f7aee8642fc3a7f680eff8941
+
+# NO RECORDS FOUND STRINGS - Package Pages
+NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE = _("There are no packages yet ... you can add new packages from ")
+NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE = _("There are no packages yet to view")

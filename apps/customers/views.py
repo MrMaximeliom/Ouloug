@@ -3,24 +3,14 @@ from django.shortcuts import render
 
 
 from Util.utils import SearchMan
-from apps.address.forms import Bsiness_TypeForm
-
-from apps.teams.models import Team
-from .models import BusnessType, Country, City, State, Currency
-from django.views.generic import ListView,FormView
-from .forms import CountryForm, CityForm, StateForm, CurrencyForm, TeamsForm
-
-from .models import Country, City, State
+from apps.customers.forms import BusinessTypeForm
+from .models import BusnessType
 from django.views.generic import ListView, FormView
-from .forms import CountryForm, CityForm, StateForm , BusinessForm
-
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from Util.static_strings import (NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE, NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
+from Util.static_strings import (
+                                 NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_ADMIN_MESSAGE,
+                                 NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_MONITOR_MESSAGE
                                  )
 from Util.utils import OulougGroupPermission
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -40,7 +30,7 @@ class BusinessFormView(OulougGroupPermission, FormView):
     # specify template name used to add new business_type
     template_name = 'templates/business_bype/add_business_type.html'
     # specify the form used
-    form_class = BusinessForm
+    form_class = BusinessTypeForm
     # specify the page to return to after successfully adding new currency
     success_url = 'business'
     # specify user's groups allowed to access this view
@@ -48,7 +38,7 @@ class BusinessFormView(OulougGroupPermission, FormView):
 
     # check if the form is valid or not after submitting it
     def post(self, request, *args, **kwargs):
-        form = CountryForm(request.POST)
+        form = BusinessTypeForm(request.POST)
         if self.form_valid(form):
             print("valid")
         else:
@@ -81,8 +71,6 @@ This class is used to view all added states in the system,
 it allows only administrators and monitor users to  
 access.
 """
-
-
 class BusinessListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = BusnessType
@@ -98,14 +86,14 @@ class BusinessListView(OulougGroupPermission, ListView):
         'title': title,
         'masters': 'active',
         'Business Type': 'active',
-        'no_records_admin': NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
+        'no_records_admin': NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_ADMIN_MESSAGE,
+        'no_records_monitor': NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_MONITOR_MESSAGE
     }
     searchManObj = SearchMan("Business_Type")
  
     # return default queryset used in this view
     def get_queryset(self):
-        return State.objects.all().order_by('-id')
+        return BusnessType.objects.all().order_by('-id')
 
     # def post(self, request, *args, **kwargs):
     #     queryset = self.get_queryset()
@@ -164,7 +152,7 @@ class BusinessListView(OulougGroupPermission, ListView):
         queryset = self.get_queryset()
         paginator = Paginator(queryset, 5)
         if 'page' not in request.GET:
-            states = State.objects.all().order_by('-id')
+            states = BusnessType.objects.all().order_by('-id')
             self.searchManObj.setPaginator(states)
             self.searchManObj.setSearch(False)
         if request.GET.get('page'):
@@ -189,7 +177,7 @@ class BusinessListView(OulougGroupPermission, ListView):
             'masters': 'active',
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
-            'object_list': Bsiness_TypeForm,
+            'object_list': BusinessTypeForm,
             # 'search': self.searchManObj.getSearch(),
             # 'search_result': self.search_result,
             # 'search_phrase': self.searchManObj.getSearchPhrase(),

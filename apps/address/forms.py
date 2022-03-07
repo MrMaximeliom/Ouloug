@@ -31,22 +31,3 @@ class CurrencyForm(forms.ModelForm):
         fields = "__all__"
         exclude = ("added_datetime","last_modification_datetime",)
 
-
-
-# Bsiness_Type Form used to do CRUD operations to the Bsiness_Type  Model
-class Bsiness_TypeForm(forms.ModelForm):
-    class Meta:
-        model = Currency
-        fields = "__all__"
-        exclude = ("added_datetime","last_modification_datetime",)
-
-
-
-
-# Currency Form used to do CRUD operations to the Teams Model
-class TeamsForm(forms.ModelForm):
-    class Meta:
-        model = Team
-        fields = "__all__"
-        exclude = ("added_datetime","last_modification_datetime",)
-

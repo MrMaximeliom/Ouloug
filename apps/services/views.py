@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import  get_object_or_404
 
 
 from Util.utils import SearchMan, OulougGroupPermission
@@ -8,12 +8,9 @@ from django.views.generic import ListView, FormView
 from .forms import ServiceForm
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from django.contrib.auth.mixins import PermissionRequiredMixin
 from Util.static_strings import (NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_SERVICE_MODEL_ADMIN_MESSAGE, NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
+                                 NO_RECORDS_FOR_SERVICE_MODEL_ADMIN_MESSAGE,
+
                                  )
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 # Create your views here.

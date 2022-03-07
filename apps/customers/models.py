@@ -502,11 +502,11 @@ class CustomerTeam(models.Model):
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="adding_user")
+                                 on_delete=models.SET_NULL, related_name="user_added_customer_team")
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_modifier")
+                                         related_name="last_user_modified_customer_team")
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)
     # this field represents the date and time when this record was last modified
@@ -571,10 +571,10 @@ class BusnessType(models.Model):
     # this is foreign key field references the added-by
 
     added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="adding_user")
+                                 on_delete=models.SET_NULL, related_name="user_added_business_type")
 
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_modifier")
+                                         related_name="last_user_modified_business_type")
     # this field represents the business type name
     type_name = models.CharField(max_length=240)
     arabic_type_name = models.CharField(max_length=240)

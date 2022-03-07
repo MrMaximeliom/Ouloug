@@ -1,0 +1,101 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+{% load crispy_forms_tags %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Packages' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'package/package_includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'addPackages' %}">{% trans 'Add Packages' %}</a></li>
+
+
+{% endblock header %}
+{% block content %}
+                    <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{% trans 'Add Package' %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form autocomplete="off"  method="post" action="">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                {{form.name|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.arabic_name|as_crispy_field}}
+                                            </div>
+                                              <div class="form-group">
+                                                {{form.telecom|as_crispy_field}}
+                                            </div >
+                                            <div class="form-group">
+                                               {{form.currency|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.priority|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.type|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.status|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.price|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.grace|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.grace_period_day|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.discount|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.discount_price|as_crispy_field}}
+
+                                            </div>
+
+
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Package' %}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

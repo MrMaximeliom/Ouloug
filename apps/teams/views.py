@@ -4,11 +4,7 @@ from django.shortcuts import render
 from Util.utils import SearchMan
 
 from apps.teams.models import Team
-from .models import Country, City, State, Currency
-from django.views.generic import ListView,FormView
-from forms import TeamsForm
-
-from .models import Country, City, State
+from apps.teams.forms import TeamForm
 from django.views.generic import ListView, FormView
 # from forms import CountryForm, CityForm, StateForm
 
@@ -34,7 +30,7 @@ class TeamsFormView(OulougGroupPermission, FormView):
     # specify template name used to add new currencies
     template_name = 'templates/teams/add_teams.html'
     # specify the form used
-    form_class = TeamsForm
+    form_class = TeamForm
     # specify the page to return to after successfully adding new teams
     success_url = 'teams'
     # specify user's groups allowed to access this view
@@ -42,7 +38,7 @@ class TeamsFormView(OulougGroupPermission, FormView):
 
     # check if the form is valid or not after submitting it
     def post(self, request, *args, **kwargs):
-        form = TeamsForm(request.POST)
+        form = TeamForm(request.POST)
         if self.form_valid(form):
             print("valid")
         else:
