@@ -50,9 +50,9 @@
                             <li class=""><a href="{% url 'statesList' %}" class="{{states}}">States</a></li>
                             <li class=""><a href="{% url 'citiesList' %}" class="{{cities}}">{% trans 'Cities' %}</a></li>
                             <li class=""><a href="{% url 'currenciesList' %}" class="{{currencies}}">Currencies</a></li>
-                            <li class=""><a href="/ui-tabs.html" class="">Business Types</a></li>
+                            <li class=""><a href="{% url 'businessList' %}"  class="">Business Types</a></li>
                             <li class=""><a href="{% url 'teamsList' %}" class="">Teams/Departments</a></li>
-                            <li class=""><a href="/ui-icons.html" class="">Telecom Operator</a></li>
+                            <li class=""><a href="{% url 'telecomsList' %}"  class="">Telecom Operator</a></li>
                             <li class=""><a href="/ui-icons.html" class="">Billing Cycle</a></li>
                         </ul>
                     </li>
@@ -108,7 +108,11 @@
                                                      <li class="nav-item pcoded-menu-caption">
                         <label>Settings</label>
                     </li>
-                                                               <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
+                        <li class="nav-item pcoded-menu-caption">
+                        <label>Settings</label>
+                    </li>
+                                <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
+                        <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Settings</span></a>
                      <!--  <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Integration Reports</span></a>--> 
                         <ul class="pcoded-submenu">
                             <li class=""><a href="/ui-button.html" class="">Users</a></li>
