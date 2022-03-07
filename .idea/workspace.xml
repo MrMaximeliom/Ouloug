@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/teams/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/telecoms/urs.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/urs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/business_type/add_business_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/business_type/add_business_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/teams/add_teams.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/teams/add_teams.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/telcoms/add_telcoms.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telcoms/add_telcoms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/telcoms/includes/includes.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telcoms/includes/includes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/telcoms/telcom_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telcoms/telcom_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
-    </list>
+    <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
