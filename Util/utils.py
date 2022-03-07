@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse
 from django.shortcuts import redirect
 
 
@@ -46,22 +45,6 @@ def check_phone_number(phone):
     else:
         return False,''
 
-# class ReportMan:
-#     filePath = ''
-#     fileName = ''
-#     # tempDir = ''
-#     def setFilePath(self,file_path):
-#         self.filePath = file_path
-#     def setFileName(self,file_name):
-#         self.fileName = file_name
-#     def getFilePath(self):
-#         return self.filePath
-#     def getFileName(self):
-#         return self.fileName
-#     # def setTempDir(self,dir_name):
-#     #     self.tempDir = dir_name
-#     # def getTempDir(self):
-#     #     return self.tempDir
 class SearchMan:
     search_error = False
 
@@ -84,6 +67,18 @@ class SearchMan:
             from apps.services.models import Service
             services = Service.objects.all().order_by("id")
             self.paginator = Paginator(services, 5)
+        if model == "BusinessType":
+            from apps.customers.models import BusnessType
+            business_types = BusnessType.objects.all().order_by("id")
+            self.paginator = Paginator(business_types, 5)
+        if model == "Team":
+            from apps.teams.models import Team
+            teams = Team.objects.all().order_by("id")
+            self.paginator = Paginator(teams, 5)
+        if model == "AgentShift":
+            from apps.customers.models import AgentShift
+            agentShifts = AgentShift.objects.all().order_by("id")
+            self.paginator = Paginator(agentShifts, 5)
 
 
 
