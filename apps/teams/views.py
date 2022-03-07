@@ -11,8 +11,8 @@ from django.views.generic import ListView, FormView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from Util.static_strings import (
-                                 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
+                                 NO_RECORDS_FOR_TEAM_MODEL_ADMIN_MESSAGE,
+                                 NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE
                                  )
 from Util.utils import OulougGroupPermission
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -28,7 +28,7 @@ it allows only ouloug_admin users to access it
 
 class TeamsFormView(OulougGroupPermission, FormView):
     # specify template name used to add new currencies
-    template_name = 'templates/teams/add_teams.html'
+    template_name = 'teams/add_teams.html'
     # specify the form used
     form_class = TeamForm
     # specify the page to return to after successfully adding new teams
@@ -60,7 +60,7 @@ class TeamsFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'Teams/Departments': 'active',
+        'teams_departments': 'active',
         'title': 'Add Teams'
     }
 
@@ -77,7 +77,7 @@ class TeamListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = Team
     # specify the template in the view
-    template_name = "templates/teams/teams_list.html"
+    template_name = "teams/teams_list.html"
     # adding active flag for the sidebar active link
 
     # adding the view's title
@@ -87,9 +87,9 @@ class TeamListView(OulougGroupPermission, ListView):
     extra_context = {
         'title': title,
         'masters': 'active',
-        'Teams/Department': 'active',
-        'no_records_admin': NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
+        'teams_departments': 'active',
+        'no_records_admin': NO_RECORDS_FOR_TEAM_MODEL_ADMIN_MESSAGE,
+        'no_records_monitor': NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE
     }
     searchManObj = SearchMan("Teams")
 

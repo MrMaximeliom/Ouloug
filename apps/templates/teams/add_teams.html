@@ -11,7 +11,7 @@
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'address/teams/includes/header.html' %}
+ {% include 'teams/includes/header.html' %}
 <li class="breadcrumb-item"><a href="{% url 'addTeams' %}">{% trans 'Add Teams' %}</a></li>
 
 
@@ -42,9 +42,15 @@
                                             <div class="form-group">
                                                 {{form.arabic_name|as_crispy_field}}
                                             </div>
+                                             <div class="form-group">
+                                                {{form.country|as_crispy_field}}
+                                            </div>
+                                             <div class="form-group">
+                                                {{form.user|as_crispy_field}}
+                                            </div>
                                            
 
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add State' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Team' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -54,14 +60,6 @@
                 </div>
             </div>
                     </div>
-
-
-            {% if object_list|length %}
-            <p> There are data about countries</p>
-            {% else %}
-            <p> There is no data about countries</p>
-
-            {% endif %}
 
 
 {% endblock content %}

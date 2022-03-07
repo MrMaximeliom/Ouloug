@@ -10,7 +10,7 @@
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'address/teams/includes/header.html' %}
+ {% include 'teams/includes/header.html' %}
 
 {% endblock header %}
 
@@ -92,7 +92,7 @@
 
                {% if request.user.user_type == "administrator"  %}
 <h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addTeam' %}">{% trans 'Here' %}</a></h3>
+    <a href="{% url 'addTeams' %}">{% trans 'Here' %}</a></h3>
             {% else %}
             <h3 class="delete-warning">{{no_records_monitor}}</h3>
             {% endif %}

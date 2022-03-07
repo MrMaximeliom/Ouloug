@@ -28,7 +28,7 @@ it allows only ouloug_admin users to access it
 
 class BusinessFormView(OulougGroupPermission, FormView):
     # specify template name used to add new business_type
-    template_name = 'templates/business_bype/add_business_type.html'
+    template_name = 'business_type/add_business_type.html'
     # specify the form used
     form_class = BusinessTypeForm
     # specify the page to return to after successfully adding new currency
@@ -60,8 +60,8 @@ class BusinessFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'business_type': 'active',
-        'title': 'Add States'
+        'business_types': 'active',
+        'title': 'Add Business Type'
     }
 
 
@@ -75,17 +75,17 @@ class BusinessListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = BusnessType
     # specify the template in the view
-    template_name = "templates/business_type/business_type_list.html"
+    template_name = "business_type/business_type_list.html"
     # adding active flag for the sidebar active link
 
     # adding the view's title
-    title = "Business_Type"
+    title = "Business Type"
     permission_denied_message = _("Sorry you do not have access to this page")
     # adding the required extra context
     extra_context = {
         'title': title,
         'masters': 'active',
-        'Business Type': 'active',
+        'business_types': 'active',
         'no_records_admin': NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_ADMIN_MESSAGE,
         'no_records_monitor': NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_MONITOR_MESSAGE
     }

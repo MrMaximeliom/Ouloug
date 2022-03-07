@@ -89,3 +89,4 @@
 
 - Adding pages of Packages and its views
 - Adding change Package Status Logic
+- Resolving issues related to team pages
