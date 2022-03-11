@@ -27,7 +27,8 @@ Business Type FormView:
 This class is used to represent the add state view , 
 it allows only ouloug_admin users to access it
 """
-class BusinessTypeFormView(OulougGroupPermission, FormView):
+
+class BusinessFormView(OulougGroupPermission, FormView):
     # specify template name used to add new business_type
     template_name = 'business_type/add_business_type.html'
     # specify the form used
@@ -72,7 +73,7 @@ This class is used to view all added business types in the system,
 it allows only administrators and monitor users to  
 access.
 """
-class BusinessTypeListView(OulougGroupPermission, ListView):
+class BusinessListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = BusnessType
     # specify the template in the view

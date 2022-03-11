@@ -91,3 +91,9 @@
 - Adding change Package Status Logic
 - Resolving issues related to team pages
 - Adding pages of Agent Shifts and its views
+
+
+## 2022-3-12
+### Changes
+
+- complete the services 'telecom phone number'

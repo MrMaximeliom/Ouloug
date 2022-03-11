@@ -50,15 +50,11 @@
                             <li class=""><a href="{% url 'statesList' %}" class="{{states}}">States</a></li>
                             <li class=""><a href="{% url 'citiesList' %}" class="{{cities}}">{% trans 'Cities' %}</a></li>
                             <li class=""><a href="{% url 'currenciesList' %}" class="{{currencies}}">Currencies</a></li>
-<<<<<<< HEAD
-                            <li class=""><a href="{% url 'businessList' %}"  class="">Business Types</a></li>
-                            <li class=""><a href="{% url 'teamsList' %}" class="">Teams/Departments</a></li>
-                            <li class=""><a href="{% url 'telecomsList' %}"  class="">Telecom Operator</a></li>
-=======
+                            <li class=""><a href="{% url 'businessList' %}"  class="{{business_type}}">Business Types</a></li>
+                            <li class=""><a href="{% url 'teamsList' %}" class="{{teams}}">Teams/Departments</a></li>
+                            <li class=""><a href="{% url 'telecomsList' %}"  class="{{telecoms}}">Telecom Operator</a></li>
                             <li class=""><a href="{% url 'businessList' %}" class="{{business_types}}">Business Types</a></li>
-                            <li class=""><a href="{% url 'teamsList' %}" class="{{teams_departments}}">Teams/Departments</a></li>
                             <li class=""><a href="/ui-icons.html" class="">Telecom Operator</a></li>
->>>>>>> 3ecac1cbbda6e818b9be38609958ab8cb67b4f0d
                             <li class=""><a href="/ui-icons.html" class="">Billing Cycle</a></li>
                         </ul>
                     </li>
@@ -81,7 +77,7 @@
                             <li class=""><a href="{% url 'servicesList' %}" class="{{services}}">{% trans 'Services' %}</a></li>
                             <li class=""><a href="{% url 'packagesList' %}" class="{{packages}}">{% trans 'Packages' %}</a></li>
                             <li class=""><a href="{% url 'agentShiftsList' %}" class="{{agent_shifts}}">{% trans 'Agent Shifts' %}</a></li>
-                            <li class=""><a href="/ui-collapse.html" class="">{% trans 'Telecom Phone Numbers' %}</a></li>
+                            <li class=""><a href="{% url 'telecomphoneList' %}"  class="">{% trans 'Telecom Phone Numbers' %}</a></li>
                         </ul>
                     </li>
 
