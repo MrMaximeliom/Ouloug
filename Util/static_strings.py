@@ -63,3 +63,7 @@ NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE = _("There are no teams yet to view")
 # NO RECORDS FOUND STRINGS - Agent Shift Pages
 NO_RECORDS_FOR_AGENT_SHIFT_MODEL_ADMIN_MESSAGE = _("There are no agent shifts yet ... you can add new agent shifts from ")
 NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE = _("There are no agent shifts yet to view")
+
+# NO RECORDS FOUND STRINGS - Telecoms Pages
+NO_RECORDS_FOR_TELECOMS_MODEL_ADMIN_MESSAGE = _("There are no telecoms yet ... you can add new telecoms from ")
+NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE = _("There are no telecoms yet to view")

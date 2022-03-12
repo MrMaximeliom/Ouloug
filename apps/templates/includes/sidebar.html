@@ -77,7 +77,7 @@
                             <li class=""><a href="{% url 'servicesList' %}" class="{{services}}">{% trans 'Services' %}</a></li>
                             <li class=""><a href="{% url 'packagesList' %}" class="{{packages}}">{% trans 'Packages' %}</a></li>
                             <li class=""><a href="{% url 'agentShiftsList' %}" class="{{agent_shifts}}">{% trans 'Agent Shifts' %}</a></li>
-                            <li class=""><a href="{% url 'telecomphoneList' %}"  class="">{% trans 'Telecom Phone Numbers' %}</a></li>
+                            <li class=""><a href="{% url 'telecomNumberList' %}"  class="">{% trans 'Telecom Phone Numbers' %}</a></li>
                         </ul>
                     </li>
 
@@ -107,12 +107,7 @@
                     </li>
                     {% endif %}
                     {% endif %}
-                                                     <li class="nav-item pcoded-menu-caption">
-                        <label>Settings</label>
-                    </li>
-                        <li class="nav-item pcoded-menu-caption">
-                        <label>Settings</label>
-                    </li>
+
                                 <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Settings</span></a>
                      <!--  <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Integration Reports</span></a>--> 
