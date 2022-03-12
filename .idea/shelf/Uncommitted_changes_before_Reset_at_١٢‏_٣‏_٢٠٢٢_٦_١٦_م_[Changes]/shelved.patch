@@ -1,0 +1,29 @@
+Index: apps/templates/telcoms/add_telcoms.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% extends \"layouts/base.html\" %}\n\n{% block title %}{{title}}{% endblock %}\n{% load static i18n %}\n\n{% load crispy_forms_tags %}\n<!-- Specific CSS goes HERE -->\n{% block stylesheets %}{% endblock stylesheets %}\n{% block pages_name %}\n{% trans 'Telcoms' %}\n{% endblock pages_name %}\n\n{% block header%}\n {% include 'address/telcoms/includes/header.html' %}\n<li class=\"breadcrumb-item\"><a href=\"{% url 'addTelcoms' %}\">{% trans 'Add Telecoms' %}</a></li>\n\n\n{% endblock header %}\n{% block content %}\n\n\n                    <div class=\"main-body\">\n            <div class=\"page-wrapper\">\n                <!-- [ Main Content ] start -->\n                <div class=\"row\">\n                    <div class=\"col-sm-12\">\n                        <div class=\"card\">\n                            <div class=\"card-header\">\n                                <h5>{% trans 'Add Telcom' %}</h5>\n                            </div>\n                            <div class=\"card-body\">\n                                <div class=\"row\">\n                                    <div class=\"col-md-6\">\n                                        <form autocomplete=\"off\"  method=\"post\" action=\"\">\n                                            {% csrf_token %}\n\n                                            <div class=\"form-group\">\n                                                {{form.name|as_crispy_field}}\n\n                                                <small id=\"emailHelp\" class=\"form-text text-muted\">We'll never share your email with anyone else.</small>\n                                            </div>\n                                            <div class=\"form-group\">\n                                                {{form.arabic_name|as_crispy_field}}\n                                            </div>\n                                           \n\n                                            <button type=\"submit\" class=\"btn btn-primary\">{% trans 'Add Telcom' %}</button>\n                                        </form>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n                    </div>\n\n\n            {% if object_list|length %}\n            <p> There are data about countries</p>\n            {% else %}\n            <p> There is no data about countries</p>\n\n            {% endif %}\n\n\n{% endblock content %}\n\n<!-- Specific Page JS goes HERE  -->\n{% block javascripts %}{% endblock javascripts %}\n\n
+===================================================================
+diff --git a/apps/templates/telcoms/add_telcoms.html b/apps/templates/telcoms/add_telcoms.html
+--- a/apps/templates/telcoms/add_telcoms.html	
++++ b/apps/templates/telcoms/add_telcoms.html	
+@@ -12,7 +12,7 @@
+ 
+ {% block header%}
+  {% include 'address/telcoms/includes/header.html' %}
+-<li class="breadcrumb-item"><a href="{% url 'addTelcoms' %}">{% trans 'Add Telecoms' %}</a></li>
++<li class="breadcrumb-item"><a href="{% url 'addTelcoms' %}">{% trans 'Add Telcoms' %}</a></li>
+ 
+ 
+ {% endblock header %}
+Index: apps/templates/telcoms/includes/includes.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{% load static i18n %}\n<li class=\"breadcrumb-item\"><a href=\"{% url 'telecomsList' %}\">{% trans 'Telecoms' %}</a></li>\n
+===================================================================
+diff --git a/apps/templates/telcoms/includes/includes.html b/apps/templates/telcoms/includes/includes.html
+--- a/apps/templates/telcoms/includes/includes.html	
++++ b/apps/templates/telcoms/includes/includes.html	
+@@ -1,2 +1,2 @@
+ {% load static i18n %}
+-<li class="breadcrumb-item"><a href="{% url 'telecomsList' %}">{% trans 'Telecoms' %}</a></li>
++<li class="breadcrumb-item"><a href="{% url 'telcomList' %}">{% trans 'Telcoms' %}</a></li>

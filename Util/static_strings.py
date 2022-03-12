@@ -67,3 +67,6 @@ NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE = _("There are no agent shifts 
 # NO RECORDS FOUND STRINGS - Telecoms Pages
 NO_RECORDS_FOR_TELECOMS_MODEL_ADMIN_MESSAGE = _("There are no telecoms yet ... you can add new telecoms from ")
 NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE = _("There are no telecoms yet to view")
+
+# NO RECORDS FOUND STRINGS - Customer Call Page
+NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE = _("There are no customer calls yet to view")

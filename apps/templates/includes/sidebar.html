@@ -47,37 +47,27 @@
                         <a href="javascript:" class="nav-link {{masters}} "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Masters</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{% url 'countriesList' %}" class="{{countries}}">{% trans 'Countries' %}</a></li>
-                            <li class=""><a href="{% url 'statesList' %}" class="{{states}}">States</a></li>
+                            <li class=""><a href="{% url 'statesList' %}" class="{{states}}">{% trans 'States' %}</a></li>
                             <li class=""><a href="{% url 'citiesList' %}" class="{{cities}}">{% trans 'Cities' %}</a></li>
-                            <li class=""><a href="{% url 'currenciesList' %}" class="{{currencies}}">Currencies</a></li>
-                            <li class=""><a href="{% url 'businessList' %}"  class="{{business_type}}">Business Types</a></li>
-                            <li class=""><a href="{% url 'teamsList' %}" class="{{teams}}">Teams/Departments</a></li>
-                            <li class=""><a href="{% url 'telecomsList' %}"  class="{{telecoms}}">Telecom Operator</a></li>
-                            <li class=""><a href="{% url 'businessList' %}" class="{{business_types}}">Business Types</a></li>
-                            <li class=""><a href="/ui-icons.html" class="">Telecom Operator</a></li>
-                            <li class=""><a href="/ui-icons.html" class="">Billing Cycle</a></li>
+                            <li class=""><a href="{% url 'currenciesList' %}" class="{{currencies}}">{% trans 'Currencies' %}</a></li>
+                            <li class=""><a href="{% url 'businessList' %}"  class="{{business_type}}">{% trans 'Business Types' %}</a></li>
+                            <li class=""><a href="{% url 'teamsList' %}" class="{{teams}}">{% trans 'Teams/Departments' %}</a></li>
+                            <li class=""><a href="{% url 'telecomsList' %}"  class="{{telecoms}}">{% trans 'Telecom Operator' %}</a></li>
+                            <li class=""><a href="/ui-icons.html" class="{{billing_cycle}}">{% trans 'Billing Cycle' %}</a></li>
                         </ul>
                     </li>
                     {% endif %}
                     {% endif %}
                     <li class="nav-item pcoded-menu-caption">
-                        <label>Ouloug Services</label>
+                        <label>{% trans 'Ouloug Services' %}</label>
                     </li>
-<!--                    <li data-username="form elements advance componant validation masking wizard picker select" -->
-<!--                        class="nav-item {% if 'ui-forms' in segment %} active {% endif %}">-->
-<!--                        <a href="/ui-forms.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Form elements</span></a>-->
-<!--                    </li>-->
-<!--                    <li data-username="Table bootstrap datatable footable" -->
-<!--                        class="nav-item {% if 'ui-tables' in segment %} active {% endif %}">-->
-<!--                        <a href="/ui-tables.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Table</span></a>-->
-<!--                    </li>-->
                                            <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Ouloug Services</span></a>
                         <ul class="pcoded-submenu">
                             <li class=""><a href="{% url 'servicesList' %}" class="{{services}}">{% trans 'Services' %}</a></li>
                             <li class=""><a href="{% url 'packagesList' %}" class="{{packages}}">{% trans 'Packages' %}</a></li>
                             <li class=""><a href="{% url 'agentShiftsList' %}" class="{{agent_shifts}}">{% trans 'Agent Shifts' %}</a></li>
-                            <li class=""><a href="{% url 'telecomNumberList' %}"  class="">{% trans 'Telecom Phone Numbers' %}</a></li>
+                            <li class=""><a href="{% url 'telecomNumberList' %}"  class="{{telecom_number}}">{% trans 'Telecom Phone Numbers' %}</a></li>
                         </ul>
                     </li>
 
@@ -85,10 +75,9 @@
                                                                <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Customers</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="/ui-button.html" class="">Customer's List</a></li>
-                            <li class=""><a href="/ui-badges.html" class="">Customer Calls</a></li>
-                            <li class=""><a href="/ui-breadcrumb-pagination.html" class="">Payments</a></li>
-                            <li class=""><a href="/ui-collapse.html" class="">Telecom Phone Numbers</a></li>
+                            <li class=""><a href="{% url 'customerCallsList' %}" class="{{customer_call}}">{% trans "Customer's List" %}</a></li>
+                            <li class=""><a href="/ui-badges.html" class="">{% trans 'Customer Calls' %}</a></li>
+                            <li class=""><a href="/ui-breadcrumb-pagination.html" class="">{% trans 'Payments' %}</a></li>
                         </ul>
                     </li>
 <!--                    if request.user|has_group:"ouloug_monitor" or request.user|has_group:"ouloug_admin" -->
@@ -109,7 +98,7 @@
                     {% endif %}
 
                                 <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Settings</span></a>
+                        <a href="javascript:" class="nav-link {{settings}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Settings</span></a>
                      <!--  <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Integration Reports</span></a>--> 
                         <ul class="pcoded-submenu">
                             <li class=""><a href="/ui-button.html" class="">Users</a></li>

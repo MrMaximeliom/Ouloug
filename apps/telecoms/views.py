@@ -15,7 +15,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 """
-TelcomsFormView:
+TelecomsFormView:
 This class is used to represent the add Telcoms view , 
 it allows only ouloug_admin users to access it
 """
@@ -23,7 +23,7 @@ it allows only ouloug_admin users to access it
 
 class TelecomsFormView(OulougGroupPermission, FormView):
     # specify template name used to add new telecoms
-    template_name = 'templates/telecoms/add_telecoms.html'
+    template_name = 'telecoms/add_telecoms.html'
     # specify the form used
     form_class = TelcomOperatorForm
     # specify the page to return to after successfully adding new telecoms
@@ -55,7 +55,7 @@ class TelecomsFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'Telecoms': 'active',
+        'telecoms': 'active',
         'title': 'Add Telecoms'
     }
 
@@ -72,7 +72,7 @@ class TelecomsListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = TelecomOperator
     # specify the template in the view
-    template_name = "templates/telecoms/telecom_list.html"
+    template_name = "telecoms/telecoms_list.html"
     # adding active flag for the sidebar active link
 
     # adding the view's title
@@ -172,6 +172,7 @@ class TelecomsListView(OulougGroupPermission, ListView):
             page = paginator.num_pages
         self.extra_context.update({
             'masters': 'active',
+            'telecoms': 'active',
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
             'object_list': telecoms,
@@ -191,15 +192,15 @@ class TelecomsListView(OulougGroupPermission, ListView):
 
 
 """
-TelcomNumberFormView:
+TelecomNumberFormView:
 This class is used to represent the add Telcoms view , 
 it allows only ouloug_admin users to access it
 """
 
 
-class TelcomNumberFormView(OulougGroupPermission, FormView):
+class TelecomNumberFormView(OulougGroupPermission, FormView):
     # specify template name used to add new telecoms
-    template_name = 'templates/telecom_number/add_telecom_number.html'
+    template_name = 'telecom_number/add_telecom_number.html'
     # specify the form used
     form_class = TelecomNumberForm
     # specify the page to return to after successfully adding new telecoms
@@ -230,7 +231,7 @@ class TelcomNumberFormView(OulougGroupPermission, FormView):
 
     # priovided the required extra context for the view
     extra_context = {
-        'masters': 'active',
+        'ouloug_services': 'active',
         'telecom_number': 'active',
         'title': 'Add Telecom Number'
     }
@@ -248,7 +249,7 @@ class TelecomNumberListView(OulougGroupPermission, ListView):
     # specify the model used in the view
     model = TelecomNumber
     # specify the template in the view
-    template_name = "templates/telecom_phone/telecom_phone_list.html"
+    template_name = "telecom_number/telecom_number_list.html"
     # adding active flag for the sidebar active link
 
     # adding the view's title
@@ -257,8 +258,8 @@ class TelecomNumberListView(OulougGroupPermission, ListView):
     # adding the required extra context
     extra_context = {
         'title': title,
-        'masters': 'active',
-        'Telecom Phone Number': 'active',
+        'ouloug_services': 'active',
+        'telecom_number': 'active',
         'no_records_admin': NO_RECORDS_FOR_TELECOMS_MODEL_ADMIN_MESSAGE,
         'no_records_monitor': NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE
     }
@@ -347,7 +348,7 @@ class TelecomNumberListView(OulougGroupPermission, ListView):
             states = paginator.page(paginator.num_pages)
             page = paginator.num_pages
         self.extra_context.update({
-            'masters': 'active',
+            'telecom_number': 'active',
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
             'object_list': states,

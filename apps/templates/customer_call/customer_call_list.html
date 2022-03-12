@@ -5,17 +5,20 @@
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
+
 {% block pages_name %}
-{% trans 'Telecomphone' %}
+{% trans 'Customer Call' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'templates/telecom_phone/includes/header.html' %}
+ {% include 'customer_call/customer_call_includes/header.html' %}
 
 {% endblock header %}
 
 {% block content %}
 
+
+            <!-- [ breadcrumb ] start -->
 
             <!-- [ breadcrumb ] end -->
  {% if object_list|length %}
@@ -23,15 +26,8 @@
                         <div class="card">
                             <div class="card-header card-flex-header">
                                 <div>
-                                <h5>Teams Table</h5>
+                                <h5>Customer Call</h5>
                                        </div>
-
-                                {% if request.user.user_type == "administrator" %}
-                                    <div>
-                                <a href="{% url 'addTelecomphone' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Telecomphone' %}</a>
-
-                           </div>
-                                  {% endif %}
                             </div>
 
                             <div class="card-block table-border-style">
@@ -40,11 +36,17 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>{% trans 'Number' %}</th>
-                                                <th>{% trans 'Type' %}</th>
+                                                <th>{% trans 'Country' %}</th>
+                                                <th>{% trans 'Customer' %}</th>
+                                                <th>{% trans 'Customer Agent' %}</th>
+                                                <th>{% trans 'Call Datetime' %}</th>
+                                                <th>{% trans 'Login Status' %}</th>
+                                                <th>{% trans 'Call Direction' %}</th>
+                                                <th>{% trans 'Call Type' %}</th>
+                                                <th>{% trans 'Call Duration' %}</th>
+                                                <th>{% trans 'Start Time' %}</th>
+                                                <th>{% trans 'End Time' %}</th>
                                                 <th>{% trans 'Status' %}</th>
-                                                <th>{% trans 'Added By' %}</th>
-                                                <th>{% trans 'Added Date and Time' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <th>{% trans 'Update' %}</th>
                                                 <th>{% trans 'Delete' %}</th>
@@ -55,11 +57,15 @@
                                          {% for object in object_list %}
                                             <tr>
                                                 <th scope="row">{{forloop.counter}}</th>
-                                                <td>{{object.number}}</td>
-                                                <td>{{object.type}}</td>
+                                                <td>{{object.country.name}}</td>
+                                                <td>{{object.customer.user.username}}</td>
+                                                <td>{{object.customer_agent}}</td>
+                                                <td>{{object.call_datetime}}</td>
+                                                <td>{{object.login_status}}</td>
+                                                <td>{{object.call_direction}}</td>
+                                                <td>{{object.start_time}}</td>
+                                                <td>{{object.end_time}}</td>
                                                 <td>{{object.status}}</td>
-                                                <td>{{object.added_by.username}}</td>
-                                                <td>{{object.added_datetime}}</td>
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
@@ -87,13 +93,13 @@
             {% else %}
 
                {% if request.user.user_type == "administrator"  %}
-<h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addTelecomphone' %}">{% trans 'Here' %}</a></h3>
+<h3 class="delete-warning">{{no_records_admin}}</h3>
             {% else %}
             <h3 class="delete-warning">{{no_records_monitor}}</h3>
             {% endif %}
 
             {% endif %}
+
 
 
 

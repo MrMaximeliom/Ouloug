@@ -11,7 +11,7 @@
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'address/telcoms/includes/header.html' %}
+ {% include 'telecoms/includes/header.html' %}
 <li class="breadcrumb-item"><a href="{% url 'addTelcoms' %}">{% trans 'Add Telecoms' %}</a></li>
 
 
@@ -55,13 +55,6 @@
             </div>
                     </div>
 
-
-            {% if object_list|length %}
-            <p> There are data about countries</p>
-            {% else %}
-            <p> There is no data about countries</p>
-
-            {% endif %}
 
 
 {% endblock content %}

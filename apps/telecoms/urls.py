@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.telecoms.views import (TelecomsListView, TelecomsFormView , TelecomNumberListView , TelcomNumberFormView)
+from apps.telecoms.views import (TelecomsListView, TelecomsFormView , TelecomNumberListView , TelecomNumberFormView)
 urlpatterns = [
     path('telecoms/', TelecomsListView.as_view(), name="telecomsList"),
 
@@ -8,7 +8,7 @@ urlpatterns = [
 
     path('telecomNumber/', TelecomNumberListView.as_view(), name="telecomNumberList"),
 
-    path('telecomNumber/addTelecomNumber', TelcomNumberFormView.as_view(), name="addTelecomNumber"),
+    path('telecomNumber/addTelecomNumber', TelecomNumberFormView.as_view(), name="addTelecomNumber"),
   
 ]
 

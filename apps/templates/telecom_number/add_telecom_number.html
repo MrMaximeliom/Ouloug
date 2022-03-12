@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Telecomphone' %}
+{% trans 'Telecom Number' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'templates/telecom_phone/includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addTelcomphone' %}">{% trans 'Add Telecomphone' %}</a></li>
+ {% include 'telecom_number/includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'addTelecomNumber' %}">{% trans 'Add Telecom Number' %}</a></li>
 
 
 {% endblock header %}
@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Telecomphone' %}</h5>
+                                <h5>{% trans 'Add Telecom Number' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -53,15 +53,6 @@
                 </div>
             </div>
                     </div>
-
-
-            {% if object_list|length %}
-            <p> There are data about countries</p>
-            {% else %}
-            <p> There is no data about countries</p>
-
-            {% endif %}
-
 
 {% endblock content %}
 
