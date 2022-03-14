@@ -6,11 +6,11 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Telecomphone' %}
+{% trans 'Telecom Number' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'templates/telecom_phone/includes/header.html' %}
+ {% include 'telecom_number/includes/header.html' %}
 
 {% endblock header %}
 
@@ -28,7 +28,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addTelecomphone' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Telecomphone' %}</a>
+                                <a href="{% url 'addTelecomNumber' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Telecom Number' %}</a>
 
                            </div>
                                   {% endif %}
@@ -88,7 +88,7 @@
 
                {% if request.user.user_type == "administrator"  %}
 <h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addTelecomphone' %}">{% trans 'Here' %}</a></h3>
+    <a href="{% url 'addTelecomNumber' %}">{% trans 'Here' %}</a></h3>
             {% else %}
             <h3 class="delete-warning">{{no_records_monitor}}</h3>
             {% endif %}

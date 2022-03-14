@@ -4,20 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="" />
-=======
-    <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="Resolving issues related to teams and business type">
+    <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="all changes are specified in the DAILY_CHANGES.md file">
+      <change beforePath="$PROJECT_DIR$/.idea/Ouloug.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ouloug.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/static_strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/customers/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/customers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/telecoms/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/add_telecom_phone.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/add_telecom_number.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/includes/includes.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/telecom_phone_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/telecom_number_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/add_telcoms.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/add_telcoms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/includes/includes.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/telcom_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/telecoms_list.html" afterDir="false" />
     </list>
->>>>>>> 3ecac1cbbda6e818b9be38609958ab8cb67b4f0d
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +37,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="HARD" />
+    <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -51,10 +56,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/templates/agent_shift" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/templates/customer_call/customer_call_includes" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/templates/customer_call/customer_call_includes" />
+      <recent name="$PROJECT_DIR$/apps/templates/customer_call" />
       <recent name="$PROJECT_DIR$/apps/templates/agent_shift" />
       <recent name="$PROJECT_DIR$/apps/packages" />
       <recent name="$PROJECT_DIR$/apps/templates/package" />
@@ -99,7 +106,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646670924402</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="all changes are specified in the DAILY_CHANGES.md file">
+      <created>1646674282361</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646674282361</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -115,6 +129,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Resolving issues related to teams and business type" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolving issues related to teams and business type" />
+    <MESSAGE value="all changes are specified in the DAILY_CHANGES.md file" />
+    <option name="LAST_COMMIT_MESSAGE" value="all changes are specified in the DAILY_CHANGES.md file" />
   </component>
 </project>

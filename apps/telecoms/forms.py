@@ -1,17 +1,17 @@
 from django import forms
-from apps.telecoms.models import Team
+from apps.telecoms.models import TelecomNumber,TelecomOperator
 # TeamForm form used to do CRUD operations to Team model
-class TelcomForm(forms.ModelForm):
+class TelcomOperatorForm(forms.ModelForm):
     class Meta:
-        model = Team
+        model = TelecomOperator
         fields = "__all__"
 
 
 
 
-class TelecomphoneForm(forms.ModelForm):
+class TelecomNumberForm(forms.ModelForm):
     class Meta:
-        model = Team
+        model = TelecomNumber
         fields = "__all__"
 
 

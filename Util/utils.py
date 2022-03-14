@@ -79,10 +79,10 @@ class SearchMan:
             from apps.customers.models import AgentShift
             agentShifts = AgentShift.objects.all().order_by("id")
             self.paginator = Paginator(agentShifts, 5)
-
-
-
-
+        if model == "CustomerCall":
+            from apps.customers.models import CustomerCall
+            customerCalls = CustomerCall.objects.all().order_by("id")
+            self.paginator = Paginator(customerCalls, 5)
 
     def setPaginator(self,query):
         from django.core.paginator import Paginator
