@@ -1,0 +1,73 @@
+
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Currency</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+
+<div class="small_div">
+
+<div class="container">
+    <br>
+    <h2>Currency List</h2>
+    <hr>
+
+    <form action="/update/{{ currency.id }}">
+
+   <th>{% trans 'name' %}</th>
+   <th>{% trans 'symbol' %}</th>
+   <th>{% trans 'arabic_symbol' %}</th>
+   <th>{% trans 'decimal_digits_number' %}</th>
+
+  
+
+
+
+        {% csrf_token %}
+
+        <label class="form-group" for="name">Name: </label>
+        <input class="form-control" type="text" name="name" value="{{ currencies.name }}" placeholder="{{ currencies.name  }}">
+
+        <label class="form-group" for="symbol">Symbol: </label>
+        <input class="form-control" type="text" name="symbol" value="{{ currencies.symbol }}" placeholder="{{ currencies.symbol  }}">
+
+
+        <label class="form-group" for="arabic_symbol">Arabic Symbol: </label>
+        <input class="form-control" type="text" name="arabic_symbol" value="{{ currencies.arabic_symbol }}" placeholder="{{ currencies.arabic_symbol  }}">
+
+        <label class="form-group" for="decimal_digits_number">Decimal Digits Number: </label>
+        <input class="form-control" type="text" name="decimal_digits_number" value="{{ currencies.decimal_digits_number }}" placeholder="{{ currencies.decimal_digits_number  }}">
+
+        <input class="btn btn-primary" type="submit" value="Update">
+
+    </form>
+
+
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

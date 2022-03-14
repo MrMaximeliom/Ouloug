@@ -97,3 +97,13 @@
 ### Changes
 
 - complete the services 'telecom phone number'
+
+
+
+
+
+## 2022-3-14
+### Changes
+
+- add edit.html to all masters and services 
+- add views and urls 

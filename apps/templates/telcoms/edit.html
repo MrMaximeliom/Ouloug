@@ -1,0 +1,74 @@
+
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Telecoms</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+
+<div class="small_div">
+
+<div class="container">
+    <br>
+    <h2>Telecoms List</h2>
+    <hr>
+
+    <form action="/update/{{ telecoms.id }}">
+
+        <th>{% trans 'Name' %}</th>
+        <th>{% trans 'Arabic Name' %}</th>
+        <th>{% trans 'Country' %}</th>
+        <th>{% trans 'Status' %}</th>
+  
+
+
+
+        {% csrf_token %}
+
+        <label class="form-group" for="name">Name: </label>
+        <input class="form-control" type="text" name="name" value="{{ telecoms.type_name }}" placeholder="{{ telecoms.name  }}">
+
+        <label class="form-group" for="arabic_name">Arabic Name: </label>
+        <input class="form-control" type="text" name="arabic_name" value="{{ telecoms.arabic_name }}" placeholder="{{ telecoms.arabic_name  }}">
+
+
+
+        <label class="form-group" for="country">Country: </label>
+        <input class="form-control" type="text" name="country" value="{{telecoms.country}}" placeholder="{{telecoms.country}}">
+
+        <label class="form-group" for="status">Status: </label>
+        <input class="form-control" type="text" name="status" value="{{telecoms.status}}" placeholder="{{telecoms.status}}">
+
+
+        <input class="btn btn-primary" type="submit" value="Update">
+
+    </form>
+
+
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

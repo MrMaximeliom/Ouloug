@@ -1,0 +1,70 @@
+
+
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Business</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+
+<div class="small_div">
+
+<div class="container">
+    <br>
+    <h2>Business List</h2>
+    <hr>
+
+    <form action="/update/{{ business_type.id }}">
+
+        
+   <th>{% trans 'type_name' %}</th>
+   <th>{% trans 'arabic_type_name' %}</th>
+   <th>{% trans 'other_flag' %}</th>
+  
+
+
+
+        {% csrf_token %}
+
+        <label class="form-group" for="type_name">Type Name: </label>
+        <input class="form-control" type="text" name="type_name" value="{{ business.type_name }}" placeholder="{{ business.type_name  }}">
+
+        <label class="form-group" for="arabic_type_name">Arabic Type Name: </label>
+        <input class="form-control" type="text" name="arabic_type_name" value="{{ business.arabic_type_name }}" placeholder="{{ business.arabic_type_name  }}">
+
+
+
+        <label class="form-group" for="other_flag">Other Flag: </label>
+        <input class="form-control" type="text" name="other_flag" value="{{ business.other_flag }}" placeholder="{{ business.other_flag  }}">
+
+        <input class="btn btn-primary" type="submit" value="Update">
+
+    </form>
+
+
+</div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

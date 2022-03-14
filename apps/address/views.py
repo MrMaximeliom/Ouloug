@@ -1,4 +1,11 @@
+from importlib.resources import Package
+from locale import currency
+from django.shortcuts import redirect, render
 from Util.utils import SearchMan
+from apps.customers.models import AgentShift
+from apps.services.models import Service
+from apps.teams.models import Team
+from models import TelecomNumber, TelecomOperator
 from .models import Country, City, State, Currency
 from django.views.generic import ListView, FormView
 from .forms import CountryForm, CityForm, StateForm, CurrencyForm
@@ -829,3 +836,282 @@ class CurrencyListView(OulougGroupPermission, ListView):
             'title': self.title
         })
         return super().get(request)
+
+
+# This code for update and edit 
+
+
+def edit(request, id):
+    countries = Country.objects.get(pk=id)
+    context = {
+        'countries': countries
+    }
+    return render(request, 'templates/countries/edit.html', context)
+
+
+def update(request, id):
+    countries = Country.objects.get(pk=id)
+    countries.name = request.GET['name']
+    countries.arabic_name = request.GET['arabic_name']
+    countries.access_code = request.GET['access_code']
+    countries.is_service_country = request.GET['service_country']
+    countries.status = request.GET['status']
+
+
+    countries.save()
+    return redirect('/')
+
+
+#This for state model 
+
+
+def editstate(request, id):
+    states = State.objects.get(pk=id)
+    context = {
+        'states': states
+    }
+    return render(request, 'templates/states/edit.html', context)
+
+
+def updatestate(request, id):
+    states = Country.objects.get(pk=id)
+    states.name = request.GET['name']
+    states.arabic_name = request.GET['arabic_name']
+  # states.added_by = request.GET['Added By']
+    states.status = request.GET['status']
+
+
+    states.save()
+    return redirect('/')
+
+
+
+##This for city model 
+
+
+
+def editcity(request, id):
+    cities = City.objects.get(pk=id)
+    context = {
+        'cities': cities
+    }
+    return render(request, 'templates/cities/edit.html', context)
+
+
+def updatecity(request, id):
+    cities = City.objects.get(pk=id)
+    cities.name = request.GET['name']
+    cities.arabic_name = request.GET['arabic_name']
+    cities.access_code = request.GET['access_code']
+    cities.status = request.GET['status']
+
+
+    cities.save()
+    return redirect('/')
+
+##This for agentshit model 
+
+
+def editagent(request, id):
+    agents = AgentShift.objects.get(pk=id)
+    context = {
+        'agents': agents
+    }
+    return render(request, 'templates/agent_shift/edit.html', context)
+
+
+def updateagent(request, id):
+    agents = AgentShift.objects.get(pk=id)
+    agents.name = request.GET['name']
+    agents.arabic_name = request.GET['arabic_name']
+    agents.country = request.GET['country']
+    agents.team = request.GET['team']
+    agents.number = request.GET['number']
+    agents.start_date = request.GET['start_date']
+    agents.end_date = request.GET['end_date']
+    agents.start_time = request.GET['start_time']
+    agents.end_time = request.GET['end_time']
+
+    agents.status = request.GET['status']
+
+
+    agents.save()
+    return redirect('/')
+
+
+##This for business_type model 
+
+
+def editbusiness(request, id):
+    agents = AgentShift.objects.get(pk=id)
+    context = {
+        'agents': agents
+    }
+    return render(request, 'templates/agent_shift/edit.html', context)
+
+
+def updatebusiness(request, id):
+    agents = AgentShift.objects.get(pk=id)
+    agents.name = request.GET['name']
+    agents.arabic_name = request.GET['arabic_name']
+    agents.country = request.GET['country']
+    agents.team = request.GET['team']
+    agents.number = request.GET['number']
+    agents.start_date = request.GET['start_date']
+    agents.end_date = request.GET['end_date']
+    agents.start_time = request.GET['start_time']
+    agents.end_time = request.GET['end_time']
+
+    agents.status = request.GET['status']
+
+
+    agents.save()
+    return redirect('/')
+
+
+
+##This for currency model 
+
+
+def editcurrency(request, id):
+    currency = Currency.objects.get(pk=id)
+    context = {
+        'currency': currency
+    }
+    return render(request, 'templates/currencies/edit.html', context)
+
+
+
+def updatecurrency(request, id):
+    currency = Currency.objects.get(pk=id)
+    currency.name = request.GET['name']
+    currency.symbol = request.GET['symbol']
+    currency.arabic_symbol = request.GET['arabic_symbol']
+    currency.decimal_digits_number = request.GET['decimal_digits_number']
+
+    currency.save()
+    return redirect('/')
+
+
+##This for pakages model 
+def editpak(request, id):
+    pakages = Package.objects.get(pk=id)
+    context = {
+        'pakages': pakages
+    }
+    return render(request, 'templates/pakage/edit.html', context)
+
+
+def updatepak(request, id):
+    pakages = Package.objects.get(pk=id)
+    pakages.type_name = request.GET['type_name']
+    pakages.arabic_name = request.GET['arabic_name']
+    pakages.telecom = request.GET['telecom']
+    pakages.currency = request.GET['currency']
+    pakages.priority = request.GET['priority']
+    pakages.type = request.GET['type']
+    pakages.status = request.GET['status']
+    pakages.price = request.GET['price']
+    pakages.grace_period_day = request.GET['grace_period_day']
+    pakages.discount = request.GET['discount']
+    pakages.discount_price = request.GET['discount_price']
+
+
+
+    pakages.save()
+    return redirect('/')
+
+##This for services model 
+def editser(request, id):
+    services = Service.objects.get(pk=id)
+    context = {
+        'services': services
+    }
+    return render(request, 'templates/service/edit.html', context)
+
+
+def updateser(request, id):
+    services = Service.objects.get(pk=id)
+    services.name = request.GET['name']
+    services.arabic_name = request.GET['arabic_name']
+    services.country = request.GET['country']
+    services.description = request.GET['description']
+    services.arabic_description = request.GET['arabic_description']
+    services.subscription_type = request.GET['subscription_type']
+    services.status = request.GET['status']
+   
+
+
+
+    services.save()
+    return redirect('/')
+
+
+
+##This for teams model 
+def editteams(request, id):
+    teams = Team.objects.get(pk=id)
+    context = {
+        'teams': teams
+    }
+    return render(request, 'templates/teams/edit.html', context)
+
+
+def updateteams(request, id):
+    teams = Team.objects.get(pk=id)
+    teams.name = request.GET['name']
+    teams.arabic_name = request.GET['arabic_name']
+    teams.country = request.GET['country']
+    teams.status = request.GET['status']
+
+    teams.save()
+    return redirect('/')
+
+
+
+
+
+##This for telecoms model 
+def edittel(request, id):
+    telecoms = TelecomOperator.objects.get(pk=id)
+    context = {
+        'telecoms': telecoms
+    }
+    return render(request, 'templates/telcoms/edit.html', context)
+
+
+def updatetel(request, id):
+    telecoms = TelecomOperator.objects.get(pk=id)
+    telecoms.name = request.GET['name']
+    telecoms.arabic_name = request.GET['arabic_name']
+    telecoms.country = request.GET['country']
+    telecoms.status = request.GET['status']
+
+
+    telecoms.save()
+    return redirect('/')
+
+
+
+ 
+
+##This for telecoms-phone model 
+def edittelecomphone(request, id):
+    telecoms_phone = TelecomNumber.objects.get(pk=id)
+    context = {
+        'telecoms_phone': telecoms_phone
+    }
+    return render(request, 'templates/telecom_phone/edit.html', context)
+
+
+def updatetelecomphone(request, id):
+    telecoms_phone = TelecomNumber.objects.get(pk=id)
+    telecoms_phone.number = request.GET['number']
+    telecoms_phone.type = request.GET['type']
+    telecoms_phone.status = request.GET['status']
+
+
+    telecoms_phone.save()
+    return redirect('/')
+
+

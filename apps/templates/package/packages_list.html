@@ -74,7 +74,7 @@
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="#" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="/edit/{{package.id }}" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
                                                 <td>
