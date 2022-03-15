@@ -31,7 +31,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addCurrency' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Currency' %}</a>
+                                <a href="{% url 'addCurrency' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Currency' %}</a>
 
                            </div>
                                   {% endif %}
@@ -53,7 +53,6 @@
                                                 <th>{% trans 'Last Modification' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <th>{% trans 'Update' %}</th>
-                                                <th>{% trans 'Delete' %}</th>
                                                 {% endif %}
                                             </tr>
                                         </thead>
@@ -71,19 +70,17 @@
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="/edit/{{currency.id }}" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="#" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
-                                                <td>
- <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
 
-                                                </td>
                                                 {% endif %}
                                             </tr>
                                         {% endfor %}
 
                                         </tbody>
                                     </table>
+                                     <h5>Total Currencies Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>

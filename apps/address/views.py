@@ -1,11 +1,4 @@
-from importlib.resources import Package
-from locale import currency
-from django.shortcuts import redirect, render
 from Util.utils import SearchMan
-from apps.customers.models import AgentShift
-from apps.services.models import Service
-from apps.teams.models import Team
-from models import TelecomNumber, TelecomOperator
 from .models import Country, City, State, Currency
 from django.views.generic import ListView, FormView
 from .forms import CountryForm, CityForm, StateForm, CurrencyForm
@@ -19,129 +12,9 @@ from Util.static_strings import (NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE,
                                  )
 from Util.utils import OulougGroupPermission
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.generic.edit import UpdateView
 
-"""
-CountryListView:
-This class is used to view all added countries in the system,
-it allows only administrators and monitor users to  
-access.
-"""
-class CountryListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = Country
-    # specify the template in the view
-    template_name = "address/countries/countries_list.html"
-    # adding active flag for the sidebar active link
 
-    # adding the view's title
-    title = "Countries"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'masters': 'active',
-        'countries': 'active',
-        'no_records_admin': NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("Country")
-
-    # return default queryset used in this view
-    def get_queryset(self):
-        return Country.objects.all().order_by('-id')
-
-    # def post(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     paginator = Paginator(queryset, 5)
-    #     if request.POST.get('search_phrase') != '' and request.POST.get('search_options') == 'start_date':
-    #         search_message = request.POST.get('search_phrase')
-    #         self.search_result = Offer.objects.all().filter(
-    #             name=search_message).order_by('-id')
-    #         self.searchManObj.setPaginator(self.search_result)
-    #         self.searchManObj.setSearchPhrase(search_message)
-    #         self.searchManObj.setSearchOption('Offer Start Date')
-    #         self.searchManObj.setSearchError(False)
-    #     if 'clear' not in request.POST:
-    #         self.searchManObj.setSearch(True)
-    #     if request.POST.get('clear') == 'clear':
-    #         offers = self.get_queryset()
-    #         self.searchManObj.setPaginator(offers)
-    #         self.searchManObj.setSearch(False)
-    #     if request.GET.get('page'):
-    #         # Grab the current page from query parameter consultant
-    #         page = int(request.GET.get('page'))
-    #     else:
-    #         page = None
-    #
-    #     try:
-    #         paginator = self.searchManObj.getPaginator()
-    #         offers = paginator.page(page)
-    #         # Create a page object for the current page.
-    #     except PageNotAnInteger:
-    #         # If the query parameter is empty then grab the first page.
-    #         offers = paginator.page(1)
-    #         page = 1
-    #     except EmptyPage:
-    #         # If the query parameter is greater than num_pages then grab the last page.
-    #         offers = paginator.page(paginator.num_pages)
-    #         page = paginator.num_pages
-    #     self.extra_context = {
-    #         'offers': 'active',
-    #         self.active_flag: 'active',
-    #         'page_range': paginator.page_range,
-    #         'num_pages': paginator.num_pages,
-    #         'offers_list': offers,
-    #         'search': self.searchManObj.getSearch(),
-    #         'search_result': self.search_result,
-    #         'search_phrase': self.searchManObj.getSearchPhrase(),
-    #         'search_option': self.searchManObj.getSearchOption(),
-    #         'search_error': self.searchManObj.getSearchError(),
-    #         'clear_search_tip': CLEAR_SEARCH_TIP,
-    #         'search_offers_tip': SEARCH_OFFERS_TIP,
-    #         'current_page': page,
-    #         'title':self.title
-    #     }
-    #     return super().get(request)
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
-            countries = Country.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(countries)
-            self.searchManObj.setSearch(False)
-        if request.GET.get('page'):
-            # Grab the current page from query parameter consultant
-            page = int(request.GET.get('page'))
-        else:
-            page = None
-
-        try:
-            paginator = self.searchManObj.getPaginator()
-            countries = paginator.page(page)
-            # Create a page object for the current page.
-        except PageNotAnInteger:
-            # If the query parameter is empty then grab the first page.
-            countries = paginator.page(1)
-            page = 1
-        except EmptyPage:
-            # If the query parameter is greater than num_pages then grab the last page.
-            countries = paginator.page(paginator.num_pages)
-            page = paginator.num_pages
-        self.extra_context.update({
-            'masters': 'active',
-            'page_range': paginator.page_range,
-            'num_pages': paginator.num_pages,
-            'object_list': countries,
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
-            'current_page': page,
-            'title': self.title
-        })
-        return super().get(request)
 
 
 """
@@ -190,256 +63,7 @@ class CountryFormView(OulougGroupPermission, FormView):
         'title': 'Add Countries'
     }
 
-"""
-CityListView:
-This class is used to view all added cities in the system,
-it allows only administrators and monitor users to 
-access.
-"""
 
-
-class CityListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = City
-    # specify the template in the view
-    template_name = "address/cities/cities_list.html"
-    # adding active flag for the sidebar active link
-
-    # adding the view's title
-    title = "Cities"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'masters': 'active',
-        'cities': 'active',
-        'no_records_admin': NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("City")
-
-    # return default queryset used in this view
-    def get_queryset(self):
-        return City.objects.all().order_by('-id')
-
-    # def post(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     paginator = Paginator(queryset, 5)
-    #     if request.POST.get('search_phrase') != '' and request.POST.get('search_options') == 'start_date':
-    #         search_message = request.POST.get('search_phrase')
-    #         self.search_result = Offer.objects.all().filter(
-    #             name=search_message).order_by('-id')
-    #         self.searchManObj.setPaginator(self.search_result)
-    #         self.searchManObj.setSearchPhrase(search_message)
-    #         self.searchManObj.setSearchOption('Offer Start Date')
-    #         self.searchManObj.setSearchError(False)
-    #     if 'clear' not in request.POST:
-    #         self.searchManObj.setSearch(True)
-    #     if request.POST.get('clear') == 'clear':
-    #         offers = self.get_queryset()
-    #         self.searchManObj.setPaginator(offers)
-    #         self.searchManObj.setSearch(False)
-    #     if request.GET.get('page'):
-    #         # Grab the current page from query parameter consultant
-    #         page = int(request.GET.get('page'))
-    #     else:
-    #         page = None
-    #
-    #     try:
-    #         paginator = self.searchManObj.getPaginator()
-    #         offers = paginator.page(page)
-    #         # Create a page object for the current page.
-    #     except PageNotAnInteger:
-    #         # If the query parameter is empty then grab the first page.
-    #         offers = paginator.page(1)
-    #         page = 1
-    #     except EmptyPage:
-    #         # If the query parameter is greater than num_pages then grab the last page.
-    #         offers = paginator.page(paginator.num_pages)
-    #         page = paginator.num_pages
-    #     self.extra_context = {
-    #         'offers': 'active',
-    #         self.active_flag: 'active',
-    #         'page_range': paginator.page_range,
-    #         'num_pages': paginator.num_pages,
-    #         'offers_list': offers,
-    #         'search': self.searchManObj.getSearch(),
-    #         'search_result': self.search_result,
-    #         'search_phrase': self.searchManObj.getSearchPhrase(),
-    #         'search_option': self.searchManObj.getSearchOption(),
-    #         'search_error': self.searchManObj.getSearchError(),
-    #         'clear_search_tip': CLEAR_SEARCH_TIP,
-    #         'search_offers_tip': SEARCH_OFFERS_TIP,
-    #         'current_page': page,
-    #         'title':self.title
-    #     }
-    #     return super().get(request)
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
-            cities = City.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(cities)
-            self.searchManObj.setSearch(False)
-        if request.GET.get('page'):
-            # Grab the current page from query parameter consultant
-            page = int(request.GET.get('page'))
-        else:
-            page = None
-
-        try:
-            paginator = self.searchManObj.getPaginator()
-            cities = paginator.page(page)
-            # Create a page object for the current page.
-        except PageNotAnInteger:
-            # If the query parameter is empty then grab the first page.
-            cities = paginator.page(1)
-            page = 1
-        except EmptyPage:
-            # If the query parameter is greater than num_pages then grab the last page.
-            cities = paginator.page(paginator.num_pages)
-            page = paginator.num_pages
-        self.extra_context.update({
-            'masters': 'active',
-            'page_range': paginator.page_range,
-            'num_pages': paginator.num_pages,
-            'object_list': cities,
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
-            'current_page': page,
-            'title': self.title
-        })
-        return super().get(request)
-
-
-"""
-CityListView:
-This class is used to view all added cities in the system,
-it allows only administrators and monitor users to 
-access.
-"""
-
-
-class CityListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = City
-    # specify the template in the view
-    template_name = "address/cities/cities_list.html"
-    # adding active flag for the sidebar active link
-
-    # adding the view's title
-    title = _("Cities")
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'masters': 'active',
-        'cities': 'active',
-        'no_records_admin': NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("City")
-
-    # return default queryset used in this view
-    def get_queryset(self):
-        return City.objects.all().order_by('-id')
-
-    # def post(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     paginator = Paginator(queryset, 5)
-    #     if request.POST.get('search_phrase') != '' and request.POST.get('search_options') == 'start_date':
-    #         search_message = request.POST.get('search_phrase')
-    #         self.search_result = Offer.objects.all().filter(
-    #             name=search_message).order_by('-id')
-    #         self.searchManObj.setPaginator(self.search_result)
-    #         self.searchManObj.setSearchPhrase(search_message)
-    #         self.searchManObj.setSearchOption('Offer Start Date')
-    #         self.searchManObj.setSearchError(False)
-    #     if 'clear' not in request.POST:
-    #         self.searchManObj.setSearch(True)
-    #     if request.POST.get('clear') == 'clear':
-    #         offers = self.get_queryset()
-    #         self.searchManObj.setPaginator(offers)
-    #         self.searchManObj.setSearch(False)
-    #     if request.GET.get('page'):
-    #         # Grab the current page from query parameter consultant
-    #         page = int(request.GET.get('page'))
-    #     else:
-    #         page = None
-    #
-    #     try:
-    #         paginator = self.searchManObj.getPaginator()
-    #         offers = paginator.page(page)
-    #         # Create a page object for the current page.
-    #     except PageNotAnInteger:
-    #         # If the query parameter is empty then grab the first page.
-    #         offers = paginator.page(1)
-    #         page = 1
-    #     except EmptyPage:
-    #         # If the query parameter is greater than num_pages then grab the last page.
-    #         offers = paginator.page(paginator.num_pages)
-    #         page = paginator.num_pages
-    #     self.extra_context = {
-    #         'offers': 'active',
-    #         self.active_flag: 'active',
-    #         'page_range': paginator.page_range,
-    #         'num_pages': paginator.num_pages,
-    #         'offers_list': offers,
-    #         'search': self.searchManObj.getSearch(),
-    #         'search_result': self.search_result,
-    #         'search_phrase': self.searchManObj.getSearchPhrase(),
-    #         'search_option': self.searchManObj.getSearchOption(),
-    #         'search_error': self.searchManObj.getSearchError(),
-    #         'clear_search_tip': CLEAR_SEARCH_TIP,
-    #         'search_offers_tip': SEARCH_OFFERS_TIP,
-    #         'current_page': page,
-    #         'title':self.title
-    #     }
-    #     return super().get(request)
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
-            cities = City.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(cities)
-            self.searchManObj.setSearch(False)
-        if request.GET.get('page'):
-            # Grab the current page from query parameter consultant
-            page = int(request.GET.get('page'))
-        else:
-            page = None
-
-        try:
-            paginator = self.searchManObj.getPaginator()
-            cities = paginator.page(page)
-            # Create a page object for the current page.
-        except PageNotAnInteger:
-            # If the query parameter is empty then grab the first page.
-            cities = paginator.page(1)
-            page = 1
-        except EmptyPage:
-            # If the query parameter is greater than num_pages then grab the last page.
-            cities = paginator.page(paginator.num_pages)
-            page = paginator.num_pages
-        self.extra_context.update({
-            'masters': 'active',
-            'page_range': paginator.page_range,
-            'num_pages': paginator.num_pages,
-            'object_list': cities,
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
-            'current_page': page,
-            'title': self.title
-        })
-        return super().get(request)
 
 
 """
@@ -540,131 +164,6 @@ class StateFormView(OulougGroupPermission, FormView):
     }
 
 
-"""
-StateListView:
-This class is used to view all added states in the system,
-it allows only administrators and monitor users to  
-access.
-"""
-
-
-class StateListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = State
-    # specify the template in the view
-    template_name = "address/states/states_list.html"
-    # adding active flag for the sidebar active link
-
-    # adding the view's title
-    title = "States"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'masters': 'active',
-        'countries': 'active',
-        'no_records_admin': NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("State")
-
-    # return default queryset used in this view
-    def get_queryset(self):
-        return State.objects.all().order_by('-id')
-
-    # def post(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     paginator = Paginator(queryset, 5)
-    #     if request.POST.get('search_phrase') != '' and request.POST.get('search_options') == 'start_date':
-    #         search_message = request.POST.get('search_phrase')
-    #         self.search_result = Offer.objects.all().filter(
-    #             name=search_message).order_by('-id')
-    #         self.searchManObj.setPaginator(self.search_result)
-    #         self.searchManObj.setSearchPhrase(search_message)
-    #         self.searchManObj.setSearchOption('Offer Start Date')
-    #         self.searchManObj.setSearchError(False)
-    #     if 'clear' not in request.POST:
-    #         self.searchManObj.setSearch(True)
-    #     if request.POST.get('clear') == 'clear':
-    #         offers = self.get_queryset()
-    #         self.searchManObj.setPaginator(offers)
-    #         self.searchManObj.setSearch(False)
-    #     if request.GET.get('page'):
-    #         # Grab the current page from query parameter consultant
-    #         page = int(request.GET.get('page'))
-    #     else:
-    #         page = None
-    #
-    #     try:
-    #         paginator = self.searchManObj.getPaginator()
-    #         offers = paginator.page(page)
-    #         # Create a page object for the current page.
-    #     except PageNotAnInteger:
-    #         # If the query parameter is empty then grab the first page.
-    #         offers = paginator.page(1)
-    #         page = 1
-    #     except EmptyPage:
-    #         # If the query parameter is greater than num_pages then grab the last page.
-    #         offers = paginator.page(paginator.num_pages)
-    #         page = paginator.num_pages
-    #     self.extra_context = {
-    #         'offers': 'active',
-    #         self.active_flag: 'active',
-    #         'page_range': paginator.page_range,
-    #         'num_pages': paginator.num_pages,
-    #         'offers_list': offers,
-    #         'search': self.searchManObj.getSearch(),
-    #         'search_result': self.search_result,
-    #         'search_phrase': self.searchManObj.getSearchPhrase(),
-    #         'search_option': self.searchManObj.getSearchOption(),
-    #         'search_error': self.searchManObj.getSearchError(),
-    #         'clear_search_tip': CLEAR_SEARCH_TIP,
-    #         'search_offers_tip': SEARCH_OFFERS_TIP,
-    #         'current_page': page,
-    #         'title':self.title
-    #     }
-    #     return super().get(request)
-
-    def get(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
-        paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
-            states = State.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(states)
-            self.searchManObj.setSearch(False)
-        if request.GET.get('page'):
-            # Grab the current page from query parameter consultant
-            page = int(request.GET.get('page'))
-        else:
-            page = None
-
-        try:
-            paginator = self.searchManObj.getPaginator()
-            states = paginator.page(page)
-            # Create a page object for the current page.
-        except PageNotAnInteger:
-            # If the query parameter is empty then grab the first page.
-            states = paginator.page(1)
-            page = 1
-        except EmptyPage:
-            # If the query parameter is greater than num_pages then grab the last page.
-            states = paginator.page(paginator.num_pages)
-            page = paginator.num_pages
-        self.extra_context.update({
-            'masters': 'active',
-            'page_range': paginator.page_range,
-            'num_pages': paginator.num_pages,
-            'object_list': states,
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
-            'current_page': page,
-            'title': self.title
-        })
-        return super().get(request)
-
 
 """
 CurrencyFormView:
@@ -712,37 +211,34 @@ class CurrencyFormView(OulougGroupPermission, FormView):
     }
 
 
+
 """
-CurrencyListView:
-This class is used to view all added states in the system,
-it allows only administrators and monitor users to  
-access.
+ModelListView Class:
+is a class used to list instances of a specified model,
+it requires to define the following params:
+- model (the model of the updated instance)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+- model_name (this variable is used to specify model name for SearchMan class) 
+- no_records_admin (this variable is used to specify the message that appears 
+                     if there are no records for the admin user) 
+- no_records_monitor (this variable is used to specify the message that appears 
+                     if there are no records for the monitor user) 
+- add_tool_tip_text (specifies the text that appears while hovering the 'add' button)
+- update_tool_tip_text (specifies the text that appears while hovering the 'update' button)
 """
-
-
-class CurrencyListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = Currency
-    # specify the template in the view
-    template_name = "address/currencies/currencies_list.html"
-    # adding active flag for the sidebar active link
-
-    # adding the view's title
-    title = "Currencies"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'masters': 'active',
-        'currencies': 'active',
-        'no_records_admin': NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("State")
-
+class ModelListView(ListView):
+    model = None
+    template_name = None
+    active_flag = None
+    model_name = None
+    no_records_admin = None
+    no_records_monitor = None
+    add_tool_tip_text = None
+    update_tool_tip_text = None
     # return default queryset used in this view
     def get_queryset(self):
-        return Currency.objects.all().order_by('-id')
+        return self.model.objects.all().order_by('-id')
 
     # def post(self, request, *args, **kwargs):
     #     queryset = self.get_queryset()
@@ -798,12 +294,13 @@ class CurrencyListView(OulougGroupPermission, ListView):
     #     return super().get(request)
 
     def get(self, request, *args, **kwargs):
+        searchManObj = SearchMan(self.model_name)
         queryset = self.get_queryset()
         paginator = Paginator(queryset, 5)
         if 'page' not in request.GET:
-            states = Currency.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(states)
-            self.searchManObj.setSearch(False)
+            instances = self.model.objects.all().order_by('-id')
+            searchManObj.setPaginator(instances)
+            searchManObj.setSearch(False)
         if request.GET.get('page'):
             # Grab the current page from query parameter consultant
             page = int(request.GET.get('page'))
@@ -811,307 +308,79 @@ class CurrencyListView(OulougGroupPermission, ListView):
             page = None
 
         try:
-            paginator = self.searchManObj.getPaginator()
-            states = paginator.page(page)
+            paginator = searchManObj.getPaginator()
+            instances = paginator.page(page)
             # Create a page object for the current page.
         except PageNotAnInteger:
             # If the query parameter is empty then grab the first page.
-            states = paginator.page(1)
+            instances = paginator.page(1)
             page = 1
         except EmptyPage:
             # If the query parameter is greater than num_pages then grab the last page.
-            states = paginator.page(paginator.num_pages)
+            instances = paginator.page(paginator.num_pages)
             page = paginator.num_pages
-        self.extra_context.update({
-            'masters': 'active',
+        self.extra_context = {
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
-            'object_list': states,
+            'object_list': instances,
+            'masters':'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text":self.add_tool_tip_text,
+            "update_tool_tip_text":self.update_tool_tip_text,
+            "instances_count":len(self.get_queryset()),
+
             # 'search': self.searchManObj.getSearch(),
             # 'search_result': self.search_result,
             # 'search_phrase': self.searchManObj.getSearchPhrase(),
             # 'search_option': self.searchManObj.getSearchOption(),
             # 'search_error': self.searchManObj.getSearchError(),
             'current_page': page,
-            'title': self.title
-        })
+        }
         return super().get(request)
 
 
-# This code for update and edit 
 
+"""
+UpdateModelView Class:
+is a class used to update instances of a specified model,
+it requires to define the following params:
+- model (the model of the updated instance)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+"""
+class UpdateModelView(UpdateView):
+    model = None
+    fields = "__all__"
+    template_name = None
+    active_flag = None
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data['name']
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
+        return super(UpdateModelView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        instance_name = form.cleaned_data['name']
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).post(self)
 
-def edit(request, id):
-    countries = Country.objects.get(pk=id)
-    context = {
-        'countries': countries
-    }
-    return render(request, 'templates/countries/edit.html', context)
-
-
-def update(request, id):
-    countries = Country.objects.get(pk=id)
-    countries.name = request.GET['name']
-    countries.arabic_name = request.GET['arabic_name']
-    countries.access_code = request.GET['access_code']
-    countries.is_service_country = request.GET['service_country']
-    countries.status = request.GET['status']
-
-
-    countries.save()
-    return redirect('/')
-
-
-#This for state model 
-
-
-def editstate(request, id):
-    states = State.objects.get(pk=id)
-    context = {
-        'states': states
-    }
-    return render(request, 'templates/states/edit.html', context)
-
-
-def updatestate(request, id):
-    states = Country.objects.get(pk=id)
-    states.name = request.GET['name']
-    states.arabic_name = request.GET['arabic_name']
-  # states.added_by = request.GET['Added By']
-    states.status = request.GET['status']
-
-
-    states.save()
-    return redirect('/')
-
-
-
-##This for city model 
-
-
-
-def editcity(request, id):
-    cities = City.objects.get(pk=id)
-    context = {
-        'cities': cities
-    }
-    return render(request, 'templates/cities/edit.html', context)
-
-
-def updatecity(request, id):
-    cities = City.objects.get(pk=id)
-    cities.name = request.GET['name']
-    cities.arabic_name = request.GET['arabic_name']
-    cities.access_code = request.GET['access_code']
-    cities.status = request.GET['status']
-
-
-    cities.save()
-    return redirect('/')
-
-##This for agentshit model 
-
-
-def editagent(request, id):
-    agents = AgentShift.objects.get(pk=id)
-    context = {
-        'agents': agents
-    }
-    return render(request, 'templates/agent_shift/edit.html', context)
-
-
-def updateagent(request, id):
-    agents = AgentShift.objects.get(pk=id)
-    agents.name = request.GET['name']
-    agents.arabic_name = request.GET['arabic_name']
-    agents.country = request.GET['country']
-    agents.team = request.GET['team']
-    agents.number = request.GET['number']
-    agents.start_date = request.GET['start_date']
-    agents.end_date = request.GET['end_date']
-    agents.start_time = request.GET['start_time']
-    agents.end_time = request.GET['end_time']
-
-    agents.status = request.GET['status']
-
-
-    agents.save()
-    return redirect('/')
-
-
-##This for business_type model 
-
-
-def editbusiness(request, id):
-    agents = AgentShift.objects.get(pk=id)
-    context = {
-        'agents': agents
-    }
-    return render(request, 'templates/agent_shift/edit.html', context)
-
-
-def updatebusiness(request, id):
-    agents = AgentShift.objects.get(pk=id)
-    agents.name = request.GET['name']
-    agents.arabic_name = request.GET['arabic_name']
-    agents.country = request.GET['country']
-    agents.team = request.GET['team']
-    agents.number = request.GET['number']
-    agents.start_date = request.GET['start_date']
-    agents.end_date = request.GET['end_date']
-    agents.start_time = request.GET['start_time']
-    agents.end_time = request.GET['end_time']
-
-    agents.status = request.GET['status']
-
-
-    agents.save()
-    return redirect('/')
-
-
-
-##This for currency model 
-
-
-def editcurrency(request, id):
-    currency = Currency.objects.get(pk=id)
-    context = {
-        'currency': currency
-    }
-    return render(request, 'templates/currencies/edit.html', context)
-
-
-
-def updatecurrency(request, id):
-    currency = Currency.objects.get(pk=id)
-    currency.name = request.GET['name']
-    currency.symbol = request.GET['symbol']
-    currency.arabic_symbol = request.GET['arabic_symbol']
-    currency.decimal_digits_number = request.GET['decimal_digits_number']
-
-    currency.save()
-    return redirect('/')
-
-
-##This for pakages model 
-def editpak(request, id):
-    pakages = Package.objects.get(pk=id)
-    context = {
-        'pakages': pakages
-    }
-    return render(request, 'templates/pakage/edit.html', context)
-
-
-def updatepak(request, id):
-    pakages = Package.objects.get(pk=id)
-    pakages.type_name = request.GET['type_name']
-    pakages.arabic_name = request.GET['arabic_name']
-    pakages.telecom = request.GET['telecom']
-    pakages.currency = request.GET['currency']
-    pakages.priority = request.GET['priority']
-    pakages.type = request.GET['type']
-    pakages.status = request.GET['status']
-    pakages.price = request.GET['price']
-    pakages.grace_period_day = request.GET['grace_period_day']
-    pakages.discount = request.GET['discount']
-    pakages.discount_price = request.GET['discount_price']
-
-
-
-    pakages.save()
-    return redirect('/')
-
-##This for services model 
-def editser(request, id):
-    services = Service.objects.get(pk=id)
-    context = {
-        'services': services
-    }
-    return render(request, 'templates/service/edit.html', context)
-
-
-def updateser(request, id):
-    services = Service.objects.get(pk=id)
-    services.name = request.GET['name']
-    services.arabic_name = request.GET['arabic_name']
-    services.country = request.GET['country']
-    services.description = request.GET['description']
-    services.arabic_description = request.GET['arabic_description']
-    services.subscription_type = request.GET['subscription_type']
-    services.status = request.GET['status']
-   
-
-
-
-    services.save()
-    return redirect('/')
-
-
-
-##This for teams model 
-def editteams(request, id):
-    teams = Team.objects.get(pk=id)
-    context = {
-        'teams': teams
-    }
-    return render(request, 'templates/teams/edit.html', context)
-
-
-def updateteams(request, id):
-    teams = Team.objects.get(pk=id)
-    teams.name = request.GET['name']
-    teams.arabic_name = request.GET['arabic_name']
-    teams.country = request.GET['country']
-    teams.status = request.GET['status']
-
-    teams.save()
-    return redirect('/')
-
-
-
-
-
-##This for telecoms model 
-def edittel(request, id):
-    telecoms = TelecomOperator.objects.get(pk=id)
-    context = {
-        'telecoms': telecoms
-    }
-    return render(request, 'templates/telcoms/edit.html', context)
-
-
-def updatetel(request, id):
-    telecoms = TelecomOperator.objects.get(pk=id)
-    telecoms.name = request.GET['name']
-    telecoms.arabic_name = request.GET['arabic_name']
-    telecoms.country = request.GET['country']
-    telecoms.status = request.GET['status']
-
-
-    telecoms.save()
-    return redirect('/')
-
-
-
- 
-
-##This for telecoms-phone model 
-def edittelecomphone(request, id):
-    telecoms_phone = TelecomNumber.objects.get(pk=id)
-    context = {
-        'telecoms_phone': telecoms_phone
-    }
-    return render(request, 'templates/telecom_phone/edit.html', context)
-
-
-def updatetelecomphone(request, id):
-    telecoms_phone = TelecomNumber.objects.get(pk=id)
-    telecoms_phone.number = request.GET['number']
-    telecoms_phone.type = request.GET['type']
-    telecoms_phone.status = request.GET['status']
-
-
-    telecoms_phone.save()
-    return redirect('/')
 
 

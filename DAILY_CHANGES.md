@@ -99,11 +99,15 @@
 - complete the services 'telecom phone number'
 
 
-
-
-
 ## 2022-3-14
 ### Changes
 
 - add edit.html to all masters and services 
 - add views and urls 
+
+
+## 2022-3-15
+### Changes
+
+- fixing bugs related to adding update functionalities to master pages which includes Countries, States, Cities, and Currencies
+- the fixing process is on the run! it is not finished yet!
