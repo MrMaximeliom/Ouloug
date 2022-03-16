@@ -5,25 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="all changes are specified in the DAILY_CHANGES.md file">
-      <change afterPath="$PROJECT_DIR$/apps/templates/address/countries/update_country.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Ouloug.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Ouloug.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Util/static_strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/customers/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/cities/cities_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/cities/cities_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/add_countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/add_countries.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/home/ui-forms.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/home/ui-forms.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/layouts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/layouts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/add_telecom_phone.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/add_telecom_number.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/includes/includes.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecom_phone/telecom_phone_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecom_number/telecom_number_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/add_telcoms.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/add_telcoms.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/includes/includes.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/telecoms/telcom_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/telecoms/telecoms_list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,16 +56,15 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/uniseal" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/templates/customer_call/customer_call_includes" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/apps/templates/address/cities" />
       <recent name="$PROJECT_DIR$/apps/templates/customer_call/customer_call_includes" />
       <recent name="$PROJECT_DIR$/apps/templates/customer_call" />
       <recent name="$PROJECT_DIR$/apps/templates/agent_shift" />
       <recent name="$PROJECT_DIR$/apps/packages" />
+      <recent name="$PROJECT_DIR$/apps/templates/package" />
     </key>
   </component>
   <component name="RunManager">
@@ -116,14 +113,7 @@
       <option name="project" value="LOCAL" />
       <updated>1646674282361</updated>
     </task>
-    <task id="LOCAL-00003" summary="all changes are specified in the DAILY_CHANGES.md file">
-      <created>1647119155564</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1647119155564</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

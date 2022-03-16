@@ -1,8 +1,4 @@
 from django.db import models
-from django.template.defaultfilters import slugify
-from django.urls import reverse_lazy
-from django.utils.translation import gettext_lazy as _
-from Util.utils import rand_slug
 from apps.authentication.models import User
 
 # list of available statuses for a country
@@ -20,13 +16,6 @@ is working in
 
 
 class Country(models.Model):
-    slug = models.SlugField(
-        default=slugify(rand_slug()),
-        verbose_name=_('State Slug'),
-        null=True,
-        blank=True
-
-    )
     # this field represents a pre-defined code
     code = models.CharField(max_length=10)
     # this field represents the country's name
@@ -52,9 +41,6 @@ class Country(models.Model):
         # objects of this model will be referenced by their names
         return str(self.name)
 
-    def get_absolute_url(self):
-        return reverse_lazy("countriesList")
-
 
     class Meta:
         # this is the model's actual name in the database
@@ -74,13 +60,6 @@ it's used to list all of the states per countries
 
 
 class State(models.Model):
-    slug = models.SlugField(
-        default=slugify(rand_slug()),
-        verbose_name=_('State Slug'),
-        null=True,
-        blank=True
-
-    )
     # this field is a foreign key references the Country model ,
     # which represents the country that a state belongs to
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
@@ -120,13 +99,6 @@ it's used to list all of the cities per countries
 
 # we need to add functions
 class City(models.Model):
-    slug = models.SlugField(
-        default=slugify(rand_slug()),
-        verbose_name=_('State Slug'),
-        null=True,
-        blank=True
-
-    )
     # this field represents the city's name
     name = models.CharField(max_length=145)
     # this field represents the city's name in Arabic
@@ -169,13 +141,6 @@ it's used to link users with countries
 
 # we need to add functions
 class UserCountry(models.Model):
-    slug = models.SlugField(
-        default=slugify(rand_slug()),
-        verbose_name=_('State Slug'),
-        null=True,
-        blank=True
-
-    )
     # this field is a foreign key references the user model
     # which represents the user linked to the country
     user = models.ForeignKey(User, on_delete=models.SET_NULL,
@@ -215,13 +180,6 @@ it's used to represent countries currencies
 
 
 class Currency(models.Model):
-    slug = models.SlugField(
-        default=slugify(rand_slug()),
-        verbose_name=_('State Slug'),
-        null=True,
-        blank=True
-
-    )
     # this field is a foreign key field references the Country model
     # which represents the country
     country = models.ForeignKey(Country, on_delete=models.CASCADE)

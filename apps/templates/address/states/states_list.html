@@ -26,14 +26,12 @@
                                 <h5>States Table</h5>
                                        </div>
 
-
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addCountries' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
+                                <a href="{% url 'addCountries' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
 
                            </div>
                                   {% endif %}
-
                             </div>
 
                             <div class="card-block table-border-style">
@@ -51,6 +49,7 @@
                                                 <th>{% trans 'Last Modification' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <th>{% trans 'Update' %}</th>
+                                                <th>{% trans 'Delete' %}</th>
                                                 {% endif %}
                                             </tr>
                                         </thead>
@@ -68,17 +67,19 @@
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="#" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="/edit/{{ state.id }}" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
+                                                <td>
+ <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
 
+                                                </td>
                                                 {% endif %}
                                             </tr>
                                         {% endfor %}
 
                                         </tbody>
                                     </table>
-                                     <h5>Total States Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>
