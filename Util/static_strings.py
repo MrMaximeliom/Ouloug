@@ -70,27 +70,3 @@ NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE = _("There are no telecoms yet to 
 
 # NO RECORDS FOUND STRINGS - Customer Call Page
 NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE = _("There are no customer calls yet to view")
-
-# tool tip text for add new city button
-ADD_NEW_CITY_TOOL_TIP_TEXT = _("add new city")
-
-# tool tip text for add new country button
-ADD_NEW_COUNTRY_TOOL_TIP_TEXT = _("add new country")
-
-# tool tip text for add new state button
-ADD_NEW_STATE_TOOL_TIP_TEXT = _("add new state")
-
-# tool tip text for add new currency button
-ADD_NEW_CURRENCY_TOOL_TIP_TEXT = _("Add new currency")
-
-# tool tip text for update city button
-UPDATE_CITY_TOOL_TIP_TEXT = _("update city")
-
-# tool tip text for update country button
-UPDATE_COUNTRY_TOOL_TIP_TEXT = _("update country")
-
-# tool tip text for update state button
-UPDATE_STATE_TOOL_TIP_TEXT = _("update state")
-
-# tool tip text for update currency button
-UPDATE_CURRENCY_TOOL_TIP_TEXT = _("update currency")
