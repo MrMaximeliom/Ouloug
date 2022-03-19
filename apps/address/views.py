@@ -58,8 +58,7 @@ class CountryFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'countries': 'active',
-        'add_offers': 'active',
+        'country': 'active',
         'title': 'Add Countries'
     }
 
@@ -107,7 +106,7 @@ class CityFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'cities': 'active',
+        'city': 'active',
         'title': _('Add Cities')
     }
 
@@ -159,7 +158,7 @@ class StateFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'states': 'active',
+        'state': 'active',
         'title': _('Add States')
     }
 
@@ -184,10 +183,11 @@ class CurrencyFormView(OulougGroupPermission, FormView):
 
     # check if the form is valid or not after submitting it
     def post(self, request, *args, **kwargs):
-        form = CountryForm(request.POST)
-        if self.form_valid(form):
-            print("valid")
-        else:
+        form = CurrencyForm(request.POST)
+        try:
+            if self.form_valid(form):
+                print("valid")
+        except:
             for field, items in form.errors.items():
                 for item in items:
                     messages.error(request, '{}: {}'.format(field, item))
@@ -206,7 +206,7 @@ class CurrencyFormView(OulougGroupPermission, FormView):
     # priovided the required extra context for the view
     extra_context = {
         'masters': 'active',
-        'currencies': 'active',
+        'currency': 'active',
         'title': 'Add States'
     }
 

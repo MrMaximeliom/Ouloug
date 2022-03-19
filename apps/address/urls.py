@@ -72,6 +72,11 @@ urlpatterns = [
         update_tool_tip_text=UPDATE_STATE_TOOL_TIP_TEXT,
     ), name="statesList"),
     path('states/addStates', StateFormView.as_view(), name="addStates"),
+    path("updateState/<slug:slug>", UpdateModelView.as_view(
+        model=State,
+        active_flag="state",
+        template_name="address/states/update_state.html",
+    ), name="updateState"),
     # urls of currencies
     path('currencies/', ModelListView.as_view(
         model=Currency,
@@ -85,5 +90,10 @@ urlpatterns = [
 
     ), name="currenciesList"),
     path('currencies/addCurrencies', CurrencyFormView.as_view(), name="addCurrencies"),
+    path("updateCurrency/<slug:slug>", UpdateModelView.as_view(
+        model=Currency,
+        active_flag="currency",
+        template_name="address/currencies/update_currency.html",
+    ), name="updateCurrency"),
 
 ]

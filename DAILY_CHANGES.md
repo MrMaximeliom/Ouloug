@@ -111,3 +111,10 @@
 
 - fixing bugs related to adding update functionalities to master pages which includes Countries, States, Cities, and Currencies
 - the fixing process is on the run! it is not finished yet!
+
+
+## 2022-3-16
+### Changes
+
+- fixing bugs related to update pages in the following maters (Countries - States - Cities - Currencies)
+- removing all unrelated and not working code from address file

@@ -111,6 +111,9 @@ class State(models.Model):
         # this is the model's actual name in the database
         db_table = "state"
 
+    def get_absolute_url(self):
+        return reverse_lazy("statesList")
+
 
 """
 City Model:
@@ -254,3 +257,6 @@ class Currency(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "currency"
+
+    def get_absolute_url(self):
+        return reverse_lazy("currenciesList")

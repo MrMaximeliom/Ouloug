@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Currencies' %}
+{% trans 'Update Currencies' %}
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'address/currencies/currency_includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addCurrencies' %}">{% trans 'Add Currencies' %}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'addCurrencies' %}">{% trans 'Update Currencies' %}</a></li>
 
 
 {% endblock header %}
@@ -27,7 +27,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Currency' %}</h5>
+                                <h5>{% trans 'Update Currency' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -54,7 +54,7 @@
                                             </div>
 
 
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Currency' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Currency' %}</button>
                                         </form>
                                     </div>
                                 </div>
