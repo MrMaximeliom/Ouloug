@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Countries' %}
+{% trans 'Update Country' %}
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'address/countries/country_includes/header.html' %}
-<li class="breadcrumb-item current-page">{% trans 'Add Countries' %}</li>
+<li class="breadcrumb-item current-page">{% trans 'Update Country' %}</li>
 
 
 {% endblock header %}
@@ -27,7 +27,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Country' %}</h5>
+                                <h5>{% trans 'Update Country' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -38,7 +38,6 @@
                                             <div class="form-group">
                                                 {{form.name|as_crispy_field}}
 
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
                                                 {{form.arabic_name|as_crispy_field}}
@@ -58,7 +57,7 @@
                                                 {{form.is_service_country|as_crispy_field}}
 
                                             </div>
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Country' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Country' %}</button>
                                         </form>
                                     </div>
                                 </div>

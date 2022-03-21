@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Telecom Number' %}
+{% trans 'Add Telecom Number' %}
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'telecom_number/includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addTelecomNumber' %}">{% trans 'Add Telecom Number' %}</a></li>
+<li class="breadcrumb-item current-page">{% trans 'Add Telecom Number' %}</li>
 
 
 {% endblock header %}
@@ -43,7 +43,7 @@
                                             </div>
                                            
 
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Telcom' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Telecom Number' %}</button>
                                         </form>
                                     </div>
                                 </div>

@@ -7,14 +7,24 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
+<<<<<<< HEAD
 {% trans 'Business' %}
+=======
+{% trans 'Update Business Type' %}
+>>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 {% endblock pages_name %}
 
 {% block header%}
 
+<<<<<<< HEAD
  {% include 'templates/business_type_includes/header.html' %}
  {% include 'business_type/business_type_includes/header.html' %}
 <li class="breadcrumb-item"><a href="{% url 'addBusiness' %}">{% trans 'Add Business' %}</a></li>
+=======
+ {% include 'business_type/business_type_includes/header.html' %}
+
+<li class="breadcrumb-item current-page">{% trans 'Update Business Type' %}</li>
+>>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 
 {% endblock header %}
@@ -52,7 +62,11 @@
                                             </div>
 
                                      
+<<<<<<< HEAD
                                             <button type="submit" class="btn btn-primary">{% trans 'Update Business' %}</button>
+=======
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Business Type' %}</button>
+>>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
                                         </form>
                                     </div>
                                 </div>

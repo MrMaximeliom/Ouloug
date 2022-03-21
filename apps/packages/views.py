@@ -1,49 +1,45 @@
-from django.shortcuts import get_object_or_404, redirect
+from django.contrib import messages
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.views.generic import CreateView, UpdateView
+from django.views.generic import ListView
 
 from Util.utils import SearchMan
-from .models import Package
-from django.views.generic import ListView, FormView
-from .forms import PackageForm
-from django.contrib import messages
-from django.utils.translation import gettext_lazy as _
-from Util.static_strings import (NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE,
-                                 )
-from Util.utils import OulougGroupPermission
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.views.generic.edit import UpdateView
 
 
 """
-PackageListView:
-This class is used to view all added packages in the system,
-it allows only administrators and monitor users to  
-access.
+ModelListView Class:
+is a class used to list instances of a specified model,
+it requires to define the following params:
+- model (the model of the updated instance)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+- main_active_flag (this flag is used to add 'active' class to the main master current pages in sidebar) 
+- model_name (this variable is used to specify model name for SearchMan class) 
+- no_records_admin (this variable is used to specify the message that appears 
+                     if there are no records for the admin user) 
+- no_records_monitor (this variable is used to specify the message that appears 
+                     if there are no records for the monitor user) 
+- add_tool_tip_text (specifies the text that appears while hovering the 'add' button)
+- update_tool_tip_text (specifies the text that appears while hovering the 'update' button)
 """
-class PackageListView(OulougGroupPermission, ListView):
-    # specify the model used in the view
-    model = Package
-    # specify the template in the view
-    template_name = "package/packages_list.html"
-    # adding active flag for the sidebar active link
 
-    # adding the view's title
-    title = "Packages"
-    permission_denied_message = _("Sorry you do not have access to this page")
-    # adding the required extra context
-    extra_context = {
-        'title': title,
-        'ouloug_services': 'active',
-        'packages': 'active',
-        'no_records_admin': NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE,
-        'no_records_monitor': NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE
-    }
-    searchManObj = SearchMan("Package")
+
+class ModelListView(ListView):
+    model = None
+    template_name = None
+    main_active_flag = None
+    active_flag = None
+    model_name = None
+    no_records_admin = None
+    no_records_monitor = None
+    add_tool_tip_text = None
+    update_tool_tip_text = None
 
     # return default queryset used in this view
     def get_queryset(self):
-        return Package.objects.all().order_by('-id')
+        return self.model.objects.all().order_by('-id')
 
     # def post(self, request, *args, **kwargs):
     #     queryset = self.get_queryset()
@@ -99,12 +95,13 @@ class PackageListView(OulougGroupPermission, ListView):
     #     return super().get(request)
 
     def get(self, request, *args, **kwargs):
+        searchManObj = SearchMan(self.model_name)
         queryset = self.get_queryset()
         paginator = Paginator(queryset, 5)
         if 'page' not in request.GET:
-            packages = Package.objects.all().order_by('-id')
-            self.searchManObj.setPaginator(packages)
-            self.searchManObj.setSearch(False)
+            instances = self.model.objects.all().order_by('-id')
+            searchManObj.setPaginator(instances)
+            searchManObj.setSearch(False)
         if request.GET.get('page'):
             # Grab the current page from query parameter consultant
             page = int(request.GET.get('page'))
@@ -112,88 +109,140 @@ class PackageListView(OulougGroupPermission, ListView):
             page = None
 
         try:
-            paginator = self.searchManObj.getPaginator()
-            packages = paginator.page(page)
+            paginator = searchManObj.getPaginator()
+            instances = paginator.page(page)
             # Create a page object for the current page.
         except PageNotAnInteger:
             # If the query parameter is empty then grab the first page.
-            packages = paginator.page(1)
+            instances = paginator.page(1)
             page = 1
         except EmptyPage:
             # If the query parameter is greater than num_pages then grab the last page.
-            packages = paginator.page(paginator.num_pages)
+            instances = paginator.page(paginator.num_pages)
             page = paginator.num_pages
-        self.extra_context.update({
+        self.extra_context = {
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
-            'object_list': packages,
+            'object_list': instances,
+            self.main_active_flag: 'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.get_queryset()),
+
             # 'search': self.searchManObj.getSearch(),
             # 'search_result': self.search_result,
             # 'search_phrase': self.searchManObj.getSearchPhrase(),
             # 'search_option': self.searchManObj.getSearchOption(),
             # 'search_error': self.searchManObj.getSearchError(),
             'current_page': page,
-            'title': self.title
-        })
+        }
         return super().get(request)
 
 
 """
-PackageFormView:
-This class is used to represent the add package view , 
-it allows only ouloug_admin users to access it
+AddModelView Class:
+is a class used to add instances of a specified model,
+it requires to define the following params:
+- model (the model to add new instances)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+- reference_field_name (this field used to reference the field that will be used in success/error messages) 
+- main_active_flag (this flag is used to add 'active' class to the main master current pages in sidebar)
 """
-class PackageFormView(OulougGroupPermission, FormView):
-    # specify template name used to add new countries
-    template_name = 'package/add_packages.html'
-    # specify the form used
-    form_class = PackageForm
-    # specify the page to return to after successfully adding new country
-    success_url = 'packages'
-    # specify user's groups allowed to access this view
-    permission_required = ('administrator')
 
-    # check if the form is valid or not after submitting it
-    def post(self, request, *args, **kwargs):
-        form = PackageForm(request.POST)
-        if self.form_valid(form):
-            print("valid")
-        else:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(request, '{}: {}'.format(field, item))
-        return super().get(request)
+
+class AddModelView(CreateView):
+    model = None
+    fields = None
+    template_name = None
+    active_flag = None
+    reference_field_name = None
+    main_active_flag = None
+
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not added , please try again!")
+        return super(AddModelView, self).form_invalid(form)
 
     def form_valid(self, form):
-        # return added country name
-        package_name = self.request.POST['name']
-        # save form data if form is valid
-        form.save()
-        # present success message to the user
-        messages.success(self.request, f"Package<<{package_name}>> Added Successfully")
-        # return the control to the original overridden function in the super class
+        self.object = form.save(commit=False)
+        instance_name = form.cleaned_data[self.reference_field_name]
+        self.object.added_by = self.request.user
+        self.object.save()
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> added successfully")
         return super().form_valid(form)
 
-    # priovided the required extra context for the view
-    extra_context = {
-        'ouloug_services': 'active',
-        'packages': 'active',
-        'add_packages': 'active',
-        'title': 'Add Packages'
-    }
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active"
+        }
+        return super(AddModelView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active"
+        }
+        return super(AddModelView, self).post(self)
+
+
 """
-Change Package Status:
-this method is used to change the status of the package 
+UpdateModelView Class:
+is a class used to update instances of a specified model,
+it requires to define the following params:
+- model (the model of the updated instance)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+- reference_field_name (this field used to reference the field that will be used in success/error messages) 
+- main_active_flag (this flag is used to add 'active' class to the main master current pages in sidebar)
+
 """
-def changePackageStatus(request,pk,status):
-    package = get_object_or_404(Package, pk=pk)
-    if status == False:
-        package.status = True
-    else:
-        package.status = False
-    package.save()
-    messages.success(request,f"package <<{package.name}>> updated successfully")
-    return redirect('packagesList')
+
+
+class UpdateModelView(UpdateView):
+    model = None
+    fields = None
+    template_name = None
+    active_flag = None
+    reference_field_name = None
+    main_active_flag = None
+
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
+        return super(UpdateModelView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.last_modified_by = self.request.user
+        self.object.save()
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).post(self)
 
 
 # This's for package update 

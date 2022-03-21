@@ -119,11 +119,25 @@
 - fixing bugs related to update pages in the following maters (Countries - States - Cities - Currencies)
 - removing all unrelated and not working code from address file 
 
+<<<<<<< HEAD
 
+=======
+## 2022-3-20
+### Changes
+
+- fixing update bugs related to the following masters (Countries - States - Cities - Currencies)
+- saving automatic fields (added_by and last_modified_by) for the same masters
+>>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 ## 2022-3-21
 ### Changes
 
+<<<<<<< HEAD
 - fixing bugs related to update pages in the following maters (Telecom-number , Teams , Telecoms , Services , Package , Business_Type , Agent_Shift)
 - complete views and html pages 
 - urls not done yet .
+=======
+- adding pagination to the following masters  (Countries - States - Cities - Currencies)
+- adding the logic and views required to add new record for the following pages (Business - AgentShift - CustomerCall )
+- adding the logic and views required to add new record for the following pages (Telecom Operators - Telecom Phone Number )
+>>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198

@@ -1,6 +1,5 @@
 {% load mathfilters %}
 
-
  <div class="container mt-3 d-flex justify-content-center" id="paginationHolder">
         <nav aria-label="Pagination Navigation">
           <ul class="pagination">
@@ -26,7 +25,7 @@
                 <li class="page-item active" aria-current="page">
               <span class="page-link">
                 {{ i }}
-                <span class="sr-only">(current)</span>
+
               </span>
             </li>
             {% elif i > current_page|add:'-5' and i < current_page|add:'5' %}

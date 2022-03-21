@@ -5,6 +5,7 @@ from apps.teams.models import Team
 
 # Country Form used to do CRUD operations to the Country Model
 class CountryForm(forms.ModelForm):
+
     class Meta:
         model = Country
         fields = "__all__"
