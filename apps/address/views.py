@@ -1,215 +1,12 @@
-from Util.utils import SearchMan
-from .models import Country, City, State, Currency
-from django.views.generic import ListView, FormView
-from .forms import CountryForm, CityForm, StateForm, CurrencyForm
 from django.contrib import messages
-from django.utils.translation import gettext_lazy as _
-from Util.static_strings import (NO_RECORDS_FOR_COUNTRY_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_COUNTRY_MODEL_ADMIN_MESSAGE, NO_RECORDS_FOR_CITY_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_CITY_MODEL_MONITOR_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_ADMIN_MESSAGE,
-                                 NO_RECORDS_FOR_STATE_MODEL_MONITOR_MESSAGE
-                                 )
-from Util.utils import OulougGroupPermission
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.utils.translation import gettext_lazy as _
+from django.views.generic import ListView, FormView, CreateView
 from django.views.generic.edit import UpdateView
 
-
-
-
-"""
-CountryFormView:
-This class is used to represent the add country view , 
-it allows only ouloug_admin users to access it
-"""
-
-
-class CountryFormView(OulougGroupPermission, FormView):
-    # specify template name used to add new countries
-    template_name = 'address/countries/add_countries.html'
-    # specify the form used
-    form_class = CountryForm
-    # specify the page to return to after successfully adding new country
-    success_url = 'countries'
-    # specify user's groups allowed to access this view
-    permission_required = ('administrator')
-
-    # check if the form is valid or not after submitting it
-    def post(self, request, *args, **kwargs):
-        form = CountryForm(request.POST)
-        if self.form_valid(form):
-            print("valid")
-        else:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(request, '{}: {}'.format(field, item))
-        return super().get(request)
-
-    def form_valid(self, form):
-        # return added country name
-        country_name = self.request.POST['name']
-        # save form data if form is valid
-        form.save()
-        # present success message to the user
-        messages.success(self.request, f"Country <<{country_name}>> Added Successfully")
-        # return the control to the original overridden function in the super class
-        return super().form_valid(form)
-
-    # priovided the required extra context for the view
-    extra_context = {
-        'masters': 'active',
-        'country': 'active',
-        'title': 'Add Countries'
-    }
-
-
-
-
-"""
-CityFormView:
-This class is used to represent the add city view , 
-it allows only ouloug_admin users to access it
-"""
-
-
-class CityFormView(OulougGroupPermission, FormView):
-    # specify template name used to add new countries
-    template_name = 'address/cities/add_cities.html'
-    # specify the form used
-    form_class = CityForm
-    # specify the page to return to after successfully adding new country
-    success_url = 'cities'
-    # specify user's groups allowed to access this view
-    permission_required = ('administrator')
-
-    # check if the form is valid or not after submitting it
-    def post(self, request, *args, **kwargs):
-        form = CityForm(request.POST)
-        if self.form_valid(form):
-            print("valid")
-        else:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(request, '{}: {}'.format(field, item))
-        return super().get(request)
-
-    def form_valid(self, form):
-        # return added country name
-        city_name = self.request.POST['name']
-        # save form data if form is valid
-        form.save()
-        # present success message to the user
-        messages.success(self.request, f"City <<{city_name}>> Added Successfully")
-        # return the control to the original overridden function in the super class
-        return super().form_valid(form)
-
-    # priovided the required extra context for the view
-    extra_context = {
-        'masters': 'active',
-        'city': 'active',
-        'title': _('Add Cities')
-    }
-
-
-"""
-StateFormView:
-This class is used to represent the add state view , 
-it allows only ouloug_admin users to access it
-"""
-
-
-class StateFormView(OulougGroupPermission, FormView):
-    # specify template name used to add new countries
-    template_name = 'address/states/add_states.html'
-    # specify the form used
-    form_class = StateForm
-    # specify the page to return to after successfully adding new country
-    success_url = 'states'
-    # specify user's groups allowed to access this view
-    permission_required = ('administrator')
-
-    # check if the form is valid or not after submitting it
-    def post(self, request, *args, **kwargs):
-        form = StateForm(request.POST)
-        if self.form_valid(form):
-            print("valid")
-        else:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(request, '{}: {}'.format(field, item))
-        return super().get(request)
-
-    def form_valid(self, form):
-        # return added country name
-        state_name = self.request.POST['name']
-        # save form data if form is valid
-        try:
-            form.save()
-            # present success message to the user
-            messages.success(self.request, f"State <<{state_name}>> Added Successfully")
-        except:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(self.request, '{}: {}'.format(field, item))
-
-        # return the control to the original overridden function in the super class
-        return super().form_valid(form)
-
-    # priovided the required extra context for the view
-    extra_context = {
-        'masters': 'active',
-        'state': 'active',
-        'title': _('Add States')
-    }
-
-
-
-"""
-CurrencyFormView:
-This class is used to represent the add state view , 
-it allows only ouloug_admin users to access it
-"""
-
-
-class CurrencyFormView(OulougGroupPermission, FormView):
-    # specify template name used to add new currencies
-    template_name = 'address/currencies/add_currencies.html'
-    # specify the form used
-    form_class = CurrencyForm
-    # specify the page to return to after successfully adding new currency
-    success_url = 'currencies'
-    # specify user's groups allowed to access this view
-    permission_required = ('administrator')
-
-    # check if the form is valid or not after submitting it
-    def post(self, request, *args, **kwargs):
-        form = CurrencyForm(request.POST)
-        try:
-            if self.form_valid(form):
-                print("valid")
-        except:
-            for field, items in form.errors.items():
-                for item in items:
-                    messages.error(request, '{}: {}'.format(field, item))
-        return super().get(request)
-
-    def form_valid(self, form):
-        # return added currency name
-        currency_name = self.request.POST['name']
-        # save form data if form is valid
-        form.save()
-        # present success message to the user
-        messages.success(self.request, f"Currency {currency_name} Added Successfully")
-        # return the control to the original overridden function in the super class
-        return super().form_valid(form)
-
-    # priovided the required extra context for the view
-    extra_context = {
-        'masters': 'active',
-        'currency': 'active',
-        'title': 'Add States'
-    }
-
+from Util.utils import OulougGroupPermission
+from Util.utils import SearchMan
+from .forms import CountryForm, CityForm, StateForm, CurrencyForm
 
 
 """
@@ -227,6 +24,8 @@ it requires to define the following params:
 - add_tool_tip_text (specifies the text that appears while hovering the 'add' button)
 - update_tool_tip_text (specifies the text that appears while hovering the 'update' button)
 """
+
+
 class ModelListView(ListView):
     model = None
     template_name = None
@@ -236,6 +35,7 @@ class ModelListView(ListView):
     no_records_monitor = None
     add_tool_tip_text = None
     update_tool_tip_text = None
+
     # return default queryset used in this view
     def get_queryset(self):
         return self.model.objects.all().order_by('-id')
@@ -323,13 +123,13 @@ class ModelListView(ListView):
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
             'object_list': instances,
-            'masters':'active',
+            'masters': 'active',
             self.active_flag: "active",
             "no_records_admin": self.no_records_admin,
             "no_records_monitor": self.no_records_monitor,
-            "add_tool_tip_text":self.add_tool_tip_text,
-            "update_tool_tip_text":self.update_tool_tip_text,
-            "instances_count":len(self.get_queryset()),
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.get_queryset()),
 
             # 'search': self.searchManObj.getSearch(),
             # 'search_result': self.search_result,
@@ -339,6 +139,52 @@ class ModelListView(ListView):
             'current_page': page,
         }
         return super().get(request)
+
+"""
+AddModelView Class:
+is a class used to add instances of a specified model,
+it requires to define the following params:
+- model (the model to add new instances)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+"""
+
+
+class AddModelView(CreateView):
+    model = None
+    fields = None
+    template_name = None
+    active_flag = None
+
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data['name']
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not added , please try again!")
+        return super(AddModelView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        instance_name = form.cleaned_data['name']
+        self.object.added_by = self.request.user
+        self.object.save()
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> added successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(AddModelView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(AddModelView, self).post(self)
 
 
 
@@ -350,11 +196,15 @@ it requires to define the following params:
 - template_name ( the path of the view that will be used)
 - active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
 """
+
+
 class UpdateModelView(UpdateView):
     model = None
-    fields = "__all__"
+    fields = None
     template_name = None
     active_flag = None
+
+
     def form_invalid(self, form):
         for field, items in form.errors.items():
             for item in items:
@@ -364,6 +214,9 @@ class UpdateModelView(UpdateView):
         return super(UpdateModelView, self).form_invalid(form)
 
     def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.last_modified_by = self.request.user
+        self.object.save()
         instance_name = form.cleaned_data['name']
         messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
         return super().form_valid(form)
@@ -381,6 +234,3 @@ class UpdateModelView(UpdateView):
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).post(self)
-
-
-

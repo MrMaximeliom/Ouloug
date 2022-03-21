@@ -118,3 +118,9 @@
 
 - fixing bugs related to update pages in the following maters (Countries - States - Cities - Currencies)
 - removing all unrelated and not working code from address file 
+
+## 2022-3-20
+### Changes
+
+- fixing update bugs related to the following masters (Countries - States - Cities - Currencies)
+- saving automatic fields (added_by and last_modified_by) for the same masters

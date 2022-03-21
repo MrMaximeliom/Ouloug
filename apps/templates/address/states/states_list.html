@@ -29,7 +29,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addCountries' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
+                                <a href="{% url 'addStates' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New State' %}</a>
 
                            </div>
                                   {% endif %}
@@ -47,6 +47,7 @@
                                                 <th>{% trans 'Country' %}</th>
                                                 <th>{% trans 'Status' %}</th>
                                                 <th>{% trans 'Added By' %}</th>
+                                                <th>{% trans 'Last Modified By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
                                                 <th>{% trans 'Last Modification' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
@@ -63,6 +64,7 @@
                                                 <td>{{object.country.name}}</td>
                                                 <td>{{object.status}}</td>
                                                 <td>{{object.added_by.username}}</td>
+                                                <td>{{object.last_modified_by.username}}</td>
                                                 <td>{{object.added_datetime}}</td>
                                                 <td>{{object.last_modification_datetime}}</td>
 

@@ -48,6 +48,8 @@
                                                 <th>{% trans 'Symbol' %}</th>
                                                 <th>{% trans 'Arabic Symbol' %}</th>
                                                 <th>{% trans 'Decimal Digit Number' %}</th>
+                                                <th>{% trans 'Added By' %}</th>
+                                                <th>{% trans 'Last Modified By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
                                                 <th>{% trans 'Last Modification' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
@@ -63,6 +65,8 @@
                                                 <td>{{object.symbol}}</td>
                                                 <td>{{object.arabic_symbol}}</td>
                                                 <td>{{object.decimal_digits_number}}</td>
+                                                <td>{{object.added_by.username}}</td>
+                                                <td>{{object.last_modified_by.username}}</td>
                                                 <td>{{object.added_datetime}}</td>
                                                 <td>{{object.last_modification_datetime}}</td>
 

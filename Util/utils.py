@@ -8,13 +8,18 @@ class EnablePartialUpdateMixin:
     Override partial kwargs in UpdateModelMixin class
     https://github.com/encode/django-rest-framework/blob/91916a4db14cd6a06aca13fb9a46fc667f6c0682/rest_framework/mixins.py#L64
     """
+
     def update(self, request, *args, **kwargs):
         kwargs['partial'] = True
         return super().update(request, *args, **kwargs)
+
+
 import datetime
 from django.core.validators import MaxValueValidator
 import string
 import random
+
+
 def current_year():
     return datetime.date.today().year
 
@@ -22,16 +27,23 @@ def current_year():
 def max_value_current_year(value):
     return MaxValueValidator(current_year())(value)
 
+
 def rand_slug():
     return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))
+
+
 SMS_USERNAME = 'uniseal'
 SMS_PASSWORD = '823178'
+
+
 def check_string_search_phrase(search_phrase):
     import re
     temp_holder = search_phrase
     special_char = re.findall(r'\W', temp_holder.replace(" ", ""))
     # returns true if search_phrase contains special chars and returns search_phrase without leading spaces
-    return len(special_char) > 0 , search_phrase.strip()
+    return len(special_char) > 0, search_phrase.strip()
+
+
 # TODO add logic to this function to use it later in the search functionality
 
 def check_phone_number(phone):
@@ -39,16 +51,17 @@ def check_phone_number(phone):
     default_regex = r'^9\d{8}$|^1\d{8}$'
     another_regex = r'^09\d{8}$|^01\d{8}$'
     if re.findall(default_regex, phone):
-        return True,re.findall(default_regex,phone)[0]
-    elif re.findall(another_regex,phone):
-        return True, re.findall(another_regex,phone)[0][1:]
+        return True, re.findall(default_regex, phone)[0]
+    elif re.findall(another_regex, phone):
+        return True, re.findall(another_regex, phone)[0][1:]
     else:
-        return False,''
+        return False, ''
+
 
 class SearchMan:
     search_error = False
 
-    def __init__(self,model):
+    def __init__(self, model):
         from django.core.paginator import Paginator
         from django.db.models import Count
         if model == "Country":
@@ -84,31 +97,41 @@ class SearchMan:
             customerCalls = CustomerCall.objects.all().order_by("id")
             self.paginator = Paginator(customerCalls, 5)
 
-    def setPaginator(self,query):
+    def setPaginator(self, query):
         from django.core.paginator import Paginator
         self.paginator = Paginator(query, 60)
 
     def getPaginator(self):
         return self.paginator
+
     search = False
     search_phrase = ''
     search_option = ''
-    def setSearch(self,bool):
+
+    def setSearch(self, bool):
         self.search = bool
+
     def getSearch(self):
         return self.search
-    def setSearchPhrase(self,phrase):
+
+    def setSearchPhrase(self, phrase):
         self.search_phrase = phrase
+
     def getSearchPhrase(self):
-        return  self.search_phrase
+        return self.search_phrase
+
     def setSearchOption(self, option):
         self.search_option = option
+
     def getSearchOption(self):
         return self.search_option
-    def setSearchError(self,bool):
-        self.search_error=bool
+
+    def setSearchError(self, bool):
+        self.search_error = bool
+
     def getSearchError(self):
         return self.search_error
+
 
 """
 OulougGroupPermission Class:

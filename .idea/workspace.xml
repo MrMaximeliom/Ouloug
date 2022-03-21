@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="all changes are specified in the DAILY_CHANGES.md file">
+      <change afterPath="$PROJECT_DIR$/apps/templates/address/countries/update_country.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at________Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Reset_at_١٢‏_٣‏_٢٠٢٢_٦_١٦_م_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/allcities.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/cities/edit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/address/cities/cities_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/cities/cities_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/add_currencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/currencies/add_currencies.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/edit.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/edt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/states/edit.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/scripts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +35,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -53,14 +60,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/templates/address/currencies" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PycharmProjects/MrshPay" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/templates/address/cities" />
       <recent name="$PROJECT_DIR$/apps/templates/address/currencies" />
       <recent name="$PROJECT_DIR$/apps/templates/address/states" />
-      <recent name="$PROJECT_DIR$/apps/templates/address/cities" />
       <recent name="$PROJECT_DIR$/apps/templates/customer_call/customer_call_includes" />
       <recent name="$PROJECT_DIR$/apps/templates/customer_call" />
     </key>
@@ -118,7 +125,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647119155564</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="all changes are specified in the DAILY_CHANGES.md file">
+      <created>1647648626879</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1647648626879</updated>
+    </task>
+    <task id="LOCAL-00005" summary="all changes are specified in the DAILY_CHANGES.md file">
+      <created>1647648765362</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647648765362</updated>
+    </task>
+    <task id="LOCAL-00006" summary="all changes are specified in the DAILY_CHANGES.md file">
+      <created>1647648921175</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1647648921175</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

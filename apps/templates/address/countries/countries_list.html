@@ -88,6 +88,7 @@
                                                 <th>{% trans 'Service Country?' %}</th>
                                                 <th>{% trans 'Status' %}</th>
                                                 <th>{% trans 'Added By' %}</th>
+                                                <th>{% trans 'Last Modified By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
                                                 <th>{% trans 'Last Modification' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
@@ -105,6 +106,7 @@
                                                 <td>{{object.is_service_country}}</td>
                                                 <td>{{object.status}}</td>
                                                 <td>{{object.added_by.username}}</td>
+                                                <td>{{object.last_modified_by.username}}</td>
                                                 <td>{{object.added_datetime}}</td>
                                                 <td>{{object.last_modification_datetime}}</td>
 
