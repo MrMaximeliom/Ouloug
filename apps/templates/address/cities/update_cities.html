@@ -1,0 +1,69 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+{% load crispy_forms_tags %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Cities' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'address/cities/city_includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'addCities' %}">{% trans 'Add Cities' %}</a></li>
+
+
+{% endblock header %}
+{% block content %}
+                    <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{% trans 'Add City' %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form autocomplete="off"  method="post" action="">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                {{form.name|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.arabic_name|as_crispy_field}}
+                                            </div>
+                                              <div class="form-group">
+                                                {{form.access_code|as_crispy_field}}
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.state|as_crispy_field}}
+
+                                            </div>
+
+                                            <div class="form-group ">
+                                                {{form.status|as_crispy_field}}
+
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update City' %}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

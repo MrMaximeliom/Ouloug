@@ -118,3 +118,12 @@
 
 - fixing bugs related to update pages in the following maters (Countries - States - Cities - Currencies)
 - removing all unrelated and not working code from address file 
+
+
+
+## 2022-3-21
+### Changes
+
+- fixing bugs related to update pages in the following maters (Telecom-number , Teams , Telecoms , Services , Package , Business_Type , Agent_Shift)
+- complete views and html pages 
+- urls not done yet .

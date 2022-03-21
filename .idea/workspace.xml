@@ -6,19 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="all changes are specified in the DAILY_CHANGES.md file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/allcities.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/cities/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/add_currencies.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/currencies/add_currencies.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/currencies/currencies_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/currencies/edt.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/states/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/states/states_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/scripts.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/scripts.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
