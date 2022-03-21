@@ -79,6 +79,10 @@ class SearchMan:
             from apps.services.models import Service
             services = Service.objects.all().order_by("id")
             self.paginator = Paginator(services, 5)
+        if model == "Package":
+            from apps.packages.models import Package
+            packages = Package.objects.all().order_by("id")
+            self.paginator = Paginator(packages, 5)
         if model == "BusinessType":
             from apps.customers.models import BusinessType
             business_types = BusinessType.objects.all().order_by("id")
@@ -95,6 +99,14 @@ class SearchMan:
             from apps.customers.models import CustomerCall
             customer_calls = CustomerCall.objects.all().order_by("id")
             self.paginator = Paginator(customer_calls, 5)
+        if model == "TelecomOperator":
+            from apps.telecoms.models import TelecomOperator
+            telecoms = TelecomOperator.objects.all().order_by("id")
+            self.paginator = Paginator(telecoms, 5)
+        if model == "TelecomNumber":
+            from apps.telecoms.models import TelecomNumber
+            telecom_numbers = TelecomNumber.objects.all().order_by("id")
+            self.paginator = Paginator(telecom_numbers, 5)
 
     def setPaginator(self, query):
         from django.core.paginator import Paginator

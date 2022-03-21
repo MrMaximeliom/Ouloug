@@ -12,7 +12,7 @@
 
 {% block header%}
  {% include 'service/service_includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'updateAgentShift' slug=form.slug %}">{% trans 'Update Agent Shift' %}</a></li>
+<li class="breadcrumb-item current-page">{% trans 'Update Agent Shift' %}</li>
 {% endblock header %}
 {% block content %}
                     <div class="main-body">

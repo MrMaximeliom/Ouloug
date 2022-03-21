@@ -25,7 +25,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addPackages' %}" class="btn btn-secondary" title="btn btn-secondary" data-toggle="tooltip">{% trans 'Add New Package' %}</a>
+                                <a href="{% url 'addPackages' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Package' %}</a>
 
                            </div>
                                   {% endif %}
@@ -74,19 +74,10 @@
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="/edit/{{package.id }}" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="{% url 'updatePackage' slug=object.slug%}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
-                                                <td>
-                                                    {% if object.status == 'active' %}
- <a href="{% url 'changeServiceStatus' pk=object.id  status=False%}" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Deactivate Service' %}</a>
-                                                    {% else %}
-<a href="{% url 'changeServiceStatus' pk=object.id status=True%}" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Activate Service' %}</a>
 
-
-                                                    {% endif %}
-
-                                                </td>
                                                 {% endif %}
                                             </tr>
                                         {% endfor %}

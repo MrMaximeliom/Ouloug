@@ -133,6 +133,10 @@ strong {
   color: #111;
   font-weight: 600;
 }
+.breadcrumb-item + .current-page {
+  color: #111 !important;
+  font-weight: 600;
+}
 
 .theme-bg {
   background: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
@@ -8317,6 +8321,8 @@ a.btn-theme.active {
 .breadcrumb-item + .breadcrumb-item {
   color: #04a9f5;
 }
+
+
 .breadcrumb-item + .breadcrumb-item::before {
   /* content: $breadcrumb-divider; */
 }

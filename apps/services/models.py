@@ -1,7 +1,6 @@
-
-
 from django.db import models
-
+from django.template.defaultfilters import slugify
+from Util.utils import rand_slug
 from apps.address.models  import  Country
 from apps.authentication.models import User
 
@@ -22,6 +21,13 @@ SERVICE_STATUS = (
 
 
 class Service(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from Country model
     # which is represents the country
     country = models.ForeignKey(Country, on_delete=models.SET_NULL,

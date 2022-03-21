@@ -58,15 +58,13 @@
                     </li>
                     {% endif %}
                     {% endif %}
-                    <li class="nav-item pcoded-menu-caption">
-                        <label>{% trans 'Ouloug Services' %}</label>
-                    </li>
+
                                            <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
                         <a href="javascript:" class="nav-link {{ouloug_services}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Ouloug Services</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="{% url 'servicesList' %}" class="{{services}}">{% trans 'Services' %}</a></li>
-                            <li class=""><a href="{% url 'packagesList' %}" class="{{packages}}">{% trans 'Packages' %}</a></li>
-                            <li class=""><a href="{% url 'agentShiftsList' %}" class="{{agent_shifts}}">{% trans 'Agent Shifts' %}</a></li>
+                            <li class=""><a href="{% url 'servicesList' %}" class="{{service}}">{% trans 'Services' %}</a></li>
+                            <li class=""><a href="{% url 'packagesList' %}" class="{{package}}">{% trans 'Packages' %}</a></li>
+                            <li class=""><a href="{% url 'agentShiftsList' %}" class="{{agent_shift}}">{% trans 'Agent Shifts' %}</a></li>
                             <li class=""><a href="{% url 'telecomNumberList' %}"  class="{{telecom_number}}">{% trans 'Telecom Phone Numbers' %}</a></li>
                         </ul>
                     </li>
@@ -105,9 +103,7 @@
                             <li class=""><a href="/ui-badges.html" class="">Change Password</a></li>
                         </ul>
                     </li>
-                                                       <li class="nav-item pcoded-menu-caption">
-                        <label>Helps</label>
-                    </li>
+
                                         <li data-username="helps"
                         class="nav-item {% if 'ui-tables' in segment %} active {% endif %}">
                         <a href="/ui-tables.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Help</span></a>

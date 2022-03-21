@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Telcoms' %}
+{% trans 'Add Telecom Operators' %}
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'telecoms/includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addTelcoms' %}">{% trans 'Add Telecoms' %}</a></li>
+<li class="breadcrumb-item current-page">{% trans 'Add Telecom Operators' %}</li>
 
 
 {% endblock header %}
@@ -26,7 +26,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Telcom' %}</h5>
+                                <h5>{% trans 'Add Telecom Operators' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -37,14 +37,22 @@
                                             <div class="form-group">
                                                 {{form.name|as_crispy_field}}
 
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
-                                                {{form.arabic_name|as_crispy_field}}
+                                                {{form.short_name|as_crispy_field}}
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.currency_code|as_crispy_field}}
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.status|as_crispy_field}}
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.logo|as_crispy_field}}
                                             </div>
                                            
 
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Telcom' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Telecom Operator' %}</button>
                                         </form>
                                     </div>
                                 </div>

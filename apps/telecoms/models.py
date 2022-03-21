@@ -1,6 +1,8 @@
 
 from django.db import models
+from django.template.defaultfilters import slugify
 
+from Util.utils import rand_slug
 from apps.authentication.models  import  User
 
 # Create your models here.
@@ -17,6 +19,13 @@ TELECOM_STATUS = (
 
 
 class TelecomOperator(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field represents the default currency code used for billing
     currency_code = models.CharField(max_length=200)
     # this field is a foreign key referenced from the User model
@@ -34,7 +43,7 @@ class TelecomOperator(models.Model):
     # this field represents the status
     status = models.CharField(max_length=40, choices=TELECOM_STATUS)
     # this field represents the logo
-    logo = models.CharField(max_length=200)
+    logo = models.ImageField(verbose_name="logo")
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
 
@@ -68,6 +77,13 @@ TELECOM_NUMBER_STATUS = (
 
 
 class TelecomNumber(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, null=True, blank=True,

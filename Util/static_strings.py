@@ -68,6 +68,10 @@ NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE = _("There are no agent shifts 
 NO_RECORDS_FOR_TELECOMS_MODEL_ADMIN_MESSAGE = _("There are no telecoms yet ... you can add new telecoms from ")
 NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE = _("There are no telecoms yet to view")
 
+# NO RECORDS FOUND STRINGS - Telecom Number Pages
+NO_RECORDS_FOR_TELECOM_NUMBER_MODEL_ADMIN_MESSAGE = _("There are no telecom numbers yet ... you can add new telecoms from ")
+NO_RECORDS_FOR_TELECOM_NUMBER_MODEL_MONITOR_MESSAGE = _("There are no telecom numbers yet to view")
+
 # NO RECORDS FOUND STRINGS - Customer Call Page
 NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE = _("There are no customer calls yet to view")
 
@@ -89,8 +93,32 @@ ADD_NEW_BUSINESS_TYPE_TOOL_TIP_TEXT = _("Add new business")
 # tool tip text for add new agents ships button
 ADD_NEW_AGENTS_SHIFTS_TOOL_TIP_TEXT = _("Add new agents shifts")
 
+# tool tip text for add new service button
+ADD_NEW_SERVICE_TOOL_TIP_TEXT = _("Add new services")
+
+# tool tip text for add new packages button
+ADD_NEW_PACKAGE_TOOL_TIP_TEXT = _("Add new packages")
+
+# tool tip text for add new telecom button
+ADD_NEW_TELECOM_TOOL_TIP_TEXT = _("Add new telecoms")
+
+# tool tip text for add new telecom numbers button
+ADD_NEW_TELECOM_NUMBER_TOOL_TIP_TEXT = _("Add new telecom numbers")
+
+# tool tip text for update telecom button
+UPDATE_TELECOM_TOOL_TIP_TEXT = _("update telecom")
+
+# tool tip text for update telecom numbers button
+UPDATE_TELECOM_NUMBER_TOOL_TIP_TEXT = _("update telecom numbers")
+
 # tool tip text for update city button
 UPDATE_CITY_TOOL_TIP_TEXT = _("update city")
+
+# tool tip text for update package button
+UPDATE_PACKAGE_TOOL_TIP_TEXT = _("update package")
+
+# tool tip text for update service button
+UPDATE_SERVICE_TOOL_TIP_TEXT = _("update service")
 
 # tool tip text for update country button
 UPDATE_COUNTRY_TOOL_TIP_TEXT = _("update country")

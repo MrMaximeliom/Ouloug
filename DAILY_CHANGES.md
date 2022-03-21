@@ -130,3 +130,4 @@
 
 - adding pagination to the following masters  (Countries - States - Cities - Currencies)
 - adding the logic and views required to add new record for the following pages (Business - AgentShift - CustomerCall )
+- adding the logic and views required to add new record for the following pages (Telecom Operators - Telecom Phone Number )
