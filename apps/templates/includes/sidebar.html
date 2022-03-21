@@ -73,10 +73,10 @@
 
 
                                                                <li data-username="ouloug services" class="nav-item pcoded-hasmenu">
-                        <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Customers</span></a>
+                        <a href="javascript:" class="nav-link {{customers}}"><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Customers</span></a>
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="{% url 'customerCallsList' %}" class="{{customer_call}}">{% trans "Customer's List" %}</a></li>
-                            <li class=""><a href="/ui-badges.html" class="">{% trans 'Customer Calls' %}</a></li>
+                            <li class=""><a  href="/ui-badges.html" class="">{% trans "Customer's List" %}</a></li>
+                            <li class=""><a href="{% url 'customerCallsList' %}" class="{{customer_call}}">{% trans 'Customer Calls' %}</a></li>
                             <li class=""><a href="/ui-breadcrumb-pagination.html" class="">{% trans 'Payments' %}</a></li>
                         </ul>
                     </li>

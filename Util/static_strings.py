@@ -83,6 +83,12 @@ ADD_NEW_STATE_TOOL_TIP_TEXT = _("add new state")
 # tool tip text for add new currency button
 ADD_NEW_CURRENCY_TOOL_TIP_TEXT = _("Add new currency")
 
+# tool tip text for add new business button
+ADD_NEW_BUSINESS_TYPE_TOOL_TIP_TEXT = _("Add new business")
+
+# tool tip text for add new agents ships button
+ADD_NEW_AGENTS_SHIFTS_TOOL_TIP_TEXT = _("Add new agents shifts")
+
 # tool tip text for update city button
 UPDATE_CITY_TOOL_TIP_TEXT = _("update city")
 
@@ -94,3 +100,10 @@ UPDATE_STATE_TOOL_TIP_TEXT = _("update state")
 
 # tool tip text for update currency button
 UPDATE_CURRENCY_TOOL_TIP_TEXT = _("update currency")
+
+# tool tip text for update country button
+UPDATE_BUSINESS_TYPE_TOOL_TIP_TEXT = _("update business")
+
+# tool tip text for update state button
+UPDATE_AGENTS_SHIFTS_TOOL_TIP_TEXT = _("update agents shifts")
+

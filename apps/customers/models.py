@@ -1,4 +1,7 @@
 from django.db import models
+from django.template.defaultfilters import slugify
+
+from Util.utils import rand_slug
 from apps.address.models import City, Country
 from apps.authentication.models import User
 from apps.packages.models import Package, PackageBillingType, PackageService
@@ -27,6 +30,13 @@ CUSTOMER_ACCOUNT_STATUS = (
 
 
 class Customer(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from the user model
     # which represents the custmoer user
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING,
@@ -91,6 +101,13 @@ AGENT_CHOICES = (
 
 
 class AgentShift(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field referenced from Country model
     # which is used to represent the country model
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
@@ -153,6 +170,13 @@ so the customer can change the default values as per need.
 
 
 class CustomerAgentShift(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from the agent model
     # which is used to represent the agent shift
     agent_shift = models.ForeignKey(AgentShift, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -203,6 +227,13 @@ LOGIN_STATUS = (
 
 
 class CustomerAgent(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field references the team model
     # which represents the team
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
@@ -258,6 +289,13 @@ CALL_STATUS = (
 
 
 class CustomerCall(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field references the country model
     # which represents the country
     country = models.ForeignKey(Country, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -307,6 +345,13 @@ SUBSCRIPTION_STATUS = (
 
 
 class CustomerPackage(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key referenced from the customer model
     # which represents the customer model
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -350,6 +395,13 @@ it's used to save records for all customers transactions
 
 
 class CustomerPayment(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key references the customer model
     # which represents the customer
     customer = models.ForeignKey(Customer, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -384,6 +436,13 @@ it's used to save recordes of the customer's agent shifts
 
 
 class CustomerAgentShiftsAttendant(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key references the customer agent shift model
     # which represents the customer agent shift
     customer_agent_shift = models.ForeignKey(CustomerAgentShift, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -412,6 +471,13 @@ or conference call
 
 
 class CustomerCallParticipant(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field referenced from the customer call model
     # which represents the customer call
     customer_call = models.ForeignKey(CustomerCall, on_delete=models.DO_NOTHING, blank=True, null=True)
@@ -445,6 +511,13 @@ it's used to define the customer selected services in the package
 
 
 class CustomerPackageService(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from the customer package model
     # which represents the customer package
     customer_package = models.ForeignKey(CustomerPackage, on_delete=models.CASCADE)
@@ -484,6 +557,13 @@ CUSTOMER_TEAM_STATUS = (
 
 
 class CustomerTeam(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is foreign key referenced the customer model
     # which represents the customer
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -534,6 +614,13 @@ CUSTOMER_TELECOM_NUMBER_STATUS = (
 
 
 class CustomerTelecomNumber(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is foreign key field references the customer model
     # which represents the customer
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -563,18 +650,25 @@ class CustomerTelecomNumber(models.Model):
 
 
 
-# bussines type mmodel
 
 
-class BusnessType(models.Model):
+
+class BusinessType(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
 
     # this is foreign key field references the added-by
 
     added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="user_added_business_type")
+                                 on_delete=models.SET_NULL, related_name="user_added_business_type_main")
 
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_user_modified_business_type")
+                                         related_name="last_user_modified_business_type_main")
     # this field represents the business type name
     type_name = models.CharField(max_length=240)
     arabic_type_name = models.CharField(max_length=240)
@@ -582,4 +676,3 @@ class BusnessType(models.Model):
 
     added_datetime = models.DateTimeField(auto_now=True)
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
-

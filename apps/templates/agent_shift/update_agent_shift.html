@@ -1,0 +1,114 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+{% load crispy_forms_tags %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Update Agent Shift' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'service/service_includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'updateAgentShift' slug=form.slug %}">{% trans 'Update Agent Shift' %}</a></li>
+{% endblock header %}
+{% block content %}
+                    <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{% trans 'Update Agent Shift' %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form autocomplete="off"  method="post" action="">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                {{form.name|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.arabic_name|as_crispy_field}}
+                                            </div>
+                                              <div class="form-group">
+                                                {{form.country|as_crispy_field}}
+                                            </div >
+                                            <div class="form-group">
+                                               {{form.team|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.number|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.start_date|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.end_date|as_crispy_field}}
+
+                                            </div>
+                                                        <div class="form-group">
+                                               {{form.start_time|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.end_time|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.status|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_saturday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_sunday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_monday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_tuesday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_wednesday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_thursday_on|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_friday_on|as_crispy_field}}
+
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Agent Shift' %}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

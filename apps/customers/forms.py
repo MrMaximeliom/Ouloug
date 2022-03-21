@@ -4,7 +4,7 @@ from apps.customers.models import Customer,AgentShift,CustomerAgentShift,\
     CustomerPayment,CustomerAgentShiftsAttendant,\
     CustomerCallParticipant,\
     CustomerPackageService,CustomerTeam,\
-    CustomerTelecomNumber,BusnessType
+    CustomerTelecomNumber,BusinessType
 
 # Customer form used to do CRUD operations to Customer model
 class CustomerForm(forms.ModelForm):
@@ -85,5 +85,5 @@ class CustomerTelecomNumberForm(forms.ModelForm):
 # BusinessTypeForm form used to do CRUD operations to CustomerTelecomNumber model
 class BusinessTypeForm(forms.ModelForm):
     class Meta:
-        model = BusnessType
+        model = BusinessType
         fields = "__all__"

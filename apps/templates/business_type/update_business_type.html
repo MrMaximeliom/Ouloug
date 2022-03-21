@@ -7,14 +7,14 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Business Type' %}
+{% trans 'Update Business Type' %}
 {% endblock pages_name %}
 
 {% block header%}
 
  {% include 'business_type/business_type_includes/header.html' %}
 
-<li class="breadcrumb-item"><a href="{% url 'addBusiness' %}">{% trans 'Add Business Type' %}</a></li>
+<li class="breadcrumb-item"><a href="{% url 'updateBusiness' slug=form.slug %}">{% trans 'Update Business Type' %}</a></li>
 
 
 {% endblock header %}

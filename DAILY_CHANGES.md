@@ -124,3 +124,9 @@
 
 - fixing update bugs related to the following masters (Countries - States - Cities - Currencies)
 - saving automatic fields (added_by and last_modified_by) for the same masters
+
+## 2022-3-21
+### Changes
+
+- adding pagination to the following masters  (Countries - States - Cities - Currencies)
+- adding the logic and views required to add new record for the following pages (Business - AgentShift - CustomerCall )

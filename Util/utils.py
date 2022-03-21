@@ -63,7 +63,6 @@ class SearchMan:
 
     def __init__(self, model):
         from django.core.paginator import Paginator
-        from django.db.models import Count
         if model == "Country":
             from apps.address.models import Country
             countries = Country.objects.all().order_by("id")
@@ -81,8 +80,8 @@ class SearchMan:
             services = Service.objects.all().order_by("id")
             self.paginator = Paginator(services, 5)
         if model == "BusinessType":
-            from apps.customers.models import BusnessType
-            business_types = BusnessType.objects.all().order_by("id")
+            from apps.customers.models import BusinessType
+            business_types = BusinessType.objects.all().order_by("id")
             self.paginator = Paginator(business_types, 5)
         if model == "Team":
             from apps.teams.models import Team
@@ -90,16 +89,16 @@ class SearchMan:
             self.paginator = Paginator(teams, 5)
         if model == "AgentShift":
             from apps.customers.models import AgentShift
-            agentShifts = AgentShift.objects.all().order_by("id")
-            self.paginator = Paginator(agentShifts, 5)
+            agent_shifts = AgentShift.objects.all().order_by("id")
+            self.paginator = Paginator(agent_shifts, 5)
         if model == "CustomerCall":
             from apps.customers.models import CustomerCall
-            customerCalls = CustomerCall.objects.all().order_by("id")
-            self.paginator = Paginator(customerCalls, 5)
+            customer_calls = CustomerCall.objects.all().order_by("id")
+            self.paginator = Paginator(customer_calls, 5)
 
     def setPaginator(self, query):
         from django.core.paginator import Paginator
-        self.paginator = Paginator(query, 60)
+        self.paginator = Paginator(query, 5)
 
     def getPaginator(self):
         return self.paginator
@@ -108,8 +107,8 @@ class SearchMan:
     search_phrase = ''
     search_option = ''
 
-    def setSearch(self, bool):
-        self.search = bool
+    def setSearch(self, flag):
+        self.search = flag
 
     def getSearch(self):
         return self.search

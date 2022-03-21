@@ -1,13 +1,8 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.utils.translation import gettext_lazy as _
-from django.views.generic import ListView, FormView, CreateView
+from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
-
-from Util.utils import OulougGroupPermission
 from Util.utils import SearchMan
-from .forms import CountryForm, CityForm, StateForm, CurrencyForm
-
 
 """
 ModelListView Class:
