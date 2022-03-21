@@ -6,21 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="updating requirements.txt file to have the latest required packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAILY_CHANGES.md" beforeDir="false" afterPath="$PROJECT_DIR$/DAILY_CHANGES.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/static_strings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/static_strings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/address/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/customers/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/customers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/customers/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apps/customers/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/agent_shift/agent_shift_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/agent_shift/agent_shift_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/agent_shift/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/business_type/add_business_type.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/business_type/add_business_type.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/business_type/business_type_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/business_type/business_type_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/business_type/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/pagination_code.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/pagination_code.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/includes/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +143,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647853854827</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="updating requirements.txt file to have the latest required packages">
+      <created>1647872506784</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1647872506784</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

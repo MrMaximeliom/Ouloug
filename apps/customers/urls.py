@@ -1,9 +1,5 @@
 from django.urls import path
-from apps.customers.views import (BusinessListView,
-                                  BusinessFormView ,
-                                  AgentShiftListView ,
-                                  AgentShiftFormView,
-                                   CustomerCallListView,
+from apps.customers.views import (
                                    ModelListView,
                                    AddModelView,
                                    UpdateModelView
