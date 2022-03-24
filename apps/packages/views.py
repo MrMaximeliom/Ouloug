@@ -5,6 +5,9 @@ from django.views.generic import ListView
 
 from Util.utils import SearchMan
 
+from django.views.generic.edit import UpdateView
+
+
 """
 ModelListView Class:
 is a class used to list instances of a specified model,
@@ -241,3 +244,38 @@ class UpdateModelView(UpdateView):
         }
         return super(UpdateModelView, self).post(self)
 
+
+# This's for package update 
+
+
+class UpdateModelView(UpdateView):
+    model = None
+    fields = "__all__"
+    template_name = None
+    active_flag = None
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data['name']
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
+        return super(UpdateModelView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        instance_name = form.cleaned_data['name']
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            "masters": "active",
+            self.active_flag: "active"
+        }
+        return super(UpdateModelView, self).post(self)

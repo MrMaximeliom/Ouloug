@@ -7,22 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-<<<<<<< HEAD
-{% trans 'Packages' %}
-=======
-{% trans 'Update Package' %}
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
+{% trans 'Agent Shifts' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'package/package_includes/header.html' %}
-<<<<<<< HEAD
-<li class="breadcrumb-item"><a href="{% url 'addPackages' %}">{% trans 'Add Packages' %}</a></li>
-=======
-<li class="breadcrumb-item current-page">{% trans 'Update Packages' %}</li>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
-
-
+ {% include 'service/service_includes/header.html' %}
+<li class="breadcrumb-item"><a href="{% url 'addAgentShifts' %}">{% trans 'Add Agent Shifts' %}</a></li>
 {% endblock header %}
 {% block content %}
                     <div class="main-body">
@@ -32,11 +22,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-<<<<<<< HEAD
-                                <h5>{% trans 'Add Package' %}</h5>
-=======
-                                <h5>{% trans 'Update Package' %}</h5>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
+                                <h5>{% trans 'Add Agent Shifts' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -52,51 +38,65 @@
                                                 {{form.arabic_name|as_crispy_field}}
                                             </div>
                                               <div class="form-group">
-                                                {{form.telecom|as_crispy_field}}
+                                                {{form.country|as_crispy_field}}
                                             </div >
                                             <div class="form-group">
-                                               {{form.currency|as_crispy_field}}
+                                               {{form.team|as_crispy_field}}
 
                                             </div>
                                             <div class="form-group">
-                                               {{form.priority|as_crispy_field}}
+                                               {{form.number|as_crispy_field}}
 
                                             </div>
                                             <div class="form-group">
-                                               {{form.type|as_crispy_field}}
+                                               {{form.start_date|as_crispy_field}}
 
                                             </div>
                                               <div class="form-group">
+                                               {{form.end_date|as_crispy_field}}
+
+                                            </div>
+                                                        <div class="form-group">
+                                               {{form.start_time|as_crispy_field}}
+
+                                            </div>
+                                              <div class="form-group">
+                                               {{form.end_time|as_crispy_field}}
+
+                                            </div>
+                                                 <div class="form-group">
                                                {{form.status|as_crispy_field}}
 
                                             </div>
-                                              <div class="form-group">
-                                               {{form.price|as_crispy_field}}
+                                                 <div class="form-group">
+                                               {{form.is_saturday_on|as_crispy_field}}
 
                                             </div>
-                                              <div class="form-group">
-                                               {{form.grace|as_crispy_field}}
+                                                 <div class="form-group">
+                                               {{form.is_sunday_on|as_crispy_field}}
 
                                             </div>
-                                              <div class="form-group">
-                                               {{form.grace_period_day|as_crispy_field}}
+                                                 <div class="form-group">
+                                               {{form.is_monday_on|as_crispy_field}}
 
                                             </div>
-                                              <div class="form-group">
-                                               {{form.discount|as_crispy_field}}
+                                                 <div class="form-group">
+                                               {{form.is_tuesday_on|as_crispy_field}}
 
                                             </div>
-                                              <div class="form-group">
-                                               {{form.discount_price|as_crispy_field}}
+                                                 <div class="form-group">
+                                               {{form.is_wednesday_on|as_crispy_field}}
 
                                             </div>
+                                                 <div class="form-group">
+                                               {{form.is_thursday_on|as_crispy_field}}
 
+                                            </div>
+                                                 <div class="form-group">
+                                               {{form.is_friday_on|as_crispy_field}}
 
-<<<<<<< HEAD
-                                            <button type="submit" class="btn btn-primary">{% trans 'Updaete Package' %}</button>
-=======
-                                            <button type="submit" class="btn btn-primary">{% trans 'Update Package' %}</button>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Agent' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -106,9 +106,6 @@
                 </div>
             </div>
                     </div>
-
-
-
 
 {% endblock content %}
 
