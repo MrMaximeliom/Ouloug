@@ -1,7 +1,10 @@
 
 
 from django.db import models
+from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy
 
+from Util.utils import rand_slug
 from apps.authentication.models  import  User
 from apps.address.models import Country
 
@@ -17,6 +20,13 @@ it's used to specify the teams and department for the customers
 
 
 class Team(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field references the Country model
     # which represents the country that the team is staying at
     country = models.ForeignKey(Country, on_delete=models.SET_NULL,
@@ -49,3 +59,6 @@ class Team(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "team"
+
+    def get_absolute_url(self):
+        return reverse_lazy("teamsList")

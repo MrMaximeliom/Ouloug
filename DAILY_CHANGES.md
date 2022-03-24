@@ -131,3 +131,7 @@
 - adding pagination to the following masters  (Countries - States - Cities - Currencies)
 - adding the logic and views required to add new record for the following pages (Business - AgentShift - CustomerCall )
 - adding the logic and views required to add new record for the following pages (Telecom Operators - Telecom Phone Number )
+
+## 2022-3-24
+### Changes
+- Completing pending teams pages (Listing data and Update Data)

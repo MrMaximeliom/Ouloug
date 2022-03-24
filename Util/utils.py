@@ -108,6 +108,8 @@ class SearchMan:
             telecom_numbers = TelecomNumber.objects.all().order_by("id")
             self.paginator = Paginator(telecom_numbers, 5)
 
+
+
     def setPaginator(self, query):
         from django.core.paginator import Paginator
         self.paginator = Paginator(query, 5)

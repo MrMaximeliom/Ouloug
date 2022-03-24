@@ -105,6 +105,12 @@ ADD_NEW_TELECOM_TOOL_TIP_TEXT = _("Add new telecoms")
 # tool tip text for add new telecom numbers button
 ADD_NEW_TELECOM_NUMBER_TOOL_TIP_TEXT = _("Add new telecom numbers")
 
+# tool tip text for add new team button
+ADD_NEW_TEAM_TOOL_TIP_TEXT = _("Add new team")
+
+# tool tip text for update team button
+UPDATE_TEAM_TOOL_TIP_TEXT = _("update team")
+
 # tool tip text for update telecom button
 UPDATE_TELECOM_TOOL_TIP_TEXT = _("update telecom")
 
