@@ -39,7 +39,6 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>{% trans 'Number' %}</th>
                                                 <th>{% trans 'Type' %}</th>
                                                 <th>{% trans 'Status' %}</th>
@@ -53,7 +52,6 @@
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
                                                 <td>{{object.number}}</td>
                                                 <td>{{object.type}}</td>
                                                 <td>{{object.status}}</td>
@@ -72,6 +70,7 @@
 
                                         </tbody>
                                     </table>
+                                      <h5>Total Telecom Numbers Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>

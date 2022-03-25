@@ -66,7 +66,7 @@ urlpatterns = [
         reference_field_name="number",
         template_name="telecom_number/add_telecom_number.html",
     ),login_url="login"), name="addTelecomNumber"),
-    path('telecomNumber/updateTelecomNumber/<slug:slug>', staff_member_required(AddModelView.as_view(
+    path('telecomNumber/updateTelecomNumber/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=TelecomNumber,
         fields=["number", "type", "status"],
         active_flag="telecom_number",

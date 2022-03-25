@@ -1,6 +1,5 @@
 from django.urls import path
-from apps.teams.views import (TeamListView,
-                              TeamsFormView,
+from apps.teams.views import (
                               ModelListView,
                               AddModelView,
                               UpdateModelView

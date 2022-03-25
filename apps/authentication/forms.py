@@ -5,8 +5,27 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django import forms
 from .models import User
+from django.contrib.auth import authenticate
+from django.contrib.auth.forms import AuthenticationForm
 
+class UserLoginForm(AuthenticationForm):
+    def clean(self):
+        phone_number = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+        # altered_username = ''
+        if phone_number is not None and phone_number != "" and password is not None and password != "":
+            self.user_cache = authenticate(self.request, username=phone_number, password=password)
+            if self.user_cache is None:
+                raise self.get_invalid_login_error()
 
+            else:
+                print("user is not none")
+                self.confirm_login_allowed(self.user_cache)
+
+        return self.cleaned_data
+    class Meta:
+        model=User
+        fields=['phone_number' , 'password']
 
 class LoginForm(forms.Form):
     username = forms.CharField(

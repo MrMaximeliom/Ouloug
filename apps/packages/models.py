@@ -1,6 +1,9 @@
 
 
 from django.db import models
+from django.template.defaultfilters import slugify
+
+from Util.utils import rand_slug
 from apps.telecoms.models import  TelecomOperator
 from apps.services.models import  Service
 from apps.authentication.models import User
@@ -16,6 +19,13 @@ PACKAGE_STATUS = (
 )
 
 class Package(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key references the Telecom Operator model
     # which is used to represent the Telecom Operator
     telecom = models.ForeignKey(TelecomOperator,
@@ -68,6 +78,13 @@ default initial value for the service in the package
 
 
 class PackageService(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this is a foreign key field references the Package model
     # which represents the package
     package = models.ForeignKey(Package, on_delete=models.SET_NULL,
@@ -117,6 +134,13 @@ BILLING_TYPE = (
 
 
 class PackageBillingType(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, null=True, blank=True,

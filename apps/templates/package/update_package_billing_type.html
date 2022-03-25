@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+{% load crispy_forms_tags %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Update Package Billing Type' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'package/package_includes/header.html' %}
+<li class="breadcrumb-item current-page">% trans 'Update Package Billing Type' %}</li>
+
+
+{% endblock header %}
+{% block content %}
+                    <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>{% trans 'Update Package Billing Type' %}</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form autocomplete="off"  method="post" action="">
+                                            {% csrf_token %}
+
+                                            <div class="form-group">
+                                                {{form.package|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                                {{form.serial|as_crispy_field}}
+                                            </div>
+                                              <div class="form-group">
+                                                {{form.billing_type|as_crispy_field}}
+                                            </div >
+                                            <div class="form-group">
+                                               {{form.percentage_added_price|as_crispy_field}}
+
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Package Billing Type' %}</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </div>
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
+

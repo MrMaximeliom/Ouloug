@@ -1,19 +1,17 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 from django.contrib import messages
 from Util.utils import SearchMan
 
-<<<<<<< HEAD
-                                 )
+
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.views.generic.edit import UpdateView
 
-=======
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 # Create your views here.
-
+from .models import Service
 
 """
 ModelListView Class:
@@ -237,12 +235,11 @@ class UpdateModelView(UpdateView):
         messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
         return super().form_valid(form)
 
-<<<<<<< HEAD
     # providing the required extra context for the view
     extra_context = {
         'ouloug_services': 'active',
         'services': 'active',
-        'title': _('Add Services')
+        'title': 'Add Services'
     }
 def changeServiceStatus(request,pk,status):
     service = get_object_or_404(Service, pk=pk)
@@ -258,46 +255,4 @@ def changeServiceStatus(request,pk,status):
 # This's for service update 
 
 
-class UpdateModelView(UpdateView):
-    model = None
-    fields = "__all__"
-    template_name = None
-    active_flag = None
-    def form_invalid(self, form):
-        for field, items in form.errors.items():
-            for item in items:
-                print('{}: {}'.format(field, item))
-        instance_name = form.cleaned_data['name']
-        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
-        return super(UpdateModelView, self).form_invalid(form)
 
-    def form_valid(self, form):
-        instance_name = form.cleaned_data['name']
-        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
-        return super().form_valid(form)
-
-    def get(self, request, *args, **kwargs):
-        self.extra_context = {
-            "masters": "active",
-=======
-    def get(self, request, *args, **kwargs):
-        self.extra_context = {
-            self.main_active_flag: "active",
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).get(self)
-
-    def post(self, request, *args, **kwargs):
-        self.extra_context = {
-<<<<<<< HEAD
-            "masters": "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).post(self)
-=======
-            self.main_active_flag: "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).post(self)
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198

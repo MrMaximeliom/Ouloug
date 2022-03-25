@@ -135,3 +135,10 @@
 ## 2022-3-24
 ### Changes
 - Completing pending teams pages (Listing data and Update Data) 
+
+## 2022-3-25
+### Changes
+- Completing pending updates for masters and ouloug services pages
+- adding the logic and views required for billing cycle 
+- adding the logic and views required for customer payment'
+- altering login to allow only staff users (admin and monitor users) to access ouloug backend

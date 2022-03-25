@@ -10,13 +10,17 @@ from Util.static_strings import (
                                  NO_RECORDS_FOR_AGENT_SHIFT_MODEL_ADMIN_MESSAGE,
                                  NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE,
                                  NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE,
+                                 NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_ADMIN_MESSAGE,
+                                 NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_MONITOR_MESSAGE,
                                  ADD_NEW_BUSINESS_TYPE_TOOL_TIP_TEXT,
                                  ADD_NEW_AGENTS_SHIFTS_TOOL_TIP_TEXT,
+                                 ADD_NEW_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
                                  UPDATE_AGENTS_SHIFTS_TOOL_TIP_TEXT,
+                                 UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
                                  UPDATE_BUSINESS_TYPE_TOOL_TIP_TEXT
 
                                  )
-from apps.customers.models import BusinessType,AgentShift,CustomerCall
+from apps.customers.models import BusinessType,AgentShift,CustomerCall,CustomerPayment
 from django.contrib.admin.views.decorators import staff_member_required
 urlpatterns = [
     path('business/', staff_member_required(ModelListView.as_view(
@@ -58,6 +62,7 @@ urlpatterns = [
         add_tool_tip_text=ADD_NEW_AGENTS_SHIFTS_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_AGENTS_SHIFTS_TOOL_TIP_TEXT,
     ),login_url="login"), name="agentShiftsList"),
+    # Agent shift urls page
 
     path('agentShifts/addAgentShifts', staff_member_required(AddModelView.as_view(
         model=AgentShift,
@@ -88,6 +93,36 @@ urlpatterns = [
         no_records_admin= NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE,
         no_records_monitor= NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE,
     ),login_url="login"), name="customerCallsList"),
+    # customer payment pages
+
+    path('customerPayments/', staff_member_required(ModelListView.as_view(
+        model=CustomerPayment,
+        template_name="customer/customer_payment_list.html",
+        active_flag="customer_payment",
+        main_active_flag="customers",
+        model_name="CustomerPayment",
+        no_records_admin=NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_ADMIN_MESSAGE,
+        no_records_monitor=NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_MONITOR_MESSAGE,
+        add_tool_tip_text=ADD_NEW_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
+        update_tool_tip_text=UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
+    ), login_url="login"), name="customerPaymentsList"),
+    path('customer/addCustomerPayments', staff_member_required(AddModelView.as_view(
+        model=CustomerPayment,
+        fields=["customer", "customer_package", "currency", "payment_type", "status","transaction_amount"],
+        active_flag="customer_payment",
+        main_active_flag="customers",
+        reference_field_name="customer",
+        template_name="customer/add_customer_payments.html",
+    ), login_url="login"), name="addCustomerPayments"),
+    path('customer/updateAgentShift/<slug:slug>', staff_member_required(UpdateModelView.as_view(
+        model=CustomerPayment,
+        fields=["customer", "customer_package", "currency", "payment_type", "status","transaction_amount"],
+        active_flag="customer_payment",
+        main_active_flag="customers",
+        reference_field_name="customer",
+        template_name="customer/update_customer_payment.html",
+    ), login_url="login"), name="updateCustomerPayment"),
+
 
 ]
 
