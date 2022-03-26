@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.auth import authenticate, login
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView
 
 from Util.static_strings import (
     FIRST_NAME_EMPTY_ERROR,
@@ -57,29 +57,7 @@ class OulougLoginView(auth_views.LoginView):
         'hide_footer': True,
 
     }
-def login_view(request):
-    form = LoginForm(request.POST)
-    msg = None
-    if request.method == "POST":
 
-        if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
-
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                messages.success(request, f"Welcome {user.username} have a nice day!")
-                return redirect("home")
-            else:
-                messages.error(request, "Invalid Credentials")
-        else:
-            msg = 'Error validating the form'
-            for field, items in form.errors.items():
-                for item in items:
-                    print('{}: {}'.format(field, item))
-
-    return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
 def register_user(request):
@@ -148,3 +126,57 @@ def change_password(request):
         'change_password':'active'
 
     })
+"""
+AddModelView Class:
+is a class used to add instances of a specified model,
+it requires to define the following params:
+- model (the model to add new instances)
+- template_name ( the path of the view that will be used)
+- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
+- reference_field_name (this field used to reference the field that will be used in success/error messages) 
+- main_active_flag (this flag is used to add 'active' class to the main master current pages in sidebar)
+- title (specifies the page's title)
+"""
+
+
+class AddUserView(CreateView):
+    model = None
+    fields = None
+    template_name = None
+    active_flag = None
+    reference_field_name = None
+    main_active_flag = None
+    title = None
+
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not added , please try again!")
+        return super(AddUserView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        instance_name = form.cleaned_data[self.reference_field_name]
+        self.object.added_by = self.request.user
+        self.object.set_password(self.object.password)
+        self.object.save()
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> added successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active",
+            "title": self.title
+        }
+        return super(AddUserView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active",
+            "title": self.title
+        }
+        return super(AddUserView, self).post(self)

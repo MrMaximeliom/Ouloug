@@ -5,11 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class UserLoginForm(AuthenticationForm):
     def clean(self):
-        phone_number = self.cleaned_data.get('username')
+        username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
         # altered_username = ''
-        if phone_number is not None and phone_number != "" and password is not None and password != "":
-            self.user_cache = authenticate(self.request, username=phone_number, password=password)
+        if username is not None and username != "" and password is not None and password != "":
+            self.user_cache = authenticate(self.request, username=username, password=password)
             if self.user_cache is None:
                 raise self.get_invalid_login_error()
 

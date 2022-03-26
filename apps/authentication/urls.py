@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import OulougLoginView, register_user
 from django.contrib.auth.views import LogoutView
-from apps.common_views.views import (ModelListView, AddModelView, UpdateModelView)
+from apps.common_views.views import (ModelListView, UpdateModelView)
+from apps.authentication.views import AddUserView
 from apps.authentication.views import change_password
 from django.contrib.admin.views.decorators import staff_member_required
 from Util.static_strings import (NO_RECORDS_FOR_USER_MODEL_MONITOR_MESSAGE,
@@ -27,7 +28,7 @@ urlpatterns = [
         update_tool_tip_text=UPDATE_USER_TOOL_TIP_TEXT,
         title="Users"
     ), login_url="login"), name="usersList"),
-    path('users/addUsers', staff_member_required(AddModelView.as_view(
+    path('users/addUsers', staff_member_required(AddUserView.as_view(
         model=User,
         fields=["first_name", "second_name", "third_name", "fourth_name", "username",
                 "user_type", "user_status", "phone_number", "email", "staff", "admin","password"],
