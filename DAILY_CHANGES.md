@@ -146,4 +146,4 @@
 ## 2022-3-26
 ### Changes
 - adding title of current page 
-- adding the logic and views required for (users and change password)
+- adding the logic and views required for (users and change password) 
