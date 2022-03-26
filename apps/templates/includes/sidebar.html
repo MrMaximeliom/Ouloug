@@ -99,8 +99,8 @@
                         <a href="javascript:" class="nav-link {{settings}} "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Settings</span></a>
                      <!--  <a href="javascript:" class="nav-link "><span class="pcoded-micon"><i class="feather icon-grid"></i></span><span class="pcoded-mtext">Integration Reports</span></a>--> 
                         <ul class="pcoded-submenu">
-                            <li class=""><a href="/ui-button.html" class="">Users</a></li>
-                            <li class=""><a href="/ui-badges.html" class="">Change Password</a></li>
+                            <li class=""><a href="{% url 'usersList' %}" class="{{user}}">Users</a></li>
+                            <li class=""><a href="{% url 'changePassword' %}" class="{{change_password}}">Change Password</a></li>
                         </ul>
                     </li>
 

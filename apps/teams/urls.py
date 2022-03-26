@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.teams.views import (
+from apps.common_views.views import (
                               ModelListView,
                               AddModelView,
                               UpdateModelView
@@ -25,6 +25,7 @@ urlpatterns = [
         no_records_monitor=NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_TEAM_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_TEAM_TOOL_TIP_TEXT,
+        title="Teams"
     ),login_url="login"), name="teamsList"),
 
     path('teams/addTeams', staff_member_required(AddModelView.as_view(
@@ -34,6 +35,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name="name",
         template_name="teams/add_teams.html",
+        title="Add Teams"
 
     ), login_url="login"), name="addTeams"),
     path('teams/updateTeam/<slug:slug>', staff_member_required(UpdateModelView.as_view(
@@ -43,6 +45,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name="name",
         template_name="teams/update_team.html",
+        title="Update Team"
     ), login_url="login"), name="updateTeam"),
   
 ]

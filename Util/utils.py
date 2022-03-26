@@ -1,4 +1,4 @@
-from django.contrib.auth.mixins import PermissionRequiredMixin
+# from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import redirect
 
 
@@ -12,8 +12,6 @@ class EnablePartialUpdateMixin:
     def update(self, request, *args, **kwargs):
         kwargs['partial'] = True
         return super().update(request, *args, **kwargs)
-
-
 import datetime
 from django.core.validators import MaxValueValidator
 import string
@@ -111,8 +109,10 @@ class SearchMan:
             from apps.customers.models import CustomerPayment
             customer_payments = CustomerPayment.objects.all().order_by("id")
             self.paginator = Paginator(customer_payments, 5)
-
-
+        if model == "User":
+            from apps.authentication.models import User
+            users = User.objects.all().order_by("id")
+            self.paginator = Paginator(users, 5)
 
     def setPaginator(self, query):
         from django.core.paginator import Paginator
@@ -156,21 +156,21 @@ This class is used to specify allowed user types for system models
 """
 
 
-class OulougGroupPermission(PermissionRequiredMixin):
-    # by default allow only users of ouloug_admin and ouloug_monitor
-    #  to access the countries' pages
-    permission_required = ('administrator', 'monitor')
-
-    # check if the logged-in user has the access permission or not
-    def has_permission(self):
-        user_types = self.get_permission_required()
-        # check user type
-        for user_type in user_types:
-            if self.request.user.is_authenticated:
-                if self.request.user.user_type == user_type:
-                    return True
-            else:
-                return redirect('login')
+# class OulougGroupPermission(PermissionRequiredMixin):
+#     # by default allow only users of ouloug_admin and ouloug_monitor
+#     #  to access the countries' pages
+#     permission_required = ('administrator', 'monitor')
+#
+#     # check if the logged-in user has the access permission or not
+#     def has_permission(self):
+#         user_types = self.get_permission_required()
+#         # check user type
+#         for user_type in user_types:
+#             if self.request.user.is_authenticated:
+#                 if self.request.user.user_type == user_type:
+#                     return True
+#             else:
+#                 return redirect('login')
 
         # groups = self.get_permission_required()
         # user_groups = self.request.user.groups.values('name')

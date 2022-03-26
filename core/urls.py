@@ -46,3 +46,7 @@ urlpatterns = [
          name='password_reset_complete')
     # UI Kits Html files
 ]
+handler404 = 'apps.error_handler.views.error_404'
+handler500 = 'apps.error_handler.views.error_500'
+handler403 = 'apps.error_handler.views.error_403'
+handler400 = 'apps.error_handler.views.error_400'

@@ -15,7 +15,7 @@ CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY', default='S#perS3crEt_1122')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 # load production server from .env
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','ouloug.herokuapp.com', config('SERVER', default='127.0.0.1')]
@@ -37,10 +37,13 @@ INSTALLED_APPS = [
     'apps.packages',
     'apps.services',
     'apps.teams',
+    'apps.error_handler',
     'apps.telecoms',
+    'apps.common_views',
     'captcha',
     'mathfilters',
     'widget_tweaks',
+
 
 ]
 
@@ -49,7 +52,7 @@ INSTALLED_APPS = [
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 
-# TODO: change email backend to smtp before deplyoing
+# TODO: change email backend to smtp before deploying
 # file based email backend
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(os.path.join(CORE_DIR, 'sent_emails'))

@@ -1,0 +1,108 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Users' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'accounts/users/user_includes/header.html' %}
+
+{% endblock header %}
+{% block content %}
+
+ {% if object_list|length %}
+              <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header card-flex-header">
+                                <div>
+                                <h5>Users Table</h5>
+                                       </div>
+
+                                {% if request.user.user_type == "administrator" %}
+                                    <div>
+                                <a href="{% url 'addUsers' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New User' %}</a>
+
+                           </div>
+                                  {% endif %}
+                            </div>
+
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans 'First Name' %}</th>
+                                                <th>{% trans 'Second Name' %}</th>
+                                                <th>{% trans 'Third Name' %}</th>
+                                                <th>{% trans 'Fourth Name' %}</th>
+                                                <th>{% trans 'Username' %}</th>
+                                                <th>{% trans 'User Type' %}</th>
+                                                <th>{% trans 'User Status' %}</th>
+                                                <th>{% trans 'Phone Number' %}</th>
+                                                <th>{% trans 'Email' %}</th>
+                                                <th>{% trans 'Staff' %}</th>
+                                                <th>{% trans 'Admin' %}</th>
+                                                <th>{% trans 'Last Login' %}</th>
+                                                <th>{% trans 'Registration Datetime' %}</th>
+                                                    {% if request.user.user_type == "administrator"  %}
+                                                <th>{% trans 'Update' %}</th>
+                                                {% endif %}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for object in object_list %}
+                                            <tr>
+                                                <td>{{object.first_name}}</td>
+                                                <td>{{object.second_name}}</td>
+                                                <td>{{object.third_name}}</td>
+                                                <td>{{object.fourth_name}}</td>
+                                                <td>{{object.username}}</td>
+                                                <td>{{object.user_type}}</td>
+                                                <td>{{object.user_status}}</td>
+                                                <td>{{object.phone_number}}</td>
+                                                <td>{{object.email}}</td>
+                                                <td>{{object.staff}}</td>
+                                                <td>{{object.admin}}</td>
+                                                <td>{{object.last_login}}</td>
+                                                <td>{{object.registration_datetime}}</td>
+
+                                                  {% if request.user.user_type == "administrator"  %}
+                                                <td>
+<a href="{% url 'updateUser' slug=object.slug %}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+
+                                                </td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                     <h5>Total Users Count: {{instances_count}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              {% include 'includes/pagination_code.html' %}
+
+
+
+            {% else %}
+
+               {% if request.user.user_type == "administrator"  %}
+<h3 class="delete-warning">{{no_records_admin}}
+    <a href="{% url 'addUsers' %}">{% trans 'Here' %}</a></h3>
+            {% else %}
+            <h3 class="delete-warning">{{no_records_monitor}}</h3>
+            {% endif %}
+
+            {% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

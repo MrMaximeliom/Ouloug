@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.services.views import (ModelListView,AddModelView,
+from apps.common_views.views import (ModelListView,AddModelView,
                                UpdateModelView )
 from Util.static_strings import (NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE,
                                  NO_RECORDS_FOR_SERVICE_MODEL_ADMIN_MESSAGE,
@@ -20,6 +20,7 @@ urlpatterns = [
         no_records_monitor=NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_SERVICE_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_SERVICE_TOOL_TIP_TEXT,
+        title = "Services"
     ),login_url="login"), name="servicesList"),
     path('services/addServices', staff_member_required(AddModelView.as_view(
         model=Service,
@@ -27,6 +28,7 @@ urlpatterns = [
         active_flag="service",
         main_active_flag="ouloug_services",
         reference_field_name="name",
+        title="Add Services",
         template_name="service/add_services.html",
 
     ),login_url="login"), name="addServices"),
@@ -36,6 +38,7 @@ urlpatterns = [
         active_flag="service",
         main_active_flag="ouloug_services",
         reference_field_name="name",
+        title="Update Service",
         template_name="service/update_service.html",
     ),login_url="login") , name="updateService"),
 ]

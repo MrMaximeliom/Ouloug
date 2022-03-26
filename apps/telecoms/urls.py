@@ -10,7 +10,7 @@ from Util.static_strings import (
                                  UPDATE_TELECOM_TOOL_TIP_TEXT
                                  )
 from django.contrib.admin.views.decorators import staff_member_required
-from apps.telecoms.views import (
+from apps.common_views.views import (
                                  ModelListView,
                                  AddModelView,
                                  UpdateModelView)
@@ -25,7 +25,8 @@ urlpatterns = [
         no_records_admin=NO_RECORDS_FOR_TELECOMS_MODEL_ADMIN_MESSAGE,
         no_records_monitor=NO_RECORDS_FOR_TELECOMS_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_TELECOM_TOOL_TIP_TEXT,
-        update_tool_tip_text=UPDATE_TELECOM_TOOL_TIP_TEXT
+        update_tool_tip_text=UPDATE_TELECOM_TOOL_TIP_TEXT,
+        title="Telecom Operators"
     ),login_url="login"), name="telecomsList"),
 
     path('telecoms/addTelecoms',staff_member_required(AddModelView.as_view(
@@ -35,6 +36,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name="name",
         template_name="telecoms/add_telecoms.html",
+        title="Add Telecom Operators"
     ),login_url="login"), name="addTelecoms"),
     path('telecoms/updateTelecom/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=TelecomOperator,
@@ -43,6 +45,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name="name",
         template_name="telecoms/update_telecom.html",
+        title="Update Telecom Operator"
     ), login_url="login"), name="updateTelecom"),
   
 
@@ -55,7 +58,8 @@ urlpatterns = [
         no_records_admin=NO_RECORDS_FOR_TELECOM_NUMBER_MODEL_ADMIN_MESSAGE,
         no_records_monitor=NO_RECORDS_FOR_TELECOM_NUMBER_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_TELECOM_NUMBER_TOOL_TIP_TEXT,
-        update_tool_tip_text=UPDATE_TELECOM_NUMBER_TOOL_TIP_TEXT
+        update_tool_tip_text=UPDATE_TELECOM_NUMBER_TOOL_TIP_TEXT,
+        title="Telecom Numbers"
     ),login_url="login"), name="telecomNumberList"),
 
     path('telecomNumber/addTelecomNumber', staff_member_required(AddModelView.as_view(
@@ -65,6 +69,7 @@ urlpatterns = [
         main_active_flag="ouloug_services",
         reference_field_name="number",
         template_name="telecom_number/add_telecom_number.html",
+        title="Add Telecom Numbers"
     ),login_url="login"), name="addTelecomNumber"),
     path('telecomNumber/updateTelecomNumber/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=TelecomNumber,
@@ -73,6 +78,7 @@ urlpatterns = [
         main_active_flag="ouloug_services",
         reference_field_name="number",
         template_name="telecom_number/update_telecom_number.html",
+        title="Update Telecom Number"
     ), login_url="login"), name="updateTelecomNumber"),
   
 ]

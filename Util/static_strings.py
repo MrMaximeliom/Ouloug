@@ -56,6 +56,10 @@ NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE = _("There are no services yet to v
 NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE = _("There are no packages yet ... you can add new packages from ")
 NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE = _("There are no packages yet to view")
 
+# NO RECORDS FOUND STRINGS - User Pages
+NO_RECORDS_FOR_USER_MODEL_ADMIN_MESSAGE = _("There are no users yet ... you can add new users from ")
+NO_RECORDS_FOR_USER_MODEL_MONITOR_MESSAGE = _("There are no users yet to view")
+
 # NO RECORDS FOUND STRINGS - Package Billing Type Pages
 NO_RECORDS_FOR_PACKAGE_BILLING_TYPE_MODEL_ADMIN_MESSAGE = _("There are no package billing types yet ... you can add new packages from ")
 NO_RECORDS_FOR_PACKAGE_BILLING_TYPE_MODEL_MONITOR_MESSAGE = _("There are no package billing types yet to view")
@@ -122,8 +126,14 @@ ADD_NEW_TEAM_TOOL_TIP_TEXT = _("Add new team")
 # tool tip text for add new team button
 ADD_NEW_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("Add new package billing type")
 
+# tool tip text for add new user button
+ADD_NEW_USER_TOOL_TIP_TEXT = _("Add new user")
+
 # tool tip text for update customer payment button
 UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT = _("update customer payment")
+
+# tool tip text for update user button
+UPDATE_USER_TOOL_TIP_TEXT = _("update user")
 
 # tool tip text for update team button
 UPDATE_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("update team")

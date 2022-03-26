@@ -3,18 +3,23 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
+from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 import uuid
-from Util.lists_of_data import USER_TYPES,USER_STATUS
+from Util.lists_of_data import USER_TYPES, USER_STATUS
+from Util.utils import rand_slug
 
 """
 User Account Manager:
 used as a user manager for the User model
 """
+
+
 class SpecialUserAccountManager(BaseUserManager):
     # this function is responsible for creating users
     # the parameters passed to it are required to create user object
-    def create_user(self, email,username, first_name, phone_number, password=None, **extra_fields):
+    def create_user(self, email, username, first_name, phone_number, password=None, **extra_fields):
         # check if username not null
         if not username:
             raise ValueError(_('Users must have a username'))
@@ -30,20 +35,20 @@ class SpecialUserAccountManager(BaseUserManager):
             username=username,
             first_name=first_name,
             phone_number=phone_number,
-            email = self.normalize_email(email)
+            email=self.normalize_email(email)
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self,email,username, first_name, phone_number,
+    def create_superuser(self, email, username, first_name, phone_number,
                          password):
         user = self.create_user(
             username=username,
             first_name=first_name,
             phone_number=phone_number,
             password=password,
-            email = self.normalize_email(email)
+            email=self.normalize_email(email)
         )
         user.admin = True
         user.staff = True
@@ -55,7 +60,16 @@ class SpecialUserAccountManager(BaseUserManager):
 User Model:
 it's used to save user's data
 """
-class User(AbstractBaseUser,PermissionsMixin):
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
     # this field represents the primary key of the model
     id = models.UUIDField(
         primary_key=True,
@@ -143,7 +157,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     registration_datetime = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     # this field represents the username field
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['password', 'first_name','email','phone_number']  # Email & Password are required by default.
+    REQUIRED_FIELDS = ['password', 'first_name', 'email', 'phone_number']  # Email & Password are required by default.
     objects = SpecialUserAccountManager()
 
     def get_full_name(self):
@@ -179,3 +193,6 @@ class User(AbstractBaseUser,PermissionsMixin):
     class Meta:
         # this is the actual model's name in the database
         db_table = "user"
+
+    def get_absolute_url(self):
+        return reverse_lazy("usersList")

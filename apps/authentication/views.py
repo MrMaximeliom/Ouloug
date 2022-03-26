@@ -1,7 +1,11 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from .forms import LoginForm, SignUpForm
 from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.forms import PasswordChangeForm
+from django.shortcuts import render, redirect
+
 from Util.static_strings import (
     FIRST_NAME_EMPTY_ERROR,
     FIRST_NAME_SYNTAX_ERROR,
@@ -21,7 +25,7 @@ from Util.static_strings import (
     PASSWORDS_NOT_MATCH,
     CONFIRM_PASSWORD_EMPTY_ERROR
 )
-from django.contrib.auth import views as auth_views
+from .forms import LoginForm, SignUpForm
 
 
 class OulougLoginView(auth_views.LoginView):
@@ -122,3 +126,25 @@ def register_user(request):
 
                                                       }
                                                       })
+
+
+
+@staff_member_required(login_url='login')
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('changePassword')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'accounts/users/change_password.html', {
+        'form': form,
+        'settings':'active',
+        'change_password':'active'
+
+    })

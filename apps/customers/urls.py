@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.customers.views import (
+from apps.common_views.views import (
                                    ModelListView,
                                    AddModelView,
                                    UpdateModelView
@@ -33,6 +33,7 @@ urlpatterns = [
         no_records_monitor=NO_RECORDS_FOR_BUSINESS_TYPE_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_BUSINESS_TYPE_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_BUSINESS_TYPE_TOOL_TIP_TEXT,
+        title="Business Types"
     ),login_url="login"), name="businessList"),
 
     path('businessType/addBusinessType', staff_member_required(AddModelView.as_view(
@@ -42,6 +43,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name = "type_name",
         template_name="business_type/add_business_type.html",
+        title="Add Business Types"
     ),login_url="login"), name="addBusinessType"),
     path('businessType/updateBusinessType/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=BusinessType,
@@ -50,6 +52,7 @@ urlpatterns = [
         main_active_flag="masters",
         reference_field_name="type_name",
         template_name="business_type/update_business_type.html",
+        title="Update Business Type"
     ), login_url="login"), name="updateBusinessType"),
     path('agentShifts/', staff_member_required(ModelListView.as_view(
         model=AgentShift,
@@ -61,6 +64,7 @@ urlpatterns = [
         no_records_monitor=NO_RECORDS_FOR_AGENT_SHIFT_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_AGENTS_SHIFTS_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_AGENTS_SHIFTS_TOOL_TIP_TEXT,
+        title="Agent Shifts"
     ),login_url="login"), name="agentShiftsList"),
     # Agent shift urls page
 
@@ -72,6 +76,7 @@ urlpatterns = [
         main_active_flag="ouloug_services",
         reference_field_name="name",
         template_name="agent_shift/add_agent_shifts.html",
+        title="Add Agent Shifts"
     ),login_url="login"), name="addAgentShifts"),
     path('agentShifts/updateAgentShift/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=AgentShift,
@@ -83,6 +88,7 @@ urlpatterns = [
         main_active_flag="ouloug_services",
         reference_field_name="name",
         template_name="agent_shift/update_agent_shift.html",
+        title="Update Agent Shift"
     ), login_url="login"), name="updateAgentShift"),
     path('customerCalls/', staff_member_required(ModelListView.as_view(
         model=CustomerCall,
@@ -92,6 +98,7 @@ urlpatterns = [
         model_name="CustomerCall",
         no_records_admin= NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE,
         no_records_monitor= NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE,
+        title="Customer Calls"
     ),login_url="login"), name="customerCallsList"),
     # customer payment pages
 
@@ -105,6 +112,7 @@ urlpatterns = [
         no_records_monitor=NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_MONITOR_MESSAGE,
         add_tool_tip_text=ADD_NEW_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
         update_tool_tip_text=UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT,
+        title="Customer Payments"
     ), login_url="login"), name="customerPaymentsList"),
     path('customer/addCustomerPayments', staff_member_required(AddModelView.as_view(
         model=CustomerPayment,
@@ -113,6 +121,7 @@ urlpatterns = [
         main_active_flag="customers",
         reference_field_name="customer",
         template_name="customer/add_customer_payments.html",
+        title="Add Customer Payments"
     ), login_url="login"), name="addCustomerPayments"),
     path('customer/updateAgentShift/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=CustomerPayment,
@@ -121,6 +130,7 @@ urlpatterns = [
         main_active_flag="customers",
         reference_field_name="customer",
         template_name="customer/update_customer_payment.html",
+        title="Update Customer Payment"
     ), login_url="login"), name="updateCustomerPayment"),
 
 

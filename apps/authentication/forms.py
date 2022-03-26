@@ -1,8 +1,3 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
 from django import forms
 from .models import User
 from django.contrib.auth import authenticate
@@ -42,6 +37,7 @@ class LoginForm(forms.Form):
                 "class": "form-control"
             }
         ))
+
 
 
 class SignUpForm(forms.ModelForm):
