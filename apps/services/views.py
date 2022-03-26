@@ -1,17 +1,16 @@
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 from django.contrib import messages
 from Util.utils import SearchMan
-
-<<<<<<< HEAD
-                                 )
+                                 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.views.generic.edit import UpdateView
 
-=======
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
+from models import Service
+
 # Create your views here.
 
 
@@ -237,7 +236,6 @@ class UpdateModelView(UpdateView):
         messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
         return super().form_valid(form)
 
-<<<<<<< HEAD
     # providing the required extra context for the view
     extra_context = {
         'ouloug_services': 'active',
@@ -256,8 +254,6 @@ def changeServiceStatus(request,pk,status):
 
 
 # This's for service update 
-
-
 class UpdateModelView(UpdateView):
     model = None
     fields = "__all__"
@@ -279,25 +275,14 @@ class UpdateModelView(UpdateView):
     def get(self, request, *args, **kwargs):
         self.extra_context = {
             "masters": "active",
-=======
-    def get(self, request, *args, **kwargs):
-        self.extra_context = {
-            self.main_active_flag: "active",
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).get(self)
 
     def post(self, request, *args, **kwargs):
         self.extra_context = {
-<<<<<<< HEAD
             "masters": "active",
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).post(self)
-=======
-            self.main_active_flag: "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).post(self)
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
+        

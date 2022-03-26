@@ -7,14 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Services' %}
+{% trans 'Billing Cycle' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'service/service_includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addServices' %}">{% trans 'Add Services' %}</a></li>
-
-
+ {% include 'bills/bills_include/header.html' %}
+<li class="breadcrumb-item current-page">{% trans 'Add Agent Shifts' %}</li>
 {% endblock header %}
 {% block content %}
                     <div class="main-body">
@@ -24,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Service' %}</h5>
+                                <h5>{% trans 'Add Billing Cycle' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -33,34 +31,18 @@
                                             {% csrf_token %}
 
                                             <div class="form-group">
-                                                {{form.name|as_crispy_field}}
+                                                {{form.serial|as_crispy_field}}
 
                                             </div>
                                             <div class="form-group">
-                                                {{form.arabic_name|as_crispy_field}}
+                                                {{form.billing_type|as_crispy_field}}
                                             </div>
                                               <div class="form-group">
-                                                {{form.country|as_crispy_field}}
+                                                {{form.percentage_added_price|as_crispy_field}}
                                             </div >
-                                            <div class="form-group">
-                                               {{form.description|as_crispy_field}}
-
-                                            </div>
-                                            <div class="form-group">
-                                               {{form.arabic_description|as_crispy_field}}
-
-                                            </div>
-                                            <div class="form-group">
-                                               {{form.subscription_type|as_crispy_field}}
-
-                                            </div>
-                                              <div class="form-group">
-                                               {{form.status|as_crispy_field}}
-
-                                            </div>
-
-
-                                            <button type="submit" class="btn btn-primary">{% trans 'Update Service' %}</button>
+                                         
+                                         
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Billing' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -70,9 +52,6 @@
                 </div>
             </div>
                     </div>
-
-
-
 
 {% endblock content %}
 

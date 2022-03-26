@@ -7,18 +7,14 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Telcoms' %}
+{% trans 'Billing Cycle' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'telecoms/includes/header.html' %}
-<li class="breadcrumb-item"><a href="{% url 'addTelcoms' %}">{% trans 'Add Telecoms' %}</a></li>
-
-
+ {% include 'bills/bills_include/header.html' %}
+<li class="breadcrumb-item current-page">{% trans 'Add Agent Shifts' %}</li>
 {% endblock header %}
 {% block content %}
-
-
                     <div class="main-body">
             <div class="page-wrapper">
                 <!-- [ Main Content ] start -->
@@ -26,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Telcom' %}</h5>
+                                <h5>{% trans 'Add Billing Cycle' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -35,16 +31,18 @@
                                             {% csrf_token %}
 
                                             <div class="form-group">
-                                                {{form.name|as_crispy_field}}
+                                                {{form.serial|as_crispy_field}}
 
-                                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                             <div class="form-group">
-                                                {{form.arabic_name|as_crispy_field}}
+                                                {{form.billing_type|as_crispy_field}}
                                             </div>
-                                           
-
-                                            <button type="submit" class="btn btn-primary">{% trans 'Update Telcom' %}</button>
+                                              <div class="form-group">
+                                                {{form.percentage_added_price|as_crispy_field}}
+                                            </div >
+                                         
+                                         
+                                            <button type="submit" class="btn btn-primary">{% trans 'Add Billing' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -54,8 +52,6 @@
                 </div>
             </div>
                     </div>
-
-
 
 {% endblock content %}
 

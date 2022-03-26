@@ -115,6 +115,7 @@ BILLING_TYPE = (
     ("annually", "Annually"),
 )
 
+#package billing 
 
 class PackageBillingType(models.Model):
     # this field is a foreign key referenced from the User model

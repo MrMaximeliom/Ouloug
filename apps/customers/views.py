@@ -1,16 +1,13 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-<<<<<<< HEAD
 from django.views.generic.edit import UpdateView
 
 # Create your views here.
 
 
 
-=======
 from django.views.generic import ListView, CreateView, UpdateView
 from Util.utils import SearchMan
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 """
 ModelListView Class:
@@ -242,7 +239,6 @@ class UpdateModelView(UpdateView):
         }
         return super(UpdateModelView, self).get(self)
 
-<<<<<<< HEAD
 
 
 # this for update code for cutomers 
@@ -279,11 +275,9 @@ class UpdateModelView(UpdateView):
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).post(self)
-=======
     def post(self, request, *args, **kwargs):
         self.extra_context = {
             self.main_active_flag:"active",
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).post(self)
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198

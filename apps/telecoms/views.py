@@ -3,13 +3,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 
-<<<<<<< HEAD
 from django.views.generic.edit import UpdateView
 
 
-=======
 from Util.utils import SearchMan
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 """
 ModelListView Class:
