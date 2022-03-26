@@ -35,7 +35,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+
                                                 <th>{% trans 'Country' %}</th>
                                                 <th>{% trans 'Customer' %}</th>
                                                 <th>{% trans 'Customer Agent' %}</th>
@@ -56,7 +56,6 @@
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
                                                 <td>{{object.country.name}}</td>
                                                 <td>{{object.customer.user.username}}</td>
                                                 <td>{{object.customer_agent}}</td>
@@ -82,6 +81,7 @@
 
                                         </tbody>
                                     </table>
+                                      <h5>Total Customer Calls Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>

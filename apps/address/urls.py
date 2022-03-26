@@ -22,7 +22,6 @@ from Util.static_strings import (
 
 )
 
-#TODO: complete modifing add and update views for other models except country
 urlpatterns = [
     # urls of countries
     path('countries/', staff_member_required(ModelListView.as_view(

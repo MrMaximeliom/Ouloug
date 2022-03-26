@@ -1,9 +1,3 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
@@ -27,8 +21,38 @@ from Util.static_strings import (
     PASSWORDS_NOT_MATCH,
     CONFIRM_PASSWORD_EMPTY_ERROR
 )
+from django.contrib.auth import views as auth_views
 
 
+class OulougLoginView(auth_views.LoginView):
+    template_name = 'accounts/login.html'
+    from apps.authentication.forms import UserLoginForm
+    # from Util.handle_login_form_strings import USERNAME_EMPTY_ERROR,USERNAME_BAD_FORMAT,PASSWORD_EMPTY_ERROR
+    form_class = UserLoginForm
+    success_url = ""
+
+    def form_valid(self, form):
+        from django.contrib.auth import login as auth_login
+        from django.http import HttpResponseRedirect
+        """Security check complete. Log the user in."""
+        current_user = form.get_user()
+        print("here")
+        if current_user.staff:
+            auth_login(self.request, form.get_user())
+            username = str(current_user)
+            messages.success(self.request, f" Welcome {username} Have a nice day")
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            messages.error(self.request, 'Phone Number or Password Error for Staff User')
+
+        return redirect('login')
+
+    extra_context = {
+        'title': 'Login Page',
+        'invalid_login': 'Phone Number or Password Error for Admin Or Monitor User',
+        'hide_footer': True,
+
+    }
 def login_view(request):
     form = LoginForm(request.POST)
     msg = None

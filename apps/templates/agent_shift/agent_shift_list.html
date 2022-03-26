@@ -25,7 +25,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addServices' %}" class="btn btn-secondary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Service' %}</a>
+                                <a href="{% url 'addAgentShifts' %}" class="btn btn-secondary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Agent Shift' %}</a>
 
                            </div>
                                   {% endif %}
@@ -36,7 +36,6 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>{% trans 'Name' %}</th>
                                                 <th>{% trans 'Arabic Name' %}</th>
                                                 <th>{% trans 'Country' %}</th>
@@ -62,7 +61,6 @@
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
                                                 <td>{{object.name}}</td>
                                                 <td>{{object.arabic_name}}</td>
                                                 <td>{{object.country.name}}</td>
@@ -93,6 +91,7 @@
 
                                         </tbody>
                                     </table>
+                                      <h5>Total Agent Shifts Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>

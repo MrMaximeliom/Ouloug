@@ -4,15 +4,23 @@ from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 from django.contrib import messages
 from Util.utils import SearchMan
+<<<<<<< HEAD
                                  
+=======
+
+
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from django.views.generic.edit import UpdateView
 
+<<<<<<< HEAD
 from models import Service
 
+=======
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414
 # Create your views here.
-
+from .models import Service
 
 """
 ModelListView Class:
@@ -240,7 +248,7 @@ class UpdateModelView(UpdateView):
     extra_context = {
         'ouloug_services': 'active',
         'services': 'active',
-        'title': _('Add Services')
+        'title': 'Add Services'
     }
 def changeServiceStatus(request,pk,status):
     service = get_object_or_404(Service, pk=pk)
@@ -254,6 +262,7 @@ def changeServiceStatus(request,pk,status):
 
 
 # This's for service update 
+<<<<<<< HEAD
 class UpdateModelView(UpdateView):
     model = None
     fields = "__all__"
@@ -286,3 +295,8 @@ class UpdateModelView(UpdateView):
         }
         return super(UpdateModelView, self).post(self)
         
+=======
+
+
+
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414

@@ -244,6 +244,7 @@ class UpdateModelView(UpdateView):
         }
         return super(UpdateModelView, self).post(self)
 
+<<<<<<< HEAD
 
 # This's for package update 
 
@@ -284,3 +285,5 @@ class UpdateModelView(UpdateView):
 
 
      
+=======
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414

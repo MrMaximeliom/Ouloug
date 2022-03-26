@@ -1,11 +1,14 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+<<<<<<< HEAD
 from django.views.generic.edit import UpdateView
 
 # Create your views here.
 
 
 
+=======
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414
 from django.views.generic import ListView, CreateView, UpdateView
 from Util.utils import SearchMan
 
@@ -239,6 +242,7 @@ class UpdateModelView(UpdateView):
         }
         return super(UpdateModelView, self).get(self)
 
+<<<<<<< HEAD
 
 
 # this for update code for cutomers 
@@ -281,3 +285,5 @@ class UpdateModelView(UpdateView):
             self.active_flag: "active"
         }
         return super(UpdateModelView, self).post(self)
+=======
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414

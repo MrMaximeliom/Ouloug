@@ -1,5 +1,5 @@
 {% extends "layouts/base-fullscreen.html" %}
-
+{% load widget_tweaks %}
 {% block title %} Login {% endblock %}
 
 {% block content %}   
@@ -46,15 +46,22 @@
                     <br />
 
                     <form role="form" method="post" action="" autocomplete="off">
+                               {% if form.errors %}
+                               <div class="alert alert-danger">
+                                 {{invalid_login}}
+                                 </div>
+                                {% endif %}
 
                         {% csrf_token %}                   
 
                         <div class="input-group mb-3">
-                            {{ form.username }}
+                         {% render_field form.username class="form-control" %}
+
                         </div>
                         
                         <div class="input-group mb-4">
-                            {{ form.password }}
+                          {% render_field form.password class="form-control" %}
+
                         </div>
                         
                         <div class="form-group text-left">

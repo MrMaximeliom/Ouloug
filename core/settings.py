@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'apps.telecoms',
     'captcha',
     'mathfilters',
+    'widget_tweaks',
 
 ]
 
@@ -67,7 +68,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'core.urls'
 LOGIN_REDIRECT_URL = "home"  # Route defined in home/urls.py
-LOGOUT_REDIRECT_URL = "home"  # Route defined in home/urls.py
+LOGOUT_REDIRECT_URL = "login"  # Route defined in home/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -163,6 +164,7 @@ RECAPTCHA_PRIVATE_KEY = '6LfjeiweAAAAAFLh0XOtljrp-rcENeoAm5zXdY9r'
 
 
 RECAPTCHA_REQUIRED_SCORE = 0.85
+
 
 
 #############################################################

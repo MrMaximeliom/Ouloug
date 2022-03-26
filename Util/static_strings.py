@@ -56,6 +56,10 @@ NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE = _("There are no services yet to v
 NO_RECORDS_FOR_PACKAGE_MODEL_ADMIN_MESSAGE = _("There are no packages yet ... you can add new packages from ")
 NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE = _("There are no packages yet to view")
 
+# NO RECORDS FOUND STRINGS - Package Billing Type Pages
+NO_RECORDS_FOR_PACKAGE_BILLING_TYPE_MODEL_ADMIN_MESSAGE = _("There are no package billing types yet ... you can add new packages from ")
+NO_RECORDS_FOR_PACKAGE_BILLING_TYPE_MODEL_MONITOR_MESSAGE = _("There are no package billing types yet to view")
+
 # NO RECORDS FOUND STRINGS - Teams Pages
 NO_RECORDS_FOR_TEAM_MODEL_ADMIN_MESSAGE = _("There are no teams yet ... you can add new teams from ")
 NO_RECORDS_FOR_TEAM_MODEL_MONITOR_MESSAGE = _("There are no teams yet to view")
@@ -74,6 +78,13 @@ NO_RECORDS_FOR_TELECOM_NUMBER_MODEL_MONITOR_MESSAGE = _("There are no telecom nu
 
 # NO RECORDS FOUND STRINGS - Customer Call Page
 NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE = _("There are no customer calls yet to view")
+
+# NO RECORDS FOUND STRINGS - Customer Payment Page
+NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_ADMIN_MESSAGE = _("There are no customer payments yet to view ... you can add new customer payments from ")
+NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_MONITOR_MESSAGE = _("There are no customer payments yet to view")
+
+# tool tip text for add new city button
+ADD_NEW_CUSTOMER_PAYMENT_TOOL_TIP_TEXT = _("add new customer payment")
 
 # tool tip text for add new city button
 ADD_NEW_CITY_TOOL_TIP_TEXT = _("add new city")
@@ -104,6 +115,21 @@ ADD_NEW_TELECOM_TOOL_TIP_TEXT = _("Add new telecoms")
 
 # tool tip text for add new telecom numbers button
 ADD_NEW_TELECOM_NUMBER_TOOL_TIP_TEXT = _("Add new telecom numbers")
+
+# tool tip text for add new team button
+ADD_NEW_TEAM_TOOL_TIP_TEXT = _("Add new team")
+
+# tool tip text for add new team button
+ADD_NEW_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("Add new package billing type")
+
+# tool tip text for update customer payment button
+UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT = _("update customer payment")
+
+# tool tip text for update team button
+UPDATE_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("update team")
+
+# tool tip text for update team button
+UPDATE_TEAM_TOOL_TIP_TEXT = _("update team")
 
 # tool tip text for update telecom button
 UPDATE_TELECOM_TOOL_TIP_TEXT = _("update telecom")

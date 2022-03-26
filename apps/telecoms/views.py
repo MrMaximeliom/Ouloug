@@ -2,11 +2,17 @@ from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
+<<<<<<< HEAD
 
 from django.views.generic.edit import UpdateView
 
 
 from Util.utils import SearchMan
+=======
+from django.views.generic.edit import UpdateView
+from Util.utils import SearchMan
+
+>>>>>>> 3750bedeabae27a9145c87fe7665ebe2af3be414
 
 """
 ModelListView Class:
@@ -204,67 +210,23 @@ it requires to define the following params:
 - main_active_flag (this flag is used to add 'active' class to the main master current pages in sidebar)
 
 """
-
-
-class UpdateModelView(UpdateView):
-    model = None
-    fields = None
-    template_name = None
-    active_flag = None
-    reference_field_name = None
-    main_active_flag = None
-
-    def form_invalid(self, form):
-        for field, items in form.errors.items():
-            for item in items:
-                print('{}: {}'.format(field, item))
-        instance_name = form.cleaned_data[self.reference_field_name]
-        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
-        return super(UpdateModelView, self).form_invalid(form)
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.last_modified_by = self.request.user
-        self.object.save()
-        instance_name = form.cleaned_data[self.reference_field_name]
-        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
-        return super().form_valid(form)
-
-    def get(self, request, *args, **kwargs):
-        self.extra_context = {
-            self.main_active_flag: "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).get(self)
-
-    def post(self, request, *args, **kwargs):
-        self.extra_context = {
-            self.main_active_flag: "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).post(self)
-
-
-
-
-# This's for telecoms update 
-
-
 class UpdateModelView(UpdateView):
     model = None
     fields = "__all__"
     template_name = None
     active_flag = None
+    main_active_flag = None,
+    reference_field_name = "name",
     def form_invalid(self, form):
         for field, items in form.errors.items():
             for item in items:
                 print('{}: {}'.format(field, item))
-        instance_name = form.cleaned_data['name']
+        instance_name = form.cleaned_data[self.reference_field_name]
         messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
         return super(UpdateModelView, self).form_invalid(form)
 
     def form_valid(self, form):
-        instance_name = form.cleaned_data['name']
+        instance_name = form.cleaned_data[self.reference_field_name]
         messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
         return super().form_valid(form)
 

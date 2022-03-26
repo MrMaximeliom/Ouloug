@@ -107,6 +107,12 @@ class SearchMan:
             from apps.telecoms.models import TelecomNumber
             telecom_numbers = TelecomNumber.objects.all().order_by("id")
             self.paginator = Paginator(telecom_numbers, 5)
+        if model == "CustomerPayment":
+            from apps.customers.models import CustomerPayment
+            customer_payments = CustomerPayment.objects.all().order_by("id")
+            self.paginator = Paginator(customer_payments, 5)
+
+
 
     def setPaginator(self, query):
         from django.core.paginator import Paginator

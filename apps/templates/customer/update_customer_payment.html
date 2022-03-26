@@ -7,20 +7,14 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Add Teams' %}
+{% trans 'Update Customer Payment' %}
 {% endblock pages_name %}
 
 {% block header%}
-
- {% include './includes/header.html' %}
-
-<li class="breadcrumb-item current-page">{% trans 'Add Teams' %}</li>
-
-
+ {% include 'customer/customer_includes/header.html' %}
+<li class="breadcrumb-item current-page">{% trans 'Update Customer' %}</li>
 {% endblock header %}
 {% block content %}
-
-
                     <div class="main-body">
             <div class="page-wrapper">
                 <!-- [ Main Content ] start -->
@@ -28,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Team' %}</h5>
+                                <h5>{% trans 'Update Customer Payment' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -37,21 +31,28 @@
                                             {% csrf_token %}
 
                                             <div class="form-group">
-                                                {{form.name|as_crispy_field}}
+                                                {{form.customer|as_crispy_field}}
 
                                             </div>
                                             <div class="form-group">
-                                                {{form.arabic_name|as_crispy_field}}
+                                                {{form.customer_package|as_crispy_field}}
                                             </div>
-                                             <div class="form-group">
-                                                {{form.country|as_crispy_field}}
-                                            </div>
-                                             <div class="form-group">
-                                                {{form.user|as_crispy_field}}
-                                            </div>
-                                           
+                                              <div class="form-group">
+                                                {{form.transaction_amount|as_crispy_field}}
+                                            </div >
+                                            <div class="form-group">
+                                               {{form.currency|as_crispy_field}}
 
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Team' %}</button>
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.payment_type|as_crispy_field}}
+
+                                            </div>
+                                            <div class="form-group">
+                                               {{form.status|as_crispy_field}}
+
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Customer Payment' %}</button>
                                         </form>
                                     </div>
                                 </div>
@@ -61,7 +62,6 @@
                 </div>
             </div>
                     </div>
-
 
 {% endblock content %}
 

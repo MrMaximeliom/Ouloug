@@ -5,33 +5,27 @@
 
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
-
 {% block pages_name %}
-{% trans 'Business' %}
+{% trans 'Customer Payments' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'business_type/business_type_includes/header.html' %}
+ {% include 'customer/customer_includes/header.html' %}
 
 {% endblock header %}
-
 {% block content %}
 
-
-            <!-- [ breadcrumb ] start -->
-
-            <!-- [ breadcrumb ] end -->
  {% if object_list|length %}
               <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header card-flex-header">
                                 <div>
-                                <h5>Business Table</h5>
+                                <h5>{% trans 'Add Customer Payments Table' %}</h5>
                                        </div>
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addBusinessType' %}" class="btn btn-secondary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Business' %}</a>
+                                <a href="{% url 'addCustomerPayments' %}" class="btn btn-secondary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Customer Payment' %}</a>
 
                            </div>
                                   {% endif %}
@@ -42,45 +36,47 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>{% trans 'type_name' %}</th>
-                                                <th>{% trans 'arabic_type_name' %}</th>
-                                                <th>{% trans 'other_flag' %}</th>
-                                               
-                                                <th>{% trans 'Added By' %}</th>
-                                                <th>{% trans 'Added Date and Time' %}</th>
-                                                <th>{% trans 'Last Modification' %}</th>
+                                                <th>{% trans 'Customer' %}</th>
+                                                <th>{% trans 'Customer Package' %}</th>
+                                                <th>{% trans 'Transaction Datetime' %}</th>
+                                                <th>{% trans 'Transaction Amount' %}</th>
+                                                <th>{% trans 'Currency' %}</th>
+                                                <th>{% trans 'Payment Type' %}</th>
+                                                <th>{% trans 'Status' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <th>{% trans 'Update' %}</th>
-
                                                 {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
-                                                <td>{{object.type_name}}</td>
-                                                <td>{{object.arabic_type_name}}</td>
-                                                <td>{{object.other_flag}}</td>
-                                                <td>{{object.added_by.username}}</td>
-                                                <td>{{object.added_datetime}}</td>
-                                                <td>{{object.last_modification_datetime}}</td>
-
-                                                  {% if request.user.user_type == "administrator"  %}
+                                                <td>{{object.customer.business_name}}</td>
+                                                <td>{{object.customer_package.name}}</td>
+                                                <td>{{object.country.name}}</td>
+                                                <td>{{object.customer.business_name}}</td>
+                                                <td>{{object.transaction_datetime}}</td>
+                                                <td>{{object.transaction_amount}}</td>
+                                                <td>{{object.currency.name}}</td>
+                                                <td>{{object.payment_type}}</td>
+                                                <td>{{object.status}}</td>
+                                                    {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="{% url 'updateBusinessType' slug=object.slug %}" class="btn btn-primary" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="{% url 'updateCustomerPayment' slug=object.slug %}" class="btn btn-primary" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
+                                                <td>
 
+                                                </td>
                                                 {% endif %}
                                             </tr>
                                         {% endfor %}
 
                                         </tbody>
                                     </table>
-                                      <h5>Total Business Types Count: {{instances_count}}</h5>
+                                      <h5>Total Customer Payments Count: {{instances_count}}</h5>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -92,15 +88,12 @@
 
                {% if request.user.user_type == "administrator"  %}
 <h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addBusinessType' %}">{% trans 'Here' %}</a></h3>
+    <a href="{% url 'addCustomerPayments' %}">{% trans 'Here' %}</a></h3>
             {% else %}
             <h3 class="delete-warning">{{no_records_monitor}}</h3>
             {% endif %}
 
             {% endif %}
-
-
-
 
 {% endblock content %}
 

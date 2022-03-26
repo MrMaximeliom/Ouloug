@@ -36,7 +36,7 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
+
                                                 <th>{% trans 'Name' %}</th>
                                                 <th>{% trans 'Arabic Name' %}</th>
                                                 <th>{% trans 'Telecom' %}</th>
@@ -51,14 +51,12 @@
                                                 <th>{% trans 'Discount Price' %}</th>
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <th>{% trans 'Update' %}</th>
-                                                <th>{% trans 'Delete' %}</th>
                                                 {% endif %}
                                             </tr>
                                         </thead>
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
                                                 <td>{{object.name}}</td>
                                                 <td>{{object.arabic_name}}</td>
                                                 <td>{{object.telecom.name}}</td>
@@ -84,6 +82,7 @@
 
                                         </tbody>
                                     </table>
+                                      <h5>Total Packages Count: {{instances_count}}</h5>
                                 </div>
                             </div>
                         </div>
