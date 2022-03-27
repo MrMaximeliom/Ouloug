@@ -63,7 +63,7 @@ class SearchMan:
         from django.core.paginator import Paginator
         if model == "Country":
             from apps.address.models import Country
-            countries = Country.objects.all().order_by("id")
+            countries = Country.objects.all().filter(status="active").order_by("id")
             self.paginator = Paginator(countries, 5)
         if model == "City":
             from apps.address.models import City
