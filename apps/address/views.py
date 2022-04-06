@@ -1,101 +1,101 @@
 from django.contrib import messages
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from django.views.generic import ListView, CreateView
-from django.views.generic.edit import UpdateView
 from Util.utils import SearchMan
-
-"""
-ModelListView Class:
-is a class used to list instances of a specified model,
-it requires to define the following params:
-- model (the model of the updated instance)
-- template_name ( the path of the view that will be used)
-- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
-- model_name (this variable is used to specify model name for SearchMan class) 
-- no_records_admin (this variable is used to specify the message that appears 
-                     if there are no records for the admin user) 
-- no_records_monitor (this variable is used to specify the message that appears 
-                     if there are no records for the monitor user) 
-- add_tool_tip_text (specifies the text that appears while hovering the 'add' button)
-- update_tool_tip_text (specifies the text that appears while hovering the 'update' button)
-"""
+from Util.static_strings import (
+    SEARCH_STATES_TIP, CLEAR_SEARCH_TIP
+)
+from apps.common_views.views import BaseListView
+from apps.common_views.useful_functions import get_filtered_query
 
 
-class ModelListView(ListView):
-    model = None
-    template_name = None
-    active_flag = None
-    model_name = None
-    no_records_admin = None
-    no_records_monitor = None
-    add_tool_tip_text = None
-    update_tool_tip_text = None
 
-    # return default queryset used in this view
-    def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
+class StatesListView(BaseListView):
+    searchManObj = None
+    search_result = ''
+    is_search_ordered = False
+    order_field = ''
+    ordering_value = "Ascending"
 
-    # def post(self, request, *args, **kwargs):
-    #     queryset = self.get_queryset()
-    #     paginator = Paginator(queryset, 5)
-    #     if request.POST.get('search_phrase') != '' and request.POST.get('search_options') == 'start_date':
-    #         search_message = request.POST.get('search_phrase')
-    #         self.search_result = Offer.objects.all().filter(
-    #             name=search_message).order_by('-id')
-    #         self.searchManObj.setPaginator(self.search_result)
-    #         self.searchManObj.setSearchPhrase(search_message)
-    #         self.searchManObj.setSearchOption('Offer Start Date')
-    #         self.searchManObj.setSearchError(False)
-    #     if 'clear' not in request.POST:
-    #         self.searchManObj.setSearch(True)
-    #     if request.POST.get('clear') == 'clear':
-    #         offers = self.get_queryset()
-    #         self.searchManObj.setPaginator(offers)
-    #         self.searchManObj.setSearch(False)
-    #     if request.GET.get('page'):
-    #         # Grab the current page from query parameter consultant
-    #         page = int(request.GET.get('page'))
-    #     else:
-    #         page = None
-    #
-    #     try:
-    #         paginator = self.searchManObj.getPaginator()
-    #         offers = paginator.page(page)
-    #         # Create a page object for the current page.
-    #     except PageNotAnInteger:
-    #         # If the query parameter is empty then grab the first page.
-    #         offers = paginator.page(1)
-    #         page = 1
-    #     except EmptyPage:
-    #         # If the query parameter is greater than num_pages then grab the last page.
-    #         offers = paginator.page(paginator.num_pages)
-    #         page = paginator.num_pages
-    #     self.extra_context = {
-    #         'offers': 'active',
-    #         self.active_flag: 'active',
-    #         'page_range': paginator.page_range,
-    #         'num_pages': paginator.num_pages,
-    #         'offers_list': offers,
-    #         'search': self.searchManObj.getSearch(),
-    #         'search_result': self.search_result,
-    #         'search_phrase': self.searchManObj.getSearchPhrase(),
-    #         'search_option': self.searchManObj.getSearchOption(),
-    #         'search_error': self.searchManObj.getSearchError(),
-    #         'clear_search_tip': CLEAR_SEARCH_TIP,
-    #         'search_offers_tip': SEARCH_OFFERS_TIP,
-    #         'current_page': page,
-    #         'title':self.title
-    #     }
-    #     return super().get(request)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.searchManObj = SearchMan(self.model_name)
 
     def get(self, request, *args, **kwargs):
-        searchManObj = SearchMan(self.model_name)
-        queryset = self.get_queryset()
+        from apps.address.models import Country, State
+        from Util.lists_of_data import STATE_STATUS
+        # self.searchManObj.set_querySet(self.get_queryset())
+        queryset = self.searchManObj.get_queryset()
         paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
+        if 'filter_value' in request.GET  and 'clear' not in request.GET:
+            field_name = self.request.GET['filter_by']
+            field_value = self.request.GET['filter_value']
+            if field_name == 'none':
+                messages.error(request,
+                               "Please choose field to search by first!")
+                self.searchManObj.setSearchError(True)
+            else:
+                if field_name == "country":
+                    self.search_result = State.objects.filter(
+                        country__name=field_value).order_by('id')
+                    ordering = self.request.GET['filter_ordering']
+                    order_by_filed = self.request.GET['order_by']
+                    filtered_object = get_filtered_query(True, 'contains', field_name, field_value, 'name')
+                    print("filtered objects are: ", filtered_object)
+                    if order_by_filed and order_by_filed != 'none':
+                        self.is_search_ordered = True
+                        self.order_field = order_by_filed
+                        if ordering == "asc":
+                            self.search_result = State.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Ascending"
+                        else:
+                            order_by_filed = '-' + order_by_filed
+                            self.search_result = State.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Descending"
+                    else:
+                        self.is_search_ordered = False
+                        self.search_result = State.objects.filter(filtered_object)
+                self.searchManObj.setPaginator(self.search_result)
+                self.searchManObj.setSearchPhrase(field_value)
+                self.searchManObj.setSearchOption('Country')
+                self.searchManObj.setSearchError(False)
+                self.searchManObj.set_querySet(self.search_result)
+                self.searchManObj.setSearch(True)
+                if field_name == "status":
+                    field_value = self.request.GET['filter_value']
+                    self.search_result = State.objects.filter(
+                        status=field_value).order_by('id')
+                    ordering = self.request.GET['filter_ordering']
+                    order_by_filed = self.request.GET['order_by']
+                    filtered_object = get_filtered_query(False, 'equal', field_name, field_value)
+                    if order_by_filed and order_by_filed != 'none':
+                        self.is_search_ordered = True
+                        self.order_field = order_by_filed
+                        if ordering == "asc":
+                            self.search_result = State.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Ascending"
+                        else:
+                            order_by_filed = '-' + order_by_filed
+                            self.search_result = State.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Descending"
+                    else:
+                        self.is_search_ordered = False
+                        self.search_result = State.objects.filter(filtered_object)
+                self.searchManObj.setPaginator(self.search_result)
+                self.searchManObj.setSearchPhrase(field_value)
+                self.searchManObj.setSearchOption('Status')
+                self.searchManObj.setSearchError(False)
+                self.searchManObj.set_querySet(self.search_result)
+                self.searchManObj.setSearch(True)
+        if 'page' not in request.GET and 'filter_by' not in request.GET:
             instances = self.model.objects.all().order_by('-id')
-            searchManObj.setPaginator(instances)
-            searchManObj.setSearch(False)
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
+        if 'clear' in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
         if request.GET.get('page'):
             # Grab the current page from query parameter consultant
             page = int(request.GET.get('page'))
@@ -103,7 +103,7 @@ class ModelListView(ListView):
             page = None
 
         try:
-            paginator = searchManObj.getPaginator()
+            paginator = self.searchManObj.getPaginator()
             instances = paginator.page(page)
             # Create a page object for the current page.
         except PageNotAnInteger:
@@ -118,114 +118,273 @@ class ModelListView(ListView):
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
             'object_list': instances,
-            'masters': 'active',
+            self.main_active_flag: 'active',
             self.active_flag: "active",
             "no_records_admin": self.no_records_admin,
             "no_records_monitor": self.no_records_monitor,
             "add_tool_tip_text": self.add_tool_tip_text,
             "update_tool_tip_text": self.update_tool_tip_text,
-            "instances_count": len(self.get_queryset()),
-
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
+            "instances_count": len(self.searchManObj.get_queryset()),
+            "countries_list": Country.objects.all(),
+            "is_search_ordered": self.is_search_ordered,
+            "order_by_field": self.order_field,
+            "ordering_value": self.ordering_value,
+            'search': self.searchManObj.getSearch(),
+            'search_result': self.search_result,
+            'search_phrase': self.searchManObj.getSearchPhrase(),
+            'search_option': self.searchManObj.getSearchOption(),
+            'search_error': self.searchManObj.getSearchError(),
             'current_page': page,
+            'search_states_tip': SEARCH_STATES_TIP,
+            'clear_search_tip': CLEAR_SEARCH_TIP,
+            'title': self.title,
+            'data_js': {
+                "countries_list": list(Country.objects.values("name")),
+                "status": STATE_STATUS,
+            }
         }
         return super().get(request)
 
-"""
-AddModelView Class:
-is a class used to add instances of a specified model,
-it requires to define the following params:
-- model (the model to add new instances)
-- template_name ( the path of the view that will be used)
-- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
-"""
 
+class CitiesListView(BaseListView):
+    searchManObj = None
+    search_result = ''
+    is_search_ordered = False
+    order_field = ''
+    ordering_value = "Ascending"
 
-class AddModelView(CreateView):
-    model = None
-    fields = None
-    template_name = None
-    active_flag = None
-
-    def form_invalid(self, form):
-        for field, items in form.errors.items():
-            for item in items:
-                print('{}: {}'.format(field, item))
-        instance_name = form.cleaned_data['name']
-        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not added , please try again!")
-        return super(AddModelView, self).form_invalid(form)
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        instance_name = form.cleaned_data['name']
-        self.object.added_by = self.request.user
-        self.object.save()
-        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> added successfully")
-        return super().form_valid(form)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.searchManObj = SearchMan(self.model_name)
 
     def get(self, request, *args, **kwargs):
+        from apps.address.models import State , City
+        from Util.lists_of_data import STATE_STATUS
+        # self.searchManObj.set_querySet(self.get_queryset())
+        queryset = self.searchManObj.get_queryset()
+        paginator = Paginator(queryset, 5)
+        if 'filter_value' in request.GET and 'clear' not in request.GET:
+            field_name = self.request.GET['filter_by']
+            field_value = self.request.GET['filter_value']
+            if field_name == 'none':
+                messages.error(request,
+                               "Please choose field to search by first!")
+                self.searchManObj.setSearchError(True)
+            else:
+                if field_name == "state":
+                    self.search_result = City.objects.filter(
+                        state__name=field_value).order_by('id')
+                    ordering = self.request.GET['filter_ordering']
+                    order_by_filed = self.request.GET['order_by']
+                    filtered_object = get_filtered_query(True, 'contains', field_name, field_value, 'name')
+                    if order_by_filed and order_by_filed != 'none':
+                        self.is_search_ordered = True
+                        self.order_field = order_by_filed
+                        if ordering == "asc":
+                            self.search_result = City.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Ascending"
+                        else:
+                            order_by_filed = '-' + order_by_filed
+                            self.search_result = City.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Descending"
+                    else:
+                        self.is_search_ordered = False
+                        self.search_result = City.objects.filter(filtered_object)
+                self.searchManObj.setPaginator(self.search_result)
+                self.searchManObj.setSearchPhrase(field_value)
+                self.searchManObj.setSearchOption('State')
+                self.searchManObj.setSearchError(False)
+                self.searchManObj.set_querySet(self.search_result)
+                self.searchManObj.setSearch(True)
+                if field_name == "status":
+                    field_value = self.request.GET['filter_value']
+                    self.search_result = City.objects.filter(
+                        status=field_value).order_by('id')
+                    ordering = self.request.GET['filter_ordering']
+                    order_by_filed = self.request.GET['order_by']
+                    filtered_object = get_filtered_query(False, 'equal', field_name, field_value)
+                    if order_by_filed and order_by_filed != 'none':
+                        self.is_search_ordered = True
+                        self.order_field = order_by_filed
+                        if ordering == "asc":
+                            self.search_result = City.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Ascending"
+                        else:
+                            order_by_filed = '-' + order_by_filed
+                            self.search_result = City.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Descending"
+                    else:
+                        self.is_search_ordered = False
+                        self.search_result = City.objects.filter(filtered_object)
+                self.searchManObj.setPaginator(self.search_result)
+                self.searchManObj.setSearchPhrase(field_value)
+                self.searchManObj.setSearchOption('Status')
+                self.searchManObj.setSearchError(False)
+                self.searchManObj.set_querySet(self.search_result)
+                self.searchManObj.setSearch(True)
+        if 'page' not in request.GET and 'filter_by' not in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
+        if 'clear' in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
+        if request.GET.get('page'):
+            # Grab the current page from query parameter consultant
+            page = int(request.GET.get('page'))
+        else:
+            page = None
+
+        try:
+            paginator = self.searchManObj.getPaginator()
+            instances = paginator.page(page)
+            # Create a page object for the current page.
+        except PageNotAnInteger:
+            # If the query parameter is empty then grab the first page.
+            instances = paginator.page(1)
+            page = 1
+        except EmptyPage:
+            # If the query parameter is greater than num_pages then grab the last page.
+            instances = paginator.page(paginator.num_pages)
+            page = paginator.num_pages
         self.extra_context = {
-            "masters": "active",
-            self.active_flag: "active"
+            'page_range': paginator.page_range,
+            'num_pages': paginator.num_pages,
+            'object_list': instances,
+            self.main_active_flag: 'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.searchManObj.get_queryset()),
+            "is_search_ordered": self.is_search_ordered,
+            "order_by_field": self.order_field,
+            "ordering_value": self.ordering_value,
+            'search': self.searchManObj.getSearch(),
+            'search_result': self.search_result,
+            'search_phrase': self.searchManObj.getSearchPhrase(),
+            'search_option': self.searchManObj.getSearchOption(),
+            'search_error': self.searchManObj.getSearchError(),
+            'current_page': page,
+            'search_states_tip': SEARCH_STATES_TIP,
+            'clear_search_tip': CLEAR_SEARCH_TIP,
+            'title': self.title,
+            'data_js': {
+                "states_list": list(State.objects.values("name")),
+                "status": STATE_STATUS,
+            }
         }
-        return super(AddModelView, self).get(self)
+        return super().get(request)
 
-    def post(self, request, *args, **kwargs):
-        self.extra_context = {
-            "masters": "active",
-            self.active_flag: "active"
-        }
-        return super(AddModelView, self).post(self)
+class CurrenciesListView(BaseListView):
+    searchManObj = None
+    search_result = ''
+    is_search_ordered = False
+    order_field = ''
+    ordering_value = "Ascending"
 
-
-
-"""
-UpdateModelView Class:
-is a class used to update instances of a specified model,
-it requires to define the following params:
-- model (the model of the updated instance)
-- template_name ( the path of the view that will be used)
-- active_flag (this flag is used to add 'active' class to the current pages in sidebar) 
-"""
-
-
-class UpdateModelView(UpdateView):
-    model = None
-    fields = None
-    template_name = None
-    active_flag = None
-
-
-    def form_invalid(self, form):
-        for field, items in form.errors.items():
-            for item in items:
-                print('{}: {}'.format(field, item))
-        instance_name = form.cleaned_data['name']
-        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
-        return super(UpdateModelView, self).form_invalid(form)
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.last_modified_by = self.request.user
-        self.object.save()
-        instance_name = form.cleaned_data['name']
-        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
-        return super().form_valid(form)
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.searchManObj = SearchMan(self.model_name)
 
     def get(self, request, *args, **kwargs):
-        self.extra_context = {
-            "masters": "active",
-            self.active_flag: "active"
-        }
-        return super(UpdateModelView, self).get(self)
+        from apps.address.models import Country, Currency
+        # self.searchManObj.set_querySet(self.get_queryset())
+        queryset = self.searchManObj.get_queryset()
+        paginator = Paginator(queryset, 5)
+        if 'filter_value' in request.GET  and 'clear' not in request.GET:
+            field_name = self.request.GET['filter_by']
+            field_value = self.request.GET['filter_value']
+            if field_name == 'none':
+                messages.error(request,
+                               "Please choose field to search by first!")
+                self.searchManObj.setSearchError(True)
+            else:
+                if field_name == "country":
+                    self.search_result = Currency.objects.filter(
+                        country__name=field_value).order_by('id')
+                    ordering = self.request.GET['filter_ordering']
+                    order_by_filed = self.request.GET['order_by']
+                    filtered_object = get_filtered_query(True, 'contains', field_name, field_value, 'name')
+                    print("filtered objects are: ", filtered_object)
+                    if order_by_filed and order_by_filed != 'none':
+                        self.is_search_ordered = True
+                        self.order_field = order_by_filed
+                        if ordering == "asc":
+                            self.search_result = Currency.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Ascending"
+                        else:
+                            order_by_filed = '-' + order_by_filed
+                            self.search_result = Currency.objects.filter(filtered_object).order_by(order_by_filed)
+                            self.ordering_value = "Descending"
+                    else:
+                        self.is_search_ordered = False
+                        self.search_result = Currency.objects.filter(filtered_object)
+                self.searchManObj.setPaginator(self.search_result)
+                self.searchManObj.setSearchPhrase(field_value)
+                self.searchManObj.setSearchOption('Country')
+                self.searchManObj.setSearchError(False)
+                self.searchManObj.set_querySet(self.search_result)
+                self.searchManObj.setSearch(True)
+        if 'page' not in request.GET and 'filter_by' not in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
+        if 'clear' in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            self.searchManObj.setPaginator(instances)
+            self.searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
+        if request.GET.get('page'):
+            # Grab the current page from query parameter consultant
+            page = int(request.GET.get('page'))
+        else:
+            page = None
 
-    def post(self, request, *args, **kwargs):
+        try:
+            paginator = self.searchManObj.getPaginator()
+            instances = paginator.page(page)
+            # Create a page object for the current page.
+        except PageNotAnInteger:
+            # If the query parameter is empty then grab the first page.
+            instances = paginator.page(1)
+            page = 1
+        except EmptyPage:
+            # If the query parameter is greater than num_pages then grab the last page.
+            instances = paginator.page(paginator.num_pages)
+            page = paginator.num_pages
         self.extra_context = {
-            "masters": "active",
-            self.active_flag: "active"
+            'page_range': paginator.page_range,
+            'num_pages': paginator.num_pages,
+            'object_list': instances,
+            self.main_active_flag: 'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.searchManObj.get_queryset()),
+            "countries_list": Country.objects.all(),
+            "is_search_ordered": self.is_search_ordered,
+            "order_by_field": self.order_field,
+            "ordering_value": self.ordering_value,
+            'search': self.searchManObj.getSearch(),
+            'search_result': self.search_result,
+            'search_phrase': self.searchManObj.getSearchPhrase(),
+            'search_option': self.searchManObj.getSearchOption(),
+            'search_error': self.searchManObj.getSearchError(),
+            'current_page': page,
+            'search_states_tip': SEARCH_STATES_TIP,
+            'clear_search_tip': CLEAR_SEARCH_TIP,
+            'title': self.title,
+            'data_js': {
+                "countries_list": list(Country.objects.values("name")),
+
+            }
         }
-        return super(UpdateModelView, self).post(self)
+        return super().get(request)

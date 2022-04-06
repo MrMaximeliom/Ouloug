@@ -1,10 +1,10 @@
-from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import CreateView
 from django.views.generic import ListView
 from django.contrib import messages
 from Util.utils import SearchMan
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.views.generic.edit import UpdateView
+from django.views.generic import DetailView
 
 """
 ModelListView Class:
@@ -26,6 +26,7 @@ it requires to define the following params:
 
 
 class ModelListView(ListView):
+
     model = None
     template_name = None
     main_active_flag = None
@@ -36,6 +37,67 @@ class ModelListView(ListView):
     add_tool_tip_text = None
     update_tool_tip_text = None
     title = None
+    searchManObj = SearchMan(model_name)
+
+    # return default queryset used in this view
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-id')
+
+    def get(self, request, *args, **kwargs):
+        searchManObj = SearchMan(self.model_name)
+        queryset = self.get_queryset()
+        paginator = Paginator(queryset, 5)
+        if 'page' not in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            searchManObj.setPaginator(instances)
+            searchManObj.setSearch(False)
+        if request.GET.get('page'):
+            # Grab the current page from query parameter consultant
+            page = int(request.GET.get('page'))
+        else:
+            page = None
+
+        try:
+            paginator = searchManObj.getPaginator()
+            instances = paginator.page(page)
+            # Create a page object for the current page.
+        except PageNotAnInteger:
+            # If the query parameter is empty then grab the first page.
+            instances = paginator.page(1)
+            page = 1
+        except EmptyPage:
+            # If the query parameter is greater than num_pages then grab the last page.
+            instances = paginator.page(paginator.num_pages)
+            page = paginator.num_pages
+        self.extra_context = {
+            'page_range': paginator.page_range,
+            'num_pages': paginator.num_pages,
+            'object_list': instances,
+            self.main_active_flag: 'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.get_queryset()),
+            'current_page': page,
+            'title': self.title
+        }
+        return super().get(request)
+
+
+class BaseListView(ListView):
+    model = None
+    template_name = None
+    main_active_flag = None
+    active_flag = None
+    model_name = None
+    no_records_admin = None
+    no_records_monitor = None
+    add_tool_tip_text = None
+    update_tool_tip_text = None
+    title = None
+    searchManObj = SearchMan(model_name)
 
     # return default queryset used in this view
     def get_queryset(self):
@@ -94,53 +156,7 @@ class ModelListView(ListView):
     #     }
     #     return super().get(request)
 
-    def get(self, request, *args, **kwargs):
-        searchManObj = SearchMan(self.model_name)
-        queryset = self.get_queryset()
-        paginator = Paginator(queryset, 5)
-        if 'page' not in request.GET:
-            instances = self.model.objects.all().order_by('-id')
-            searchManObj.setPaginator(instances)
-            searchManObj.setSearch(False)
-        if request.GET.get('page'):
-            # Grab the current page from query parameter consultant
-            page = int(request.GET.get('page'))
-        else:
-            page = None
 
-        try:
-            paginator = searchManObj.getPaginator()
-            instances = paginator.page(page)
-            # Create a page object for the current page.
-        except PageNotAnInteger:
-            # If the query parameter is empty then grab the first page.
-            instances = paginator.page(1)
-            page = 1
-        except EmptyPage:
-            # If the query parameter is greater than num_pages then grab the last page.
-            instances = paginator.page(paginator.num_pages)
-            page = paginator.num_pages
-        self.extra_context = {
-            'page_range': paginator.page_range,
-            'num_pages': paginator.num_pages,
-            'object_list': instances,
-            self.main_active_flag: 'active',
-            self.active_flag: "active",
-            "no_records_admin": self.no_records_admin,
-            "no_records_monitor": self.no_records_monitor,
-            "add_tool_tip_text": self.add_tool_tip_text,
-            "update_tool_tip_text": self.update_tool_tip_text,
-            "instances_count": len(self.get_queryset()),
-
-            # 'search': self.searchManObj.getSearch(),
-            # 'search_result': self.search_result,
-            # 'search_phrase': self.searchManObj.getSearchPhrase(),
-            # 'search_option': self.searchManObj.getSearchOption(),
-            # 'search_error': self.searchManObj.getSearchError(),
-            'current_page': page,
-            'title': self.title
-        }
-        return super().get(request)
 
 
 """
@@ -159,7 +175,9 @@ it requires to define the following params:
 class AddModelView(CreateView):
     model = None
     fields = None
+
     template_name = None
+
     active_flag = None
     reference_field_name = None
     main_active_flag = None
@@ -252,3 +270,16 @@ class UpdateModelView(UpdateView):
             "title": self.title
         }
         return super(UpdateModelView, self).post(self)
+
+class ModelDetailsView(DetailView):
+    model = None
+    main_active_flag = None
+    active_flag = None
+    title = None
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active",
+            "title": self.title
+        }
+        return super(ModelDetailsView, self).get(self)

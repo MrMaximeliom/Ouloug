@@ -27,7 +27,14 @@ def max_value_current_year(value):
 
 
 def rand_slug():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))
+    from datetime import datetime
+    now = datetime.now()
+    current_time = now.strftime("%H:%S")
+    import datetime
+    today = datetime.date.today()
+    unique_list = list( ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(20))+str(current_time)+str(today))
+    random.shuffle(unique_list)
+    return ''.join(unique_list)
 
 
 SMS_USERNAME = 'uniseal'
@@ -58,61 +65,80 @@ def check_phone_number(phone):
 
 class SearchMan:
     search_error = False
+    queryset = None
 
     def __init__(self, model):
         from django.core.paginator import Paginator
         if model == "Country":
             from apps.address.models import Country
             countries = Country.objects.all().filter(status="active").order_by("id")
+            self.set_querySet(countries)
             self.paginator = Paginator(countries, 5)
         if model == "City":
             from apps.address.models import City
             cities = City.objects.all().order_by("id")
+            self.set_querySet(cities)
             self.paginator = Paginator(cities, 5)
         if model == "State":
             from apps.address.models import State
             states = State.objects.all().order_by("id")
+            self.set_querySet(states)
             self.paginator = Paginator(states, 5)
         if model == "Service":
             from apps.services.models import Service
             services = Service.objects.all().order_by("id")
+            self.set_querySet(services)
             self.paginator = Paginator(services, 5)
         if model == "Package":
             from apps.packages.models import Package
             packages = Package.objects.all().order_by("id")
+            self.set_querySet(packages)
             self.paginator = Paginator(packages, 5)
         if model == "BusinessType":
             from apps.customers.models import BusinessType
             business_types = BusinessType.objects.all().order_by("id")
+            self.set_querySet(business_types)
             self.paginator = Paginator(business_types, 5)
         if model == "Team":
             from apps.teams.models import Team
             teams = Team.objects.all().order_by("id")
+            self.set_querySet(teams)
             self.paginator = Paginator(teams, 5)
         if model == "AgentShift":
             from apps.customers.models import AgentShift
             agent_shifts = AgentShift.objects.all().order_by("id")
+            self.set_querySet(agent_shifts)
             self.paginator = Paginator(agent_shifts, 5)
         if model == "CustomerCall":
             from apps.customers.models import CustomerCall
             customer_calls = CustomerCall.objects.all().order_by("id")
+            self.set_querySet(customer_calls)
             self.paginator = Paginator(customer_calls, 5)
         if model == "TelecomOperator":
             from apps.telecoms.models import TelecomOperator
             telecoms = TelecomOperator.objects.all().order_by("id")
+            self.set_querySet(telecoms)
             self.paginator = Paginator(telecoms, 5)
         if model == "TelecomNumber":
             from apps.telecoms.models import TelecomNumber
             telecom_numbers = TelecomNumber.objects.all().order_by("id")
+            self.set_querySet(telecom_numbers)
             self.paginator = Paginator(telecom_numbers, 5)
         if model == "CustomerPayment":
             from apps.customers.models import CustomerPayment
             customer_payments = CustomerPayment.objects.all().order_by("id")
+            self.set_querySet(customer_payments)
             self.paginator = Paginator(customer_payments, 5)
         if model == "User":
             from apps.authentication.models import User
             users = User.objects.all().order_by("id")
+            self.set_querySet(users)
             self.paginator = Paginator(users, 5)
+        if model == "Customer":
+            from apps.customers.models import Customer
+            customers = Customer.objects.all().order_by("id")
+            self.set_querySet(customers)
+            self.paginator = Paginator(customers, 5)
 
     def setPaginator(self, query):
         from django.core.paginator import Paginator
@@ -120,6 +146,12 @@ class SearchMan:
 
     def getPaginator(self):
         return self.paginator
+
+    def set_querySet(self,queryset):
+        self.queryset = queryset
+
+    def get_queryset(self):
+        return self.queryset
 
     search = False
     search_phrase = ''
@@ -178,3 +210,17 @@ This class is used to specify allowed user types for system models
         #     for user_group in user_groups:
         #         if user_group['name'] == group:
         #             return True
+
+def random_id(letter_count, digit_count):
+    from datetime import datetime
+    now = datetime.now()
+    current_time = now.strftime("%H:%M:%S")
+    import datetime
+    today = datetime.date.today()
+    str1 = ''.join((random.choice(string.ascii_letters) for x in range(letter_count)))
+    str1 += ''.join((random.choice(string.digits) for x in range(digit_count)))
+
+    sam_list = list(str1)  # it converts the string to list.
+    random.shuffle(sam_list)  # It uses a random.shuffle() function to shuffle the string.
+    final_string = ''.join(sam_list)
+    return "id-" + final_string + "-" + current_time + "-" + str(today)

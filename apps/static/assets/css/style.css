@@ -10646,3 +10646,21 @@ color:rgba(0,0,0,.9);
 #navbarBase{
 justify-content:space-around;
 }
+/* customize search info */
+.search-space{
+padding:5px 3px;
+margin:0.2rem 1.3rem;
+
+}
+.search-space h4,.search-space h3{
+color:#3f4d67;
+}
+.no-results{
+color:#10316f;
+padding:10px 20px;
+margin:1rem 1.3rem;
+}
+/* customize total count */
+.table-responsive h5{
+color:#3f4d67;
+}

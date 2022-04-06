@@ -7,12 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-{% trans 'Add Customer Payments' %}
+{% trans 'Update Customer Payment' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'customer/customer_includes/header.html' %}
-<li class="breadcrumb-item current-page">{% trans 'Add Customer Payment' %}</li>
+ {% include 'customer_payment/customer_payment_includes/header.html' %}
+<li class="breadcrumb-item current-page">{% trans 'Update Customer' %}</li>
 {% endblock header %}
 {% block content %}
                     <div class="main-body">
@@ -22,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <h5>{% trans 'Add Customer Payment' %}</h5>
+                                <h5>{% trans 'Update Customer Payment' %}</h5>
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -52,7 +52,7 @@
                                                {{form.status|as_crispy_field}}
 
                                             </div>
-                                            <button type="submit" class="btn btn-primary">{% trans 'Add Customer Payment' %}</button>
+                                            <button type="submit" class="btn btn-primary">{% trans 'Update Customer Payment' %}</button>
                                         </form>
                                     </div>
                                 </div>

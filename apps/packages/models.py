@@ -1,11 +1,10 @@
-
-
 from django.db import models
 from django.template.defaultfilters import slugify
-
+from django.urls import reverse_lazy
+from Util.lists_of_data import PACKAGE_TYPE, BILLING_TYPE,PACKAGE_STATUS
 from Util.utils import rand_slug
-from apps.telecoms.models import  TelecomOperator
-from apps.services.models import  Service
+from apps.telecoms.models import TelecomOperator
+from apps.services.models import Service
 from apps.authentication.models import User
 from apps.address.models import Currency
 
@@ -13,10 +12,7 @@ from apps.address.models import Currency
 Package Model:
 it's used to define the package provided by the telecom operator
 """
-PACKAGE_STATUS = (
-    ("call_center", "Call Center"),
-    ("communication", "Commuinication")
-)
+
 
 class Package(models.Model):
     # this field represents a unique slug field
@@ -44,21 +40,21 @@ class Package(models.Model):
     priority = models.IntegerField()
 
     # this field represents the type of the package
-    type = models.CharField(max_length=80, choices=PACKAGE_STATUS)
+    type = models.CharField(max_length=80, choices=PACKAGE_TYPE)
     # this field represents the status of the package
-    status = models.BooleanField(editable=True)
+    status = models.CharField(choices=PACKAGE_STATUS,max_length=20)
     # this field represents the price of the package
-    price = models.DecimalField(decimal_places=10,max_digits=12)
+    price = models.DecimalField(decimal_places=10, max_digits=12)
     # this is a boolean field represents weather
     # there is a free trial or not
-    grace = models.BooleanField()
+    grace = models.BooleanField(blank=True, null=True)
     # this field represents the number of days for free trial
-    grace_period_day = models.IntegerField()
+    grace_period_day = models.IntegerField(blank=True, null=True)
     # this is a boolean field represents weather there is
     # a discount or not
-    discount = models.IntegerField()
+    discount = models.IntegerField(blank=True, null=True)
     # this field represents the discount price
-    discount_price = models.DecimalField(decimal_places=10,max_digits=12)
+    discount_price = models.DecimalField(decimal_places=3, max_digits=12)
 
     def __str__(self):
         # objects of this model will be referenced by their name
@@ -68,6 +64,8 @@ class Package(models.Model):
         # this is the actual name for the model in the database
         db_table = "package"
 
+    def get_absolute_url(self):
+        return reverse_lazy("packagesList")
 
 
 """
@@ -103,9 +101,9 @@ class PackageService(models.Model):
     index = models.IntegerField()
     # the actual price of the service per the value of type unit this
     # price is retrieved from service model
-    price = models.DecimalField(decimal_places=10,max_digits=12)
+    price = models.DecimalField(decimal_places=3, max_digits=12)
     # this field represents the price amount
-    total_price = models.DecimalField(decimal_places=10,max_digits=12)
+    total_price = models.DecimalField(decimal_places=3, max_digits=12)
     # this is a boolean field represents the status
     status = models.BooleanField()
 
@@ -118,21 +116,14 @@ class PackageService(models.Model):
         db_table = "package_service"
 
 
-
 """
 Package Billing Type Model:
 it's used to define the billing cycle type for each package,
 monthly, every three months,annually,etc .. 
 """
-BILLING_TYPE = (
-    ("daily", "Daily"),
-    ("monthly", "Monthly"),
-    ("quarterly", "Quarterly"),
-    ("semi_annually", "Semi Annually"),
-    ("annually", "Annually"),
-)
 
-#package billing 
+
+# package billing
 
 class PackageBillingType(models.Model):
     # this field represents a unique slug field
@@ -158,7 +149,7 @@ class PackageBillingType(models.Model):
     # this field represents the billing type
     billing_type = models.CharField(max_length=200, choices=BILLING_TYPE)
     # this field represents the percentage added price
-    percentage_added_price = models.DecimalField(decimal_places=10,max_digits=12)
+    percentage_added_price = models.DecimalField(decimal_places=3, max_digits=12)
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)
     # this field represents the date and time when this record was last modified
@@ -171,3 +162,7 @@ class PackageBillingType(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "package_billing_type"
+
+    @staticmethod
+    def get_absolute_url():
+        return reverse_lazy("packageBillingTypesList")

@@ -5,13 +5,15 @@
 
 {% load crispy_forms_tags %}
 <!-- Specific CSS goes HERE -->
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<link rel= "stylesheet" href= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+{% endblock stylesheets %}
 {% block pages_name %}
 {% trans 'Agent Shifts' %}
 {% endblock pages_name %}
 
 {% block header%}
- {% include 'service/service_includes/header.html' %}
+ {% include 'agent_shift/agent_shift_includes/header.html' %}
 <li class="breadcrumb-item current-page">{% trans 'Add Agent Shifts' %}</li>
 {% endblock header %}
 {% block content %}
@@ -110,5 +112,10 @@
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js" defer></script>
+
+<script defer src="/static/assets/js/general.js"></script>
+
+{% endblock javascripts %}
 

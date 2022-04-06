@@ -1,10 +1,10 @@
 from django.urls import path
 from apps.common_views.views import (
-                              ModelListView,
                               AddModelView,
                               UpdateModelView
 
                                 )
+from apps.teams.views import TeamsListView
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.teams.models import Team
 from Util.static_strings import (
@@ -15,7 +15,7 @@ from Util.static_strings import (
                                  )
 urlpatterns = [
 
-    path('teams/', staff_member_required(ModelListView.as_view(
+    path('teams/', staff_member_required(TeamsListView.as_view(
         model=Team,
         template_name="teams/teams_list.html",
         active_flag="team",

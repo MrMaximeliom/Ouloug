@@ -147,3 +147,9 @@
 ### Changes
 - adding title of current page 
 - adding the logic and views required for (users and change password) 
+
+## 2022-4-6
+### Changes
+- adding filters for all pages which mentioned in the documentation 
+- adding customers pages with its filters
+- adding count for all pages

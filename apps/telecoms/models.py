@@ -1,21 +1,17 @@
 
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy
 
 from Util.utils import rand_slug
 from apps.authentication.models  import  User
-
+from Util.lists_of_data import TELECOM_STATUS,TELECOM_NUMBER_STATUS,TELECOM_NUMBER_TYPE
 # Create your models here.
 
 """
 Telecom Operator Model:
 it's used to list all of the telecom operators that Ouloug system is working with
 """
-TELECOM_STATUS = (
-    ("active", "Active"),
-    ("not_active", "Not Active"),
-    ("deleted", "Deleted")
-)
 
 
 class TelecomOperator(models.Model):
@@ -43,7 +39,7 @@ class TelecomOperator(models.Model):
     # this field represents the status
     status = models.CharField(max_length=40, choices=TELECOM_STATUS)
     # this field represents the logo
-    logo = models.ImageField(verbose_name="logo")
+    logo = models.ImageField(verbose_name="logo",upload_to="telecom_logo")
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
 
@@ -55,6 +51,13 @@ class TelecomOperator(models.Model):
         # this is the actual model's name in the database
         db_table = "telecom_operator"
 
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy("telecomsList")
 
 
 """
@@ -62,18 +65,7 @@ Telecom Number Model:
 it's used to list of telephone numbers that is provided by the telecom
 operator and is available to customers to select
 """
-TELECOM_NUMBER_TYPE = (
-    ("fix_line", "Fix-Line"),
-    ("short_code4", "Short-Code4"),
-    ("short_code5", "Short-Code5"),
-    ("short_code6", "Short-Code6"),
-    ("mobile", "Mobile")
-)
-TELECOM_NUMBER_STATUS = (
-    ("available", "Available"),
-    ("taken", "Taken"),
-    ("withdraw", "Withdraw"),
-)
+
 
 
 class TelecomNumber(models.Model):
@@ -96,6 +88,11 @@ class TelecomNumber(models.Model):
     added_datetime = models.DateTimeField(auto_now=True)
     # this field represents the status
     status = models.CharField(max_length=60, choices=TELECOM_NUMBER_STATUS)
+    telecom = models.ForeignKey(
+        TelecomOperator,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
 
     def __str__(self):
         # objects of this model will be referenced by their number
@@ -104,4 +101,12 @@ class TelecomNumber(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "telecom_number"
+
+    def save(self, *args, **kwargs):
+        value = str(self.number) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy("telecomNumberList")
 

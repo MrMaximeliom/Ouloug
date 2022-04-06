@@ -11,6 +11,7 @@ from Util.static_strings import (NO_RECORDS_FOR_USER_MODEL_MONITOR_MESSAGE,
                                  UPDATE_USER_TOOL_TIP_TEXT,
                                  )
 from apps.authentication.models import User
+from apps.authentication.forms import SignUpForm
 
 urlpatterns = [
     path('login/', OulougLoginView.as_view(), name="login"),
@@ -30,8 +31,9 @@ urlpatterns = [
     ), login_url="login"), name="usersList"),
     path('users/addUsers', staff_member_required(AddUserView.as_view(
         model=User,
-        fields=["first_name", "second_name", "third_name", "fourth_name", "username",
-                "user_type", "user_status", "phone_number", "email", "staff", "admin","password"],
+        form_class=SignUpForm,
+        # fields=["first_name", "second_name", "third_name", "fourth_name", "username",
+        #         "user_type", "user_status", "phone_number", "email","password"],
         active_flag="user",
         main_active_flag="settings",
         reference_field_name="username",

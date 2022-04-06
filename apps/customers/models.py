@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-
+from django.urls import reverse_lazy
+from Util.lists_of_data import (CUSTOMER_ACCOUNT_STATUS,\
+    CUSTOMER_PURCHASE_STATUS,CUSTOMER_TELECOM_NUMBER_STATUS,LOGIN_STATUS,CALL_STATUS,CALL_TYPE,CALL_DIRECTION)
 from Util.utils import rand_slug
 from apps.address.models import City, Country
 from apps.authentication.models import User
@@ -9,24 +11,42 @@ from apps.teams.models import Team
 from apps.address.models import Currency
 from apps.telecoms.models import TelecomNumber
 
+
+class BusinessType(models.Model):
+    # this field represents a unique slug field
+    slug = models.SlugField(
+        null=True,
+        blank=True,
+        unique=True,
+        default=slugify(rand_slug())
+    )
+
+    # this is foreign key field references the added-by
+
+    added_by = models.ForeignKey(User, null=True, blank=True,
+                                 on_delete=models.SET_NULL, related_name="user_added_business_type_main")
+
+    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
+                                         related_name="last_user_modified_business_type_main")
+    # this field represents the business type name
+    type_name = models.CharField(max_length=240)
+    arabic_type_name = models.CharField(max_length=240)
+    other_flag = models.BooleanField()
+
+    added_datetime = models.DateTimeField(auto_now=True)
+    last_modification_datetime = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse_lazy("businessList")
+
+    def __str__(self):
+        return self.type_name
+
+
 """
 Customer Model:
 it's used to save the customer's details
 """
-CUSTOMER_PURCHASE_STATUS = (
-    ('paid', 'Paid'),
-    ("pending", "Pending"),
-    ("trial", "Trial")
-)
-CUSTOMER_ACCOUNT_STATUS = (
-    ("not_confirmed", "Not Confirmed"),
-    ("active", "Active"),
-    ("suspended", "Suspended"),
-    ("closed", "Closed"),
-    ("blocked", "Blocked"),
-    ("dormant", "Dormant"),
-    ("stopped", "Stopped")
-)
 
 
 class Customer(models.Model):
@@ -48,7 +68,11 @@ class Customer(models.Model):
     # this field represents the short name used to refer to the business
     business_shortname = models.CharField(max_length=50)
     # this field represents list of business types
-    business_type = models.CharField(max_length=200)
+    business_type = models.ForeignKey(
+        BusinessType,
+        on_delete=models.SET_NULL,
+        null=True
+    )
     # this field represents the other business type (if not found on list)
     business_type_other = models.CharField(max_length=200)
     # this field represents the official address of the business
@@ -57,17 +81,17 @@ class Customer(models.Model):
     # which represents the city
     business_address_city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     # this field represents the business logo
-    logo = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to="customer_logo")
     # this field represents the official registration number of the business
     registration_number = models.IntegerField()
     # this field represents the date of establishing the business
     established_date = models.DateField(max_length=200)
     # this field represents the admin mobile number
-    admin_mobile_number = models.IntegerField()
+    admin_mobile_number = models.CharField(max_length=40)
     # this field represents the account status
     account_status = models.CharField(max_length=80, choices=CUSTOMER_ACCOUNT_STATUS)
     # this field represents the purchase status
-    purchase_status = models.CharField(max_length=40)
+    purchase_status = models.CharField(max_length=40,choices=CUSTOMER_PURCHASE_STATUS)
     # this field represents the email field which
     # will be used to send notification related to customer
     email = models.EmailField(max_length=200)
@@ -77,7 +101,7 @@ class Customer(models.Model):
     # activated its account
     effective_datetime = models.DateTimeField(auto_now=True)
     # this field represents the date and time when this account was added
-    added_datetime = models.DateTimeField(auto_created=True)
+    added_datetime = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     def __str__(self):
         # objects of this model will be referenced by their business names
@@ -87,17 +111,24 @@ class Customer(models.Model):
         # this is the actual model's name in the database
         db_table = "customer"
 
+    def save(self, *args, **kwargs):
+        value = str(self.user.username) + '' +str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse_lazy("customersList")
+
+
+
+
 
 """
 Agent Shift Model:
 it's used to specify the default shift/work
 time for the agent per team/department
 """
-AGENT_CHOICES = (
-    ("active", "Active"),
-    ("not_active", "Not Active"),
-
-)
+from Util.lists_of_data import AGENT_CHOICES
 
 
 class AgentShift(models.Model):
@@ -161,6 +192,15 @@ class AgentShift(models.Model):
         # this is the actual model's name in the database
         db_table = "agent_shift"
 
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' +str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+    @staticmethod
+    def get_absolute_url():
+        return reverse_lazy("agentShiftsList")
+
 
 """
 Customer Agent Shift Model:
@@ -209,6 +249,12 @@ class CustomerAgentShift(models.Model):
         db_table = "customer_agent_shift"
 
 
+    def save(self, *args, **kwargs):
+        value = str(self.agent_shift.name) + '' +str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+
 """
 Customer Agent model:
 it's used to contain all call center agents/employees
@@ -216,14 +262,7 @@ details of the customer, this details like agent name,
 username to access the SIP account and password, and account
 to access the portal.
 """
-LOGIN_STATUS = (
-    ("login", "Login"),
-    ("logout", "Logout"),
-    ("break", "Break"),
-    ("busy", "Busy"),
-    ("on_leave", "On leave"),
 
-)
 
 
 class CustomerAgent(models.Model):
@@ -265,27 +304,18 @@ class CustomerAgent(models.Model):
         # this is the actual model's name in the database
         db_table = "customer_agent"
 
+    def save(self, *args, **kwargs):
+        value = str(self.team.name) + '' +str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
+
 
 """
 Customer Call Model:
 it's used to save call transactions for customers
 """
-CALL_DIRECTION = (
-    ("inbound", "Inbound"),
-    ("outbound", "Outbound")
-)
-CALL_TYPE = (
-    ("normal", "Normal"),
-    ("group", "Group")
-)
-CALL_STATUS = (
-    ("complete", "Complete"),
-    ("not_answered", "Not Answered"),
-    ("rejected", "Rejected"),
-    ("busy", "Busy"),
-    ("waiting", "Waiting"),
-    ("not_completed", "Not Completed"),
-)
+
 
 
 class CustomerCall(models.Model):
@@ -329,6 +359,9 @@ class CustomerCall(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "customer_call"
+
+    def get_absolute_url(self):
+        return reverse_lazy("customerCallsList")
 
 
 """
@@ -427,6 +460,9 @@ class CustomerPayment(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "customer_payment"
+
+    def get_absolute_url(self):
+        return reverse_lazy("customerPaymentsList")
 
 
 """
@@ -606,11 +642,7 @@ Customer Telecom Number Model:
 it's used to associate the telecom/phone number with the customer.
 the selected phone number by customer
 """
-CUSTOMER_TELECOM_NUMBER_STATUS = (
-    ("active", "Active"),
-    ("stop", "Stop"),
-    ("withdraw", "Withdraw"),
-)
+
 
 
 class CustomerTelecomNumber(models.Model):
@@ -653,26 +685,3 @@ class CustomerTelecomNumber(models.Model):
 
 
 
-class BusinessType(models.Model):
-    # this field represents a unique slug field
-    slug = models.SlugField(
-        null=True,
-        blank=True,
-        unique=True,
-        default=slugify(rand_slug())
-    )
-
-    # this is foreign key field references the added-by
-
-    added_by = models.ForeignKey(User, null=True, blank=True,
-                                 on_delete=models.SET_NULL, related_name="user_added_business_type_main")
-
-    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
-                                         related_name="last_user_modified_business_type_main")
-    # this field represents the business type name
-    type_name = models.CharField(max_length=240)
-    arabic_type_name = models.CharField(max_length=240)
-    other_flag = models.CharField(max_length=1)
-
-    added_datetime = models.DateTimeField(auto_now=True)
-    last_modification_datetime = models.DateTimeField(auto_now_add=True)

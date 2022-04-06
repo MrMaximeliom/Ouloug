@@ -1,10 +1,13 @@
-from django.contrib import messages
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
+from django.views.generic import ListView
+from django.contrib import messages
+from Util.utils import SearchMan
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from Util.static_strings import (
     FIRST_NAME_EMPTY_ERROR,
@@ -25,7 +28,7 @@ from Util.static_strings import (
     PASSWORDS_NOT_MATCH,
     CONFIRM_PASSWORD_EMPTY_ERROR
 )
-from .forms import LoginForm, SignUpForm
+from .forms import  SignUpForm
 
 
 class OulougLoginView(auth_views.LoginView):
@@ -40,13 +43,13 @@ class OulougLoginView(auth_views.LoginView):
         from django.http import HttpResponseRedirect
         """Security check complete. Log the user in."""
         current_user = form.get_user()
-        print("here")
         if current_user.staff:
             auth_login(self.request, form.get_user())
             username = str(current_user)
             messages.success(self.request, f" Welcome {username} Have a nice day")
             return HttpResponseRedirect(self.get_success_url())
         else:
+            print("current user is: ",current_user)
             messages.error(self.request, 'Phone Number or Password Error for Staff User')
 
         return redirect('login')
@@ -180,3 +183,67 @@ class AddUserView(CreateView):
             "title": self.title
         }
         return super(AddUserView, self).post(self)
+
+
+class UsersListView(ListView):
+
+    model = None
+    template_name = None
+    main_active_flag = None
+    active_flag = None
+    model_name = None
+    no_records_admin = None
+    no_records_monitor = None
+    add_tool_tip_text = None
+    update_tool_tip_text = None
+    title = None
+    searchManObj = SearchMan(model_name)
+
+    # return default queryset used in this view
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-id')
+
+    def get(self, request, *args, **kwargs):
+        from apps.authentication.models import User
+        print(self.request.user)
+        searchManObj = SearchMan(self.model_name)
+        queryset = self.get_queryset()
+        paginator = Paginator(queryset, 5)
+        if 'page' not in request.GET:
+            instances = self.model.objects.all().order_by('-id')
+            searchManObj.setPaginator(instances)
+            searchManObj.setSearch(False)
+        if request.GET.get('page'):
+            # Grab the current page from query parameter consultant
+            page = int(request.GET.get('page'))
+        else:
+            page = None
+
+        try:
+            paginator = searchManObj.getPaginator()
+            instances = paginator.page(page)
+            # Create a page object for the current page.
+        except PageNotAnInteger:
+            # If the query parameter is empty then grab the first page.
+            instances = paginator.page(1)
+            page = 1
+        except EmptyPage:
+            # If the query parameter is greater than num_pages then grab the last page.
+            instances = paginator.page(paginator.num_pages)
+            page = paginator.num_pages
+        self.extra_context = {
+            'page_range': paginator.page_range,
+            'num_pages': paginator.num_pages,
+            'object_list': instances,
+            'user_data':User.objects.get(username=self.request.user.username),
+            self.main_active_flag: 'active',
+            self.active_flag: "active",
+            "no_records_admin": self.no_records_admin,
+            "no_records_monitor": self.no_records_monitor,
+            "add_tool_tip_text": self.add_tool_tip_text,
+            "update_tool_tip_text": self.update_tool_tip_text,
+            "instances_count": len(self.get_queryset()),
+            'current_page': page,
+            'title': self.title
+        }
+        return super().get(request)

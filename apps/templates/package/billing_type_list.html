@@ -25,7 +25,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addPackageBillingTypes' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Package Billing Type' %}</a>
+                                <a href="{% url 'addPackageBillingTypes' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
 
                            </div>
                                   {% endif %}

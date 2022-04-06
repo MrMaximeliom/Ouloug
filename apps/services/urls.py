@@ -7,10 +7,11 @@ from Util.static_strings import (NO_RECORDS_FOR_SERVICE_MODEL_MONITOR_MESSAGE,
                                  UPDATE_SERVICE_TOOL_TIP_TEXT
 
                                  )
+from apps.services.views import ServicesListView
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.services.models import Service
 urlpatterns = [
-    path('services/', staff_member_required(ModelListView.as_view(
+    path('services/', staff_member_required(ServicesListView.as_view(
         model=Service,
         template_name="service/services_list.html",
         active_flag="service",

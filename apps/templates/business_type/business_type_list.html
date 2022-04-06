@@ -31,7 +31,7 @@
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addBusinessType' %}" class="btn btn-secondary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Business' %}</a>
+                                <a href="{% url 'addBusinessType' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
 
                            </div>
                                   {% endif %}
@@ -42,10 +42,9 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>{% trans 'type_name' %}</th>
-                                                <th>{% trans 'arabic_type_name' %}</th>
-                                                <th>{% trans 'other_flag' %}</th>
+                                                <th>{% trans 'Type Name' %}</th>
+                                                <th>{% trans 'Arabic Type Name' %}</th>
+                                                <th>{% trans 'Other Flag' %}</th>
                                                
                                                 <th>{% trans 'Added By' %}</th>
                                                 <th>{% trans 'Added Date and Time' %}</th>
@@ -59,7 +58,6 @@
                                         <tbody>
                                          {% for object in object_list %}
                                             <tr>
-                                                <th scope="row">{{forloop.counter}}</th>
                                                 <td>{{object.type_name}}</td>
                                                 <td>{{object.arabic_type_name}}</td>
                                                 <td>{{object.other_flag}}</td>
@@ -69,7 +67,7 @@
 
                                                   {% if request.user.user_type == "administrator"  %}
                                                 <td>
-<a href="{% url 'updateBusinessType' slug=object.slug %}" class="btn btn-primary" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="{% url 'updateBusinessType' slug=object.slug %}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
 

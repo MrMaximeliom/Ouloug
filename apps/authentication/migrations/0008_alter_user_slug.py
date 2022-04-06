@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='slug',
-            field=models.SlugField(blank=True, default='t0uwagnlknd9edee4jqm', null=True, unique=True),
+            field=models.SlugField(blank=True, default='t0uwagnldknd9edee4jqm', null=True, unique=True),
         ),
     ]

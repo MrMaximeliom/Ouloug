@@ -28,47 +28,10 @@
                                 <div>
                                 <h5>Countries Table</h5>
                                        </div>
-    <form class="row g-2 mb-3" action="" method="post" id="filterForm" autocomplete="off">
-    {% csrf_token %}
-          <div class="">
-   <button type="submit" class="btn btn-primary mb-3" id="searchButton" title="{{search_products_tip}}"><span><i class="fas fa-search"></i></span></button>
-  </div>
-    <div class="col">
-    <select class="form-control search-select search-box" id="filter_by" name="search_options" aria-label="Default select example">
-  <option selected value="none">{% trans 'Filter Fields' %}</option>
-  <option value="product">{% trans 'Product Name' %}</option>
-  <option value="category">{% trans 'Category Name' %}</option>
-  <option value="supplier">{% trans 'Supplier Name' %}</option>
-</select>
-                <span class="delete-warning" id="filter_by_error"></span>
-
-    </div>
-
-    <div class="col">
-    <select class="form-control search-select search-box" id="filter_value" name="search_options" aria-label="Default select example">
-  <option selected value="none">{% trans 'Filter Values' %}</option>
-  <option value="product">{% trans 'Product Name' %}</option>
-  <option value="category">{% trans 'Category Name' %}</option>
-  <option value="supplier">{% trans 'Supplier Name' %}</option>
-</select>
-                <span class="delete-warning" id="filter_value_error"></span>
-
-    </div>
-            <div class="col">
-    <select class="form-control search-select search-box" id="filter_ordering" name="search_options" aria-label="Default select example">
-  <option selected value="none">{% trans 'Filter Ordering' %}</option>
-  <option value="product">{% trans 'ASC' %}</option>
-  <option value="category">{% trans 'DEC' %}</option>
-</select>
-                <span class="delete-warning" id="filter_ordering_error"></span>
-
-    </div>
-
-    </form>
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addCountries' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New Country' %}</a>
+                                <a href="{% url 'addCountries' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
 
                            </div>
 

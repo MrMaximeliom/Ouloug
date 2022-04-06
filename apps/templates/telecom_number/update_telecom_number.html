@@ -7,20 +7,13 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-<<<<<<< HEAD
-{% trans 'Telecom Number' %}
-=======
 {% trans 'Update Telecom Number' %}
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'telecom_number/includes/header.html' %}
-<<<<<<< HEAD
-<li class="breadcrumb-item"><a href="{% url 'addTelecomNumber' %}">{% trans 'Add Telecom Number' %}</a></li>
-=======
+
 <li class="breadcrumb-item current-page">{% trans 'Update Telecom Number' %}</li>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 
 {% endblock header %}
@@ -46,16 +39,21 @@
                                                 {{form.number|as_crispy_field}}
 
                                             </div>
+                                                 <div class="form-group">
+                                                {{form.telecom|as_crispy_field}}
+
+                                            </div>
                                             <div class="form-group">
                                                 {{form.type|as_crispy_field}}
                                             </div>
+                                                 <div class="form-group">
+                                                {{form.status|as_crispy_field}}
+
+                                            </div>
                                            
 
-<<<<<<< HEAD
-                                            <button type="submit" class="btn btn-primary">{% trans 'Update Telcom' %}</button>
-=======
+
                                             <button type="submit" class="btn btn-primary">{% trans 'Update Telecom Number' %}</button>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
                                         </form>
                                     </div>
                                 </div>

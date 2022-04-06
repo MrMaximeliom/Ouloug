@@ -15,7 +15,10 @@ PHONE_NUMBER_SYNTAX_ERROR = _("Please Check Your Phone Number Syntax!")
 PHONE_PHONE_EMPTY_ERROR = _("Phone Number Cannot Be Empty!")
 PASSWORDS_NOT_MATCH = _("Passwords are Not Match!")
 
-
+# search form strings
+CLEAR_SEARCH_TIP = _("Clear Search")
+SEARCH_STATES_TIP = _("Search States")
+SEARCH_CITIES_TIP = _("Search Cities")
 
 # login form strings
 USERNAME_EMPTY_ERROR = _("Username cannot be empty!")
@@ -87,12 +90,17 @@ NO_RECORDS_FOR_CUSTOMER_CALL_MODEL_MESSAGE = _("There are no customer calls yet 
 NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_ADMIN_MESSAGE = _("There are no customer payments yet to view ... you can add new customer payments from ")
 NO_RECORDS_FOR_CUSTOMER_PAYMENT_MODEL_MONITOR_MESSAGE = _("There are no customer payments yet to view")
 
+# NO RECORDS FOUND STRINGS - Customer  Page
+NO_RECORDS_FOR_CUSTOMER_MODEL_ADMIN_MESSAGE = _("There are no customers yet to view ... you can add new customers from ")
+NO_RECORDS_FOR_CUSTOMER_MODEL_MONITOR_MESSAGE = _("There are no customers yet to view")
 # tool tip text for add new city button
 ADD_NEW_CUSTOMER_PAYMENT_TOOL_TIP_TEXT = _("add new customer payment")
 
 # tool tip text for add new city button
 ADD_NEW_CITY_TOOL_TIP_TEXT = _("add new city")
 
+# tool tip text for add new customer button
+ADD_NEW_CUSTOMER_TOOL_TIP_TEXT = _("add new customer")
 # tool tip text for add new country button
 ADD_NEW_COUNTRY_TOOL_TIP_TEXT = _("add new country")
 
@@ -136,7 +144,7 @@ UPDATE_CUSTOMER_PAYMENT_TOOL_TIP_TEXT = _("update customer payment")
 UPDATE_USER_TOOL_TIP_TEXT = _("update user")
 
 # tool tip text for update team button
-UPDATE_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("update team")
+UPDATE_PACKAGE_BILLING_TYPE_TOOL_TIP_TEXT = _("update package billing type")
 
 # tool tip text for update team button
 UPDATE_TEAM_TOOL_TIP_TEXT = _("update team")
@@ -149,6 +157,9 @@ UPDATE_TELECOM_NUMBER_TOOL_TIP_TEXT = _("update telecom numbers")
 
 # tool tip text for update city button
 UPDATE_CITY_TOOL_TIP_TEXT = _("update city")
+
+# tool tip text for update customer button
+UPDATE_CUSTOMER_TOOL_TIP_TEXT = _("update customer")
 
 # tool tip text for update package button
 UPDATE_PACKAGE_TOOL_TIP_TEXT = _("update package")
@@ -171,3 +182,4 @@ UPDATE_BUSINESS_TYPE_TOOL_TIP_TEXT = _("update business")
 # tool tip text for update state button
 UPDATE_AGENTS_SHIFTS_TOOL_TIP_TEXT = _("update agents shifts")
 
+CUSTOMER_DETAILS_TOOL_TIP_TEXT = _("View Customer's Details")

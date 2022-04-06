@@ -14,9 +14,10 @@ from apps.common_views.views import (
                                  ModelListView,
                                  AddModelView,
                                  UpdateModelView)
+from apps.telecoms.views import (TelecomsListView,TelecomNumbersListView)
 from apps.telecoms.models import TelecomNumber,TelecomOperator
 urlpatterns = [
-    path('telecoms/', staff_member_required(ModelListView.as_view(
+    path('telecoms/', staff_member_required(TelecomsListView.as_view(
         model=TelecomOperator,
         template_name="telecoms/telecoms_list.html",
         active_flag="telecoms",
@@ -49,7 +50,7 @@ urlpatterns = [
     ), login_url="login"), name="updateTelecom"),
   
 
-    path('telecomNumber/', staff_member_required(ModelListView.as_view(
+    path('telecomNumber/', staff_member_required(TelecomNumbersListView.as_view(
         model=TelecomNumber,
         template_name="telecom_number/telecom_number_list.html",
         active_flag="telecom_number",
@@ -64,7 +65,7 @@ urlpatterns = [
 
     path('telecomNumber/addTelecomNumber', staff_member_required(AddModelView.as_view(
         model=TelecomNumber,
-        fields=["number","type","status"],
+        fields=["number","type","status",'telecom'],
         active_flag="telecom_number",
         main_active_flag="ouloug_services",
         reference_field_name="number",
@@ -73,7 +74,7 @@ urlpatterns = [
     ),login_url="login"), name="addTelecomNumber"),
     path('telecomNumber/updateTelecomNumber/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=TelecomNumber,
-        fields=["number", "type", "status"],
+        fields=["number", "type", "status","telecom"],
         active_flag="telecom_number",
         main_active_flag="ouloug_services",
         reference_field_name="number",

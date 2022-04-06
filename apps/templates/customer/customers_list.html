@@ -1,0 +1,202 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Customers' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'customer/customer_includes/header.html' %}
+
+{% endblock header %}
+
+{% block content %}
+              <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header card-flex-header">
+
+    <form class="row g-2 mb-3" action="" method="get" id="filterForm" autocomplete="off">
+    {% csrf_token %}
+          <div class="">
+   <button type="submit" class="btn btn-primary mb-3" id="searchButton" title="{{search_states_tip}}"><span><i class="fas fa-search"></i></span></button>
+  </div>
+    <div class="col">
+    <select class="form-control search-select search-box" id="filter_by" name="filter_by" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter By' %}</option>
+  <option value="country">{% trans 'Country' %}</option>
+  <option value="state">{% trans 'State' %}</option>
+  <option value="city">{% trans 'City' %}</option>
+  <option value="business_type">{% trans 'Business Type' %}</option>
+  <option value="account_status">{% trans 'Account Status' %}</option>
+  <option value="purchase_status">{% trans 'Purchase Status' %}</option>
+</select>
+                <span class="delete-warning" id="filter_by_error"></span>
+
+    </div>
+
+    <div class="col">
+    <select class="form-control search-select search-box" id="filter_value" name="filter_value" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter Values' %}</option>
+</select>
+                <span class="delete-warning" id="filter_value_error"></span>
+
+    </div>
+    <div class="col" hidden id="search_field">
+        <input type="text" class="form-control">
+    </div>
+                    <div class="col">
+    <select class="form-control search-select search-box" id="order_by" name="order_by" aria-label="Default select example">
+  <option selected value="none">{% trans 'Order By' %}</option>
+  <option value="name">{% trans 'Name' %}</option>
+  <option value="arabic_name">{% trans 'Arabic Name' %}</option>
+  <option value="country">{% trans 'Country' %}</option>
+  <option value="status">{% trans 'Status' %}</option>
+  <option value="added_by">{% trans 'Added By' %}</option>
+  <option value="last_modified_by">{% trans 'Last Modified By' %}</option>
+  <option value="added_datetime">{% trans 'Added Date and Time' %}</option>
+  <option value="last_modification_datetime">{% trans 'Last Modification' %}</option>
+</select>
+                <span class="delete-warning" id="order_by_error"></span>
+
+    </div>
+            <div class="col">
+    <select class="form-control search-select search-box" id="filter_ordering" name="filter_ordering" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter Ordering' %}</option>
+  <option value="asc">{% trans 'ASC' %}</option>
+  <option value="des">{% trans 'DEC' %}</option>
+</select>
+                <span class="delete-warning" id="filter_ordering_error"></span>
+
+    </div>
+              <div>
+    <button type="submit" name="clear" value="clear" class="btn btn-danger mb-3 mr-1 ml-1" title="{{clear_search_tip}}"><span><i class="fas fa-eraser"></i></span></button>
+
+                           </div>
+    </form>
+
+                                {% if request.user.user_type == "administrator" %}
+                                    <div>
+                                <a href="{% url 'addStates' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
+
+                           </div>
+                                  {% endif %}
+
+                            </div>
+                              {% if  search and not search_error %}
+                            <div class="search-space">
+                          <h3>{% trans 'Showing Search Results For ' %}</h3>
+                          <h4>{{search_option}}="{{search_phrase}}"</h4>
+                            {% if is_search_ordered %}
+                              <h4>{% trans 'Order By' %}="{{order_by_field}}"&nbsp;{{ordering_value}}</h4>
+                            {%endif%}
+                                </div>
+                              {% endif %}
+
+                             {% if object_list|length %}
+
+                            <div class="card-block table-border-style">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>{% trans 'User' %}</th>
+                                                <th>{% trans 'Business Name' %}</th>
+                                                <th>{% trans 'Arabic Business Name' %}</th>
+                                                <th>{% trans 'Business Short Name' %}</th>
+                                                <th>{% trans 'Business Type' %}</th>
+                                                <th>{% trans 'Business Type Other' %}</th>
+                                                <th>{% trans 'Business Address One' %}</th>
+                                                <th>{% trans 'Business Address City' %}</th>
+                                                <th>{% trans 'Registration Number' %}</th>
+                                                <th>{% trans 'Established Date' %}</th>
+                                                <th>{% trans 'Admin Mobile Number' %}</th>
+                                                <th>{% trans 'Account Status' %}</th>
+                                                <th>{% trans 'Purchase Status' %}</th>
+                                                <th>{% trans 'Email' %}</th>
+                                                <th>{% trans 'Expiry Datetime' %}</th>
+                                                <th>{% trans 'Affective Datetime' %}</th>
+                                                <th>{% trans 'Added Datetime' %}</th>
+                                                  {% if request.user.user_type == "administrator"  %}
+                                                <th>{% trans 'Update' %}</th>
+
+                                                {% endif %}
+                                                   <th>{% trans 'Details' %}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {% for object in object_list %}
+                                            <tr>
+
+                                                <td>{{object.user.username}}</td>
+                                                <td>{{object.business_name}}</td>
+                                                <td>{{object.arabic_business_name}}</td>
+                                                <td>{{object.business_shortname}}</td>
+                                                <td>{{object.business_type}}</td>
+                                                <td>{{object.business_type_other}}</td>
+                                                <td>{{object.business_address_one}}</td>
+                                                <td>{{object.business_address_city}}</td>
+                                                <td>{{object.registration_number}}</td>
+                                                <td>{{object.established_date}}</td>
+                                                <td>{{object.admin_mobile_number}}</td>
+                                                <td>{{object.account_status}}</td>
+                                                <td>{{object.purchase_status}}</td>
+                                                <td>{{object.email}}</td>
+                                                <td>{{object.expiry_datetime}}</td>
+                                                <td>{{object.effective_datetime}}</td>
+                                                <td>{{object.added_datetime}}</td>
+
+                                                  {% if request.user.user_type == "administrator"  %}
+                                                <td>
+<a href="{% url 'updateCustomer' slug=object.slug%}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+
+                                                </td>
+                                                                       <td>
+<a href="{% url 'customerDetails' slug=object.slug%}" class="btn btn-dark" title="{{details_tool_tip_text}}" data-toggle="tooltip">{% trans 'View Details' %}</a>
+
+                                                </td>
+
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                     <h5>Total Customers Count: {{instances_count}}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              {% include 'includes/pagination_code.html' %}
+
+
+
+            {% else %}
+        {% if search and search_result.count == 0 %}
+          <h3 class="no-results">{% trans 'Sorry no customers found that matches your search!' %}</h3>
+
+            {% else %}
+
+               {% if request.user.user_type == "administrator"  %}
+<h3 class="no-results">{{no_records_admin}}
+    <a href="{% url 'addCustomers' %}">{% trans 'Here' %}{{search_result}}</a></h3>
+            {% else %}
+            <h3 class="no-results">{{no_records_monitor}}</h3>
+            {% endif %}
+
+
+            {% endif %}
+  {% endif %}
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script defer src="/static/assets/js/address/address.js"></script>
+{{ data_js|json_script:"my-data" }}
+{% endblock javascripts %}

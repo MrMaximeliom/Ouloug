@@ -160,6 +160,16 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = ['password', 'first_name', 'email', 'phone_number']  # Email & Password are required by default.
     objects = SpecialUserAccountManager()
 
+    def save(self, *args, **kwargs):
+        if self.user_type == "administrator":
+            self.staff = True
+            self.admin = True
+        if self.user_type == "monitor":
+            self.staff = True
+
+
+
+
     def get_full_name(self):
         # The user is identified by their four names
         return str(self.first_name) + " " + str(self.second_name) + " " + str(self.third_name) + " " + str(

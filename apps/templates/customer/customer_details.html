@@ -1,0 +1,45 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{title}}{% endblock %}
+{% load static i18n %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block pages_name %}
+{% trans 'Customer Details' %}
+{% endblock pages_name %}
+
+{% block header%}
+ {% include 'customer/customer_includes/header.html' %}
+<li class="breadcrumb-item current-page">{% trans "Customer's Details" %}</li>
+
+
+{% endblock header %}
+
+{% block content %}
+              <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-header card-flex-header">
+
+
+                                {% if request.user.user_type == "administrator" %}
+                                    <div>
+                                <a href="{% url 'addStates' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
+
+                           </div>
+                                  {% endif %}
+
+                            </div>
+                            <h4><strong>This page is currently under construction , it will be available soon</strong></h4>
+<!--                            <h3>Customer Packages</h3>-->
+<!--                            <h3>Customer Teams</h3>-->
+<!--                            <h3>Customer Agents</h3>-->
+<!--                            <h3>Customer Telecom Number</h3>-->
+<!--                            <h3>Customer Agent Shifts</h3>-->
+<!--                            <h3>Customer Integration</h3>-->
+                        </div>
+                    </div>
+
+
+
+{% endblock content %}

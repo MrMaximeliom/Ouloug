@@ -18,23 +18,89 @@
 
 
             <!-- [ breadcrumb ] end -->
- {% if object_list|length %}
+
               <div class="col-xl-12">
                         <div class="card">
                             <div class="card-header card-flex-header">
                                 <div>
                                 <h5>States Table</h5>
                                        </div>
+    <form class="row g-2 mb-3" action="" method="get" id="filterForm" autocomplete="off">
+    {% csrf_token %}
+          <div class="">
+   <button type="submit" class="btn btn-primary mb-3" id="searchButton" title="{{search_states_tip}}"><span><i class="fas fa-search"></i></span></button>
+  </div>
+    <div class="col">
+    <select class="form-control search-select search-box" id="filter_by" name="filter_by" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter By' %}</option>
+  <option value="country">{% trans 'Country' %}</option>
+  <option value="status">{% trans 'Status' %}</option>
+</select>
+                <span class="delete-warning" id="filter_by_error"></span>
+
+    </div>
+
+    <div class="col">
+    <select class="form-control search-select search-box" id="filter_value" name="filter_value" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter Values' %}</option>
+</select>
+                <span class="delete-warning" id="filter_value_error"></span>
+
+    </div>
+    <div class="col" hidden id="search_field">
+        <input type="text" class="form-control">
+    </div>
+                    <div class="col">
+    <select class="form-control search-select search-box" id="order_by" name="order_by" aria-label="Default select example">
+  <option selected value="none">{% trans 'Order By' %}</option>
+  <option value="name">{% trans 'Name' %}</option>
+  <option value="arabic_name">{% trans 'Arabic Name' %}</option>
+  <option value="country">{% trans 'Country' %}</option>
+  <option value="status">{% trans 'Status' %}</option>
+  <option value="added_by">{% trans 'Added By' %}</option>
+  <option value="last_modified_by">{% trans 'Last Modified By' %}</option>
+  <option value="added_datetime">{% trans 'Added Date and Time' %}</option>
+  <option value="last_modification_datetime">{% trans 'Last Modification' %}</option>
+</select>
+                <span class="delete-warning" id="order_by_error"></span>
+
+    </div>
+            <div class="col">
+    <select class="form-control search-select search-box" id="filter_ordering" name="filter_ordering" aria-label="Default select example">
+  <option selected value="none">{% trans 'Filter Ordering' %}</option>
+  <option value="asc">{% trans 'ASC' %}</option>
+  <option value="des">{% trans 'DEC' %}</option>
+</select>
+                <span class="delete-warning" id="filter_ordering_error"></span>
+
+    </div>
+              <div>
+    <button type="submit" name="clear" value="clear" class="btn btn-danger mb-3 mr-1 ml-1" title="{{clear_search_tip}}"><span><i class="fas fa-eraser"></i></span></button>
+
+                           </div>
+    </form>
+
 
 
                                 {% if request.user.user_type == "administrator" %}
                                     <div>
-                                <a href="{% url 'addStates' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip">{% trans 'Add New State' %}</a>
+                                <a href="{% url 'addStates' %}" class="btn btn-primary" title="{{add_tool_tip_text}}" data-toggle="tooltip"><span><i class="fas fa-plus"></i></span></a>
 
                            </div>
                                   {% endif %}
 
                             </div>
+                              {% if  search and not search_error %}
+                            <div class="search-space">
+                          <h3>{% trans 'Showing Search Results For ' %}</h3>
+                          <h4>{{search_option}}="{{search_phrase}}"</h4>
+                            {% if is_search_ordered %}
+                              <h4>{% trans 'Order By' %}="{{order_by_field}}"&nbsp;{{ordering_value}}</h4>
+                            {%endif%}
+                                </div>
+                              {% endif %}
+
+                             {% if object_list|length %}
 
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
@@ -90,19 +156,28 @@
 
 
             {% else %}
+        {% if search and search_result.count == 0 %}
+          <h3 class="no-results">{% trans 'Sorry no states found that matches your search!' %}</h3>
+
+            {% else %}
 
                {% if request.user.user_type == "administrator"  %}
-<h3 class="delete-warning">{{no_records_admin}}
-    <a href="{% url 'addStates' %}">{% trans 'Here' %}</a></h3>
+<h3 class="no-results">{{no_records_admin}}
+    <a href="{% url 'addStates' %}">{% trans 'Here' %}{{search_result}}</a></h3>
             {% else %}
-            <h3 class="delete-warning">{{no_records_monitor}}</h3>
+            <h3 class="no-results">{{no_records_monitor}}</h3>
             {% endif %}
 
+
             {% endif %}
+  {% endif %}
 
 
 
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
-{% block javascripts %}{% endblock javascripts %}
+{% block javascripts %}
+<script defer src="/static/assets/js/address/address.js"></script>
+{{ data_js|json_script:"my-data" }}
+{% endblock javascripts %}

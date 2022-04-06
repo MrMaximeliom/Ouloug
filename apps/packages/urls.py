@@ -12,11 +12,12 @@ from Util.static_strings import (NO_RECORDS_FOR_PACKAGE_MODEL_MONITOR_MESSAGE,
                                  )
 
 from apps.packages.models import Package,PackageBillingType
+from apps.packages.views import PackagesListView
 
 
 urlpatterns = [
     # package pages urls
-    path('packages/', staff_member_required(ModelListView.as_view(
+    path('packages/', staff_member_required(PackagesListView.as_view(
         model=Package,
         template_name="package/packages_list.html",
         active_flag="package",
@@ -30,7 +31,7 @@ urlpatterns = [
     ), login_url="login"), name="packagesList"),
     path('packages/addPackages', staff_member_required(AddModelView.as_view(
         model=Package,
-        fields=["telecom", "currency", "name", "arabic_name", "priority", "type", "status", "price", "grace_period_day",
+        fields=["telecom", "currency", "name", "arabic_name", "priority", "type", "status", "price", "grace", "grace_period_day",
                 "discount", "discount_price"],
         active_flag="package",
         main_active_flag="ouloug_services",
@@ -72,7 +73,7 @@ urlpatterns = [
         title="Add Package Billing Types"
 
     ), login_url="login"), name="addPackageBillingTypes"),
-    path('packages/updatePackage/<slug:slug>', staff_member_required(UpdateModelView.as_view(
+    path('packages/updatePackageBillingType/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=PackageBillingType,
         fields=["package", "serial", "billing_type", "percentage_added_price"],
         active_flag="package_billing_type",

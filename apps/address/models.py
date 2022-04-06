@@ -4,15 +4,8 @@ from django.utils.text import slugify
 
 from Util.utils import rand_slug
 from apps.authentication.models import User
+from Util.lists_of_data import COUNTRY_STATUS, STATE_STATUS
 
-
-# list of available statuses for a country
-COUNTRY_STATUS = (
-    ("active", "Active"),
-    ("not_active", "Not Active"),
-    ("suspended", "Suspended"),
-    ("on_hold", "On Hold")
-)
 """
 Country Model:
 it's used to save data about all the countries that Ouloug system
@@ -47,16 +40,16 @@ class Country(models.Model):
                                  blank=True, null=True, related_name="user_added_country")
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
-    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,blank=True,
+    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                          related_name="last_user_modified_country")
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now_add=True)
     # this field represents the last modification date and time for a record
     last_modification_datetime = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         # objects of this model will be referenced by their names
         return str(self.name)
-
 
     class Meta:
         # this is the model's actual name in the database
@@ -66,12 +59,6 @@ class Country(models.Model):
         return reverse_lazy("countriesList")
 
 
-# list of available statuses for a state
-STATE_STATUS = (
-    ("active", "Active"),
-    ("not_active", "Not Active"),
-    ("deleted", "Deleted")
-)
 """
 State Model:
 it's used to list all of the states per countries
@@ -98,12 +85,12 @@ class State(models.Model):
     # this field is a foreign key references the User model ,
     # which represents the User that added this state
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL,
-                                 null=True,blank=True, related_name="user_added_state")
+                                 null=True, blank=True, related_name="user_added_state")
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     # this field is a foreign key from the User model ,
     # which represents the last user that modified this record
-    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True,blank=True,
+    last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,
                                          related_name="last_user_modified_state")
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now=True, blank=True, null=True)
@@ -154,7 +141,7 @@ class City(models.Model):
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
     # this field represents the city's status
-    status = models.BooleanField()
+    status = models.CharField(max_length=20, choices=STATE_STATUS)
     # this field is a foreign key references the State model
     # which represents the State that a city belongs to
     state = models.ForeignKey(State, on_delete=models.SET_NULL,
@@ -208,7 +195,7 @@ class UserCountry(models.Model):
     # this field represents the date and time when this record was last modified
     last_modification_datetime = models.DateTimeField(auto_now_add=True)
     # this field represents the city's status
-    status = models.BooleanField()
+    status = models.CharField(max_length=20, choices=STATE_STATUS)
 
     def __str__(self):
         # objects of this model will be referenced by user's name and the country(s) which he/she is linked to
@@ -217,7 +204,6 @@ class UserCountry(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "user_country"
-
 
 
 """
@@ -252,7 +238,7 @@ class Currency(models.Model):
     # this field represents the currency symbol in accounting written in Arabic
     arabic_symbol = models.CharField(max_length=10)
     # this field represents the digits number in decimal number which is used to represent a currency
-    decimal_digits_number = models.DecimalField(decimal_places=8,max_digits=9)
+    decimal_digits_number = models.DecimalField(decimal_places=8, max_digits=9)
 
     # this field represents the date and time when this record was added
     added_datetime = models.DateTimeField(auto_now=True)

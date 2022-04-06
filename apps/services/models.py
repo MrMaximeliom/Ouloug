@@ -1,11 +1,12 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy
+from Util.lists_of_data import SERVICE_STATUS
 from Util.utils import rand_slug
-from apps.address.models  import  Country
+from apps.address.models import Country
 from apps.authentication.models import User
 
 # Create your models here.
-
 
 
 """
@@ -13,11 +14,6 @@ Service Model:
 it's used to define all services in the Ouloug system
 and description and the type of value expected
 """
-SERVICE_STATUS = (
-    ("active", "active"),
-    ("not_active", "not active"),
-
-)
 
 
 class Service(models.Model):
@@ -66,5 +62,6 @@ class Service(models.Model):
         # this is the actual model's name in the database
         db_table = "service"
 
-
-
+    @staticmethod
+    def get_absolute_url():
+        return reverse_lazy("servicesList")

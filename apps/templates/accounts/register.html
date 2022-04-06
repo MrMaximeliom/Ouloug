@@ -189,8 +189,32 @@
 
                             </div>
 
+      <div class="col-auto">
+
+                        <div class="input-group ">
+                            {{ form.user_type }}
+                        </div>
+              <div class="text-error-holder">
+                        <span class="text-error" id="user_type_error">{{ form.password2.errors }}</span>
+
+                            </div>
+      </div>
+
 
                           </div>
+                     <div class="row justify-form-fields mb-3">
+
+                          <div class="col-auto mb-2">
+
+                        <div class="input-group">
+                            {{ form.user_status }}
+                        </div>
+                              <div class="text-error-holder">
+                                                        <span class="text-error" id="user_status_error">{{ form.email.errors }}</span>
+
+                              </div>
+
+                            </div>
       </div>
 
 

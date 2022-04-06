@@ -24,11 +24,7 @@
  {% if object_list|length %}
               <div class="col-xl-12">
                         <div class="card">
-                            <div class="card-header card-flex-header">
-                                <div>
-                                <h5>Customer Call</h5>
-                                       </div>
-                            </div>
+
 
                             <div class="card-block table-border-style">
                                 <div class="table-responsive">
@@ -47,10 +43,7 @@
                                                 <th>{% trans 'Start Time' %}</th>
                                                 <th>{% trans 'End Time' %}</th>
                                                 <th>{% trans 'Status' %}</th>
-                                                  {% if request.user.user_type == "administrator"  %}
-                                                <th>{% trans 'Update' %}</th>
-                                                <th>{% trans 'Delete' %}</th>
-                                                {% endif %}
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,17 +58,6 @@
                                                 <td>{{object.start_time}}</td>
                                                 <td>{{object.end_time}}</td>
                                                 <td>{{object.status}}</td>
-
-                                                  {% if request.user.user_type == "administrator"  %}
-                                                <td>
-<a href="#" class="btn btn-primary" title="btn btn-primary" data-toggle="tooltip">{% trans 'Update' %}</a>
-
-                                                </td>
-                                                <td>
- <a href="#" class="btn btn-danger" title="btn btn-danger" data-toggle="tooltip">{% trans 'Delete' %}</a>
-
-                                                </td>
-                                                {% endif %}
                                             </tr>
                                         {% endfor %}
 
