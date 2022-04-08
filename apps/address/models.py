@@ -24,9 +24,9 @@ class Country(models.Model):
     # this field represents a pre-defined code
     code = models.CharField(max_length=10)
     # this field represents the country's name
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=200)
     # this field represents the country's name in Arabic
-    arabic_name = models.CharField(max_length=100)
+    arabic_name = models.CharField(max_length=200)
     # this field represents the country telephone access code
     access_code = models.IntegerField()
     # this field is a boolean flag represents weather Ouloug
@@ -54,6 +54,11 @@ class Country(models.Model):
     class Meta:
         # this is the model's actual name in the database
         db_table = "country"
+
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy("countriesList")
@@ -102,6 +107,11 @@ class State(models.Model):
     class Model:
         # this is the model's actual name in the database
         db_table = "state"
+
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy("statesList")
@@ -158,6 +168,11 @@ class City(models.Model):
     def get_absolute_url(self):
         return reverse_lazy("citiesList")
 
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
+
 
 """
 User_Country Model:
@@ -204,6 +219,11 @@ class UserCountry(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "user_country"
+
+    def save(self, *args, **kwargs):
+        value = str(self.user.username) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
 
 """
@@ -255,3 +275,8 @@ class Currency(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy("currenciesList")
+
+    def save(self, *args, **kwargs):
+        value = str(self.name) + '' + str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)

@@ -3,7 +3,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView
 from django.views.generic import ListView
 from django.contrib import messages
 from Util.utils import SearchMan
@@ -28,7 +28,7 @@ from Util.static_strings import (
     PASSWORDS_NOT_MATCH,
     CONFIRM_PASSWORD_EMPTY_ERROR
 )
-from .forms import  SignUpForm
+from .forms import SignUpForm
 
 
 class OulougLoginView(auth_views.LoginView):
@@ -49,7 +49,7 @@ class OulougLoginView(auth_views.LoginView):
             messages.success(self.request, f" Welcome {username} Have a nice day")
             return HttpResponseRedirect(self.get_success_url())
         else:
-            print("current user is: ",current_user)
+            print("current user is: ", current_user)
             messages.error(self.request, 'Phone Number or Password Error for Staff User')
 
         return redirect('login')
@@ -62,7 +62,6 @@ class OulougLoginView(auth_views.LoginView):
     }
 
 
-
 def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -73,7 +72,6 @@ def register_user(request):
             print("\nafter hashing:", user.password)
             user.save()
             messages.success(request, "You have successfully registered, log in!")
-
 
             return redirect("login")
         else:
@@ -109,7 +107,6 @@ def register_user(request):
                                                       })
 
 
-
 @staff_member_required(login_url='login')
 def change_password(request):
     if request.method == 'POST':
@@ -125,10 +122,12 @@ def change_password(request):
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/users/change_password.html', {
         'form': form,
-        'settings':'active',
-        'change_password':'active'
+        'settings': 'active',
+        'change_password': 'active'
 
     })
+
+
 """
 AddModelView Class:
 is a class used to add instances of a specified model,
@@ -186,7 +185,6 @@ class AddUserView(CreateView):
 
 
 class UsersListView(ListView):
-
     model = None
     template_name = None
     main_active_flag = None
@@ -201,7 +199,15 @@ class UsersListView(ListView):
 
     # return default queryset used in this view
     def get_queryset(self):
-        return self.model.objects.all().order_by('-id')
+        from apps.authentication.models import User
+        if self.request.user.user_type == "monitor":
+           return User.objects.filter(username=self.request.user.username)
+        else:
+            return User.objects.all().order_by('-id')
+
+
+
+
 
     def get(self, request, *args, **kwargs):
         from apps.authentication.models import User
@@ -235,7 +241,7 @@ class UsersListView(ListView):
             'page_range': paginator.page_range,
             'num_pages': paginator.num_pages,
             'object_list': instances,
-            'user_data':User.objects.get(username=self.request.user.username),
+            'user_data': User.objects.filter(username=self.request.user.username),
             self.main_active_flag: 'active',
             self.active_flag: "active",
             "no_records_admin": self.no_records_admin,
@@ -247,3 +253,43 @@ class UsersListView(ListView):
             'title': self.title
         }
         return super().get(request)
+
+class UpdateUserView(UpdateView):
+    model = None
+    fields = None
+    template_name = None
+    active_flag = None
+    reference_field_name = None
+    main_active_flag = None
+    title = None
+
+    def form_invalid(self, form):
+        for field, items in form.errors.items():
+            for item in items:
+                print('{}: {}'.format(field, item))
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.error(self.request, f"{self.active_flag} <<{instance_name}>> did not updated , please try again!")
+        return super(UpdateUserView, self).form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.save()
+        instance_name = form.cleaned_data[self.reference_field_name]
+        messages.success(self.request, f"{self.active_flag} <<{instance_name}>> updated successfully")
+        return super().form_valid(form)
+
+    def get(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active",
+            "title": self.title,
+        }
+        return super(UpdateUserView, self).get(self)
+
+    def post(self, request, *args, **kwargs):
+        self.extra_context = {
+            self.main_active_flag: "active",
+            self.active_flag: "active",
+            "title": self.title
+        }
+        return super(UpdateUserView, self).post(self)

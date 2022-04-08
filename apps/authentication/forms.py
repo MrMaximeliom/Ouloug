@@ -2,7 +2,6 @@ from django import forms
 from .models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
-
 class UserLoginForm(AuthenticationForm):
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -81,8 +80,16 @@ class SignUpForm(forms.ModelForm):
     phone_number = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Starts without country code)",
+                "placeholder": "(Starts without country code)",
                 "class": "form-control"
+            }
+        ))
+    user_type = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "User Type",
+                "class": "form-control",
+
             }
         ))
     email = forms.EmailField(
@@ -144,6 +151,189 @@ class SignUpForm(forms.ModelForm):
         instance.user_status = validated_data['user_status']
         instance.username = validated_data['username']
         instance.set_password(validated_data['password'])
+
+        instance.save()
+        return instance
+
+
+class UserAdminForm(forms.ModelForm):
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "First Name",
+                "class": "form-control"
+            }
+        ))
+    second_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Second Name",
+                "class": "form-control"
+            }
+        ))
+    third_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Third Name",
+                "class": "form-control"
+            }
+        ))
+    fourth_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Fourth Name",
+                "class": "form-control"
+            }
+        ))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        ))
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "(Starts without country code)",
+                "class": "form-control"
+            }
+        ))
+    user_type = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "User Type",
+                "class": "form-control",
+
+            }
+        ))
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder": "Email",
+                "class": "form-control"
+            }
+        ))
+
+
+    class Meta:
+        model = User
+        fields = ('username', 'email','first_name','user_type','user_status',
+                  'second_name','third_name','fourth_name','phone_number')
+    def create(self, validated_data):
+        from .models import User
+        print("creating new user")
+        user = User.objects.create(
+                username=validated_data['username'],
+                first_name=validated_data['first_name'],
+                second_name=validated_data['second_name'],
+                third_name=validated_data['third_name'],
+                fourth_name=validated_data['fourth_name'],
+                email=validated_data['email'],
+                user_type=validated_data['user_type'],
+                user_status=validated_data['user_status'],
+                phone_number=validated_data['phone_number'],
+            )
+
+        user.save()
+        return user
+
+    def update(self, instance, validated_data):
+        instance.phone_number = validated_data['phone_number']
+        instance.first_name = validated_data['first_name']
+        instance.second_name = validated_data['second_name']
+        instance.third_name = validated_data['third_name']
+        instance.fourth_name = validated_data['fourth_name']
+        instance.email = validated_data['email']
+        instance.user_type = validated_data['user_type']
+        instance.user_status = validated_data['user_status']
+        instance.username = validated_data['username']
+
+        instance.save()
+        return instance
+class UserMonitorForm(forms.ModelForm):
+
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "First Name",
+                "class": "form-control"
+            }
+        ))
+    second_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Second Name",
+                "class": "form-control"
+            }
+        ))
+    third_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Third Name",
+                "class": "form-control"
+            }
+        ))
+    fourth_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Fourth Name",
+                "class": "form-control"
+            }
+        ))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Username",
+                "class": "form-control"
+            }
+        ))
+    phone_number = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "(Starts without country code)",
+                "class": "form-control"
+            }
+        ))
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder": "Email",
+                "class": "form-control"
+            }
+        ))
+
+    class Meta:
+        model = User
+        fields = ('username', 'email','first_name','user_status',
+                  'second_name','third_name','fourth_name','phone_number')
+    def create(self, validated_data):
+        from .models import User
+        print("creating new user")
+        user = User.objects.create(
+                username=validated_data['username'],
+                first_name=validated_data['first_name'],
+                second_name=validated_data['second_name'],
+                third_name=validated_data['third_name'],
+                fourth_name=validated_data['fourth_name'],
+                email=validated_data['email'],
+                user_status=validated_data['user_status'],
+                phone_number=validated_data['phone_number'],
+            )
+
+        user.save()
+        return user
+
+    def update(self, instance, validated_data):
+        instance.phone_number = validated_data['phone_number']
+        instance.first_name = validated_data['first_name']
+        instance.second_name = validated_data['second_name']
+        instance.third_name = validated_data['third_name']
+        instance.fourth_name = validated_data['fourth_name']
+        instance.email = validated_data['email']
+        instance.user_status = validated_data['user_status']
+        instance.username = validated_data['username']
 
         instance.save()
         return instance

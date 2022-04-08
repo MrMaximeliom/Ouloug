@@ -3,10 +3,8 @@
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from locale import currency
 from django import template
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
@@ -21,12 +19,7 @@ from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 # Thoses imports for group
-from django.contrib.auth.models import Group
-from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.contrib.auth import authenticate, login, logout
-from .decorators import unauthenticated_user, allowed_users, admin_only
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # from .forms import FormWithCaptcha

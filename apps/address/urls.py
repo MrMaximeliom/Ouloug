@@ -39,6 +39,7 @@ urlpatterns = [
     path('countries/addCountries', staff_member_required(AddModelView.as_view(
         model=Country,
         fields=["code", "name", "arabic_name", "access_code", "is_service_country", "status"],
+        main_active_flag="masters",
         active_flag="country",
         reference_field_name="name",
         template_name="address/countries/add_countries.html",
@@ -46,6 +47,7 @@ urlpatterns = [
     path("updateCountry/<slug:slug>", staff_member_required(UpdateModelView.as_view(
         model=Country,
         fields=["code", "name", "arabic_name", "access_code", "is_service_country", "status"],
+        main_active_flag="masters",
         active_flag="country",
         reference_field_name="name",
         template_name="address/countries/update_country.html",
@@ -55,6 +57,7 @@ urlpatterns = [
     path('cities/addCities', staff_member_required(AddModelView.as_view(
         model=City,
         fields=["name", "arabic_name", "access_code", "status", "state"],
+        main_active_flag="masters",
         active_flag="city",
         reference_field_name="name",
         template_name="address/cities/add_cities.html",
@@ -74,6 +77,7 @@ urlpatterns = [
     path("updateCity/<slug:slug>", staff_member_required(UpdateModelView.as_view(
         model=City,
         fields=["name", "arabic_name", "access_code", "status", "state"],
+        main_active_flag="masters",
         active_flag="city",
         template_name="address/cities/update_city.html",
         reference_field_name="name",
@@ -93,6 +97,7 @@ urlpatterns = [
     path('states/addStates', staff_member_required(AddModelView.as_view(
         model=State,
         active_flag="state",
+        main_active_flag="masters",
         fields=["country", "name", "arabic_name", "status"],
         reference_field_name="name",
         template_name="address/states/add_states.html",
@@ -100,6 +105,7 @@ urlpatterns = [
     path("updateState/<slug:slug>", staff_member_required(UpdateModelView.as_view(
         model=State,
         fields=["country", "name", "arabic_name", "status"],
+        main_active_flag="masters",
         active_flag="state",
         template_name="address/states/update_state.html",
         reference_field_name="name",
@@ -119,6 +125,7 @@ urlpatterns = [
     ), login_url="login"), name="currenciesList"),
     path('currencies/addCurrencies', staff_member_required(AddModelView.as_view(
         model=Currency,
+        main_active_flag="masters",
         active_flag="currency",
         fields=["country", "name", "symbol", "arabic_symbol", "decimal_digits_number"],
         template_name="address/currencies/add_currencies.html",
@@ -127,6 +134,7 @@ urlpatterns = [
     path("updateCurrency/<slug:slug>", staff_member_required(UpdateModelView.as_view(
         model=Currency,
         fields=["country", "name", "symbol", "arabic_symbol", "decimal_digits_number"],
+        main_active_flag="masters",
         active_flag="currency",
         template_name="address/currencies/update_currency.html",
         reference_field_name="name",

@@ -1,8 +1,9 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
-from Util.lists_of_data import (CUSTOMER_ACCOUNT_STATUS,\
-    CUSTOMER_PURCHASE_STATUS,CUSTOMER_TELECOM_NUMBER_STATUS,LOGIN_STATUS,CALL_STATUS,CALL_TYPE,CALL_DIRECTION)
+from Util.lists_of_data import (CUSTOMER_ACCOUNT_STATUS, \
+                                CUSTOMER_PURCHASE_STATUS, CUSTOMER_TELECOM_NUMBER_STATUS, LOGIN_STATUS, CALL_STATUS,
+                                CALL_TYPE, CALL_DIRECTION)
 from Util.utils import rand_slug
 from apps.address.models import City, Country
 from apps.authentication.models import User
@@ -29,8 +30,8 @@ class BusinessType(models.Model):
     last_modified_by = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True,
                                          related_name="last_user_modified_business_type_main")
     # this field represents the business type name
-    type_name = models.CharField(max_length=240)
-    arabic_type_name = models.CharField(max_length=240)
+    type_name = models.CharField(max_length=400)
+    arabic_type_name = models.CharField(max_length=400)
     other_flag = models.BooleanField()
 
     added_datetime = models.DateTimeField(auto_now=True)
@@ -41,6 +42,11 @@ class BusinessType(models.Model):
 
     def __str__(self):
         return self.type_name
+
+    def save(self, *args, **kwargs):
+        value =  str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
 
 """
@@ -91,7 +97,7 @@ class Customer(models.Model):
     # this field represents the account status
     account_status = models.CharField(max_length=80, choices=CUSTOMER_ACCOUNT_STATUS)
     # this field represents the purchase status
-    purchase_status = models.CharField(max_length=40,choices=CUSTOMER_PURCHASE_STATUS)
+    purchase_status = models.CharField(max_length=40, choices=CUSTOMER_PURCHASE_STATUS)
     # this field represents the email field which
     # will be used to send notification related to customer
     email = models.EmailField(max_length=200)
@@ -112,15 +118,12 @@ class Customer(models.Model):
         db_table = "customer"
 
     def save(self, *args, **kwargs):
-        value = str(self.user.username) + '' +str(rand_slug())
+        value = str(self.user.username) + '' + str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse_lazy("customersList")
-
-
-
 
 
 """
@@ -193,7 +196,7 @@ class AgentShift(models.Model):
         db_table = "agent_shift"
 
     def save(self, *args, **kwargs):
-        value = str(self.name) + '' +str(rand_slug())
+        value = str(self.name) + '' + str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
@@ -248,9 +251,8 @@ class CustomerAgentShift(models.Model):
         # this is the actual model's name in the database
         db_table = "customer_agent_shift"
 
-
     def save(self, *args, **kwargs):
-        value = str(self.agent_shift.name) + '' +str(rand_slug())
+        value = str(self.agent_shift.name) + '' + str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
@@ -262,7 +264,6 @@ details of the customer, this details like agent name,
 username to access the SIP account and password, and account
 to access the portal.
 """
-
 
 
 class CustomerAgent(models.Model):
@@ -305,17 +306,15 @@ class CustomerAgent(models.Model):
         db_table = "customer_agent"
 
     def save(self, *args, **kwargs):
-        value = str(self.team.name) + '' +str(rand_slug())
+        value = str(self.team.name) + '' + str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
-
 
 
 """
 Customer Call Model:
 it's used to save call transactions for customers
 """
-
 
 
 class CustomerCall(models.Model):
@@ -398,9 +397,9 @@ class CustomerPackage(models.Model):
     # which represents the currency
     currency = models.ForeignKey(Currency, models.CASCADE)
     # this field represents the total amount of subscription
-    subscription_amount = models.DecimalField(decimal_places=10,max_digits=12)
+    subscription_amount = models.DecimalField(decimal_places=10, max_digits=12)
     # this field represents the pending amount to be paid by the customer
-    due_amount = models.DecimalField(decimal_places=10,max_digits=12)
+    due_amount = models.DecimalField(decimal_places=10, max_digits=12)
     # this field represents the date and time when a record was created
     customer_package_datetime = models.DateTimeField(auto_now=True)
     # this field represents the starting active subscription
@@ -444,7 +443,7 @@ class CustomerPayment(models.Model):
     # this field represents the transaction's date and time
     transaction_datetime = models.DateTimeField(auto_now=True)
     # this field represents the transaction's amount
-    transaction_amount = models.DecimalField(decimal_places=10,max_digits=12)
+    transaction_amount = models.DecimalField(decimal_places=3, max_digits=12)
     # this field is a foreign key references the currency model
     # which represents the currency
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
@@ -563,9 +562,9 @@ class CustomerPackageService(models.Model):
     # this field represents the subscription type value
     subscription_type_value = models.IntegerField()
     # this field represents the service price
-    service_price = models.DecimalField(decimal_places=10,max_digits=12)
+    service_price = models.DecimalField(decimal_places=10, max_digits=12)
     # this field represents the total price amount
-    total_price = models.DecimalField(decimal_places=10,max_digits=12)
+    total_price = models.DecimalField(decimal_places=10, max_digits=12)
     # this field is a foreign key referenced from the currency model
     # which represents the currency
     currency_code = models.ForeignKey(Currency, on_delete=models.CASCADE)
@@ -644,7 +643,6 @@ the selected phone number by customer
 """
 
 
-
 class CustomerTelecomNumber(models.Model):
     # this field represents a unique slug field
     slug = models.SlugField(
@@ -679,9 +677,3 @@ class CustomerTelecomNumber(models.Model):
     class Meta:
         # this is the actual name of the model in the database
         db_table = "customer_telecom_number"
-
-
-
-
-
-

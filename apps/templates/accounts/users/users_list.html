@@ -48,9 +48,9 @@
                                                 <th>{% trans 'Admin' %}</th>
                                                 <th>{% trans 'Last Login' %}</th>
                                                 <th>{% trans 'Registration Datetime' %}</th>
-                                                    {% if request.user.user_type == "administrator"  %}
+
                                                 <th>{% trans 'Update' %}</th>
-                                                {% endif %}
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -71,12 +71,12 @@
                                                 <td>{{object.last_login}}</td>
                                                 <td>{{object.registration_datetime}}</td>
 
-                                                  {% if request.user.user_type == "administrator"  %}
+
                                                 <td>
 <a href="{% url 'updateUser' slug=object.slug %}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
-                                                {% endif %}
+
                                             </tr>
 
                                         {% endfor %}
@@ -108,9 +108,9 @@
                                                 <th>{% trans 'Admin' %}</th>
                                                 <th>{% trans 'Last Login' %}</th>
                                                 <th>{% trans 'Registration Datetime' %}</th>
-                                                    {% if request.user.user_type == "administrator"  %}
+
                                                 <th>{% trans 'Update' %}</th>
-                                                {% endif %}
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -131,12 +131,12 @@
                                                 <td>{{object.last_login}}</td>
                                                 <td>{{object.registration_datetime}}</td>
 
-                                                  {% if request.user.user_type == "administrator"  %}
+
                                                 <td>
-<a href="{% url 'updateUser' slug=object.slug %}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
+<a href="{% url 'updateUserMonitor' slug=object.slug %}" class="btn btn-dark" title="{{update_tool_tip_text}}" data-toggle="tooltip">{% trans 'Update' %}</a>
 
                                                 </td>
-                                                {% endif %}
+
                                             </tr>
 
                                         {% endfor %}
@@ -156,10 +156,11 @@
 
 
                {% if request.user.user_type == "administrator" and object_list|length == 0  %}
-<h3 class="delete-warning">{{no_records_admin}}
+<h3 class="no-results">{{no_records_admin}}
     <a href="{% url 'addUsers' %}">{% trans 'Here' %}</a></h3>
-            {% else %}
-            <h3 class="delete-warning">{{no_records_monitor}}</h3>
+               {% endif %}
+            {% if request.user.user_type == "monitor" and user_data|length == 0  %}
+            <h3 class="no-results">{{no_records_monitor}}</h3>
             {% endif %}
 
             {% endif %}

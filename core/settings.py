@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'apps.error_handler',
     'apps.telecoms',
     'apps.common_views',
-    'captcha',
     'mathfilters',
     'widget_tweaks',
 
@@ -106,10 +105,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7c9432a8bngos',
-        'USER': 'yunjwvyqibxcpc',
-        'PASSWORD': 'a2767f6523a30079245c4514d20ab577524048cb27cc1086c2ece3dc5a74ad3a',
-        'HOST': 'ec2-184-73-243-101.compute-1.amazonaws.com',
+        'NAME': 'd3ppv6ei4ohuia',
+        'USER': 'woeyhiialnytoo',
+        'PASSWORD': 'f19e6fda0a5a9836565a01c7c8c2ff8a6a798402257004961ec14e4f10f289e4',
+        'HOST': 'ec2-18-214-134-226.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -169,6 +168,9 @@ RECAPTCHA_PRIVATE_KEY = '6LfjeiweAAAAAFLh0XOtljrp-rcENeoAm5zXdY9r'
 RECAPTCHA_REQUIRED_SCORE = 0.85
 
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #############################################################
 #############################################################

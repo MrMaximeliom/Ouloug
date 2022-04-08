@@ -65,3 +65,8 @@ class Service(models.Model):
     @staticmethod
     def get_absolute_url():
         return reverse_lazy("servicesList")
+
+    def save(self, *args, **kwargs):
+        value = str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)

@@ -5,8 +5,101 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4df8213c-cf37-447d-9ac1-c838995dea69" name="Changes" comment="all changes are specified in DAILY_CHANGES file">
-      <change afterPath="$PROJECT_DIR$/apps/templates/customer_payment/customer_payment_includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/templates/service/services_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/service/services_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Util/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/Util/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0002_alter_city_added_by_alter_city_last_modified_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0003_alter_city_arabic_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0003_auto_20220301_0614.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0004_merge_20220301_1050.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0005_city_slug_country_slug_currency_slug_state_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0006_alter_city_slug_alter_country_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0007_country_last_modified_by_alter_city_id_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0008_alter_city_slug_alter_country_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0009_alter_city_slug_alter_city_status_alter_country_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/migrations/0010_alter_city_slug_alter_country_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/address/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/address/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/config.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0002_alter_user_user_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0003_alter_user_user_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0004_alter_user_user_status_alter_user_user_type.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0005_user_groups_user_is_superuser_user_user_permissions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0006_user_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0007_alter_user_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0008_alter_user_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0009_alter_user_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/migrations/0010_alter_user_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/signals.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/authentication/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/authentication/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0002_alter_customerteam_added_by_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0003_businesstype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0004_delete_busnesstype.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0005_agentshift_slug_businesstype_slug_customer_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0006_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0007_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0008_alter_agentshift_slug_alter_businesstype_other_flag_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0009_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0010_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0011_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0012_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/migrations/0013_alter_agentshift_slug_alter_businesstype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/customers/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/customers/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/forms.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0002_package_slug_packagebillingtype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0003_alter_package_slug_alter_packagebillingtype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0004_alter_package_slug_alter_packagebillingtype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0005_alter_package_grace_alter_package_grace_period_day_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0006_alter_package_discount_alter_package_discount_price_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0007_alter_package_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0008_alter_package_slug_alter_package_status_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/0009_alter_package_slug_alter_packagebillingtype_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/packages/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0002_alter_service_status.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0003_service_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0004_alter_service_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0005_alter_service_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/migrations/0006_alter_service_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/services/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/services/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/migrations/0002_team_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/migrations/0003_alter_team_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/migrations/0004_alter_team_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/migrations/0005_alter_team_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/teams/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0002_telecomnumber_slug_telecomoperator_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0003_alter_telecomnumber_slug_alter_telecomoperator_logo_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0004_alter_telecomnumber_slug_alter_telecomoperator_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0005_alter_telecomnumber_slug_alter_telecomoperator_slug.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0006_telecomnumber_telecom_alter_telecomnumber_slug_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/migrations/0007_alter_telecomnumber_slug_alter_telecomoperator_logo_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/telecoms/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/telecoms/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/users/update_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/users/update_user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/accounts/users/users_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/accounts/users/users_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/add_countries.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/add_countries.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/address/countries/countries_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/customer/customers_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/customer/customers_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apps/templates/package/add_packages.html" beforeDir="false" afterPath="$PROJECT_DIR$/apps/templates/package/add_packages.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,21 +140,22 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/uniseal" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/apps/templates/accounts/users" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps/templates/accounts/users" />
       <recent name="$PROJECT_DIR$/apps/templates/customer" />
       <recent name="$PROJECT_DIR$/apps/templates/customer/customer_includes" />
       <recent name="$PROJECT_DIR$/apps/common_views" />
-      <recent name="$PROJECT_DIR$/apps/templates/accounts/users" />
       <recent name="$PROJECT_DIR$/apps/authentication" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/apps" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/apps/templates/customer" />
       <recent name="$PROJECT_DIR$/apps/templates/error_pages" />
-      <recent name="$PROJECT_DIR$/apps" />
     </key>
   </component>
   <component name="RunManager" selected="Python.run">
@@ -227,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649274926691</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="all changes are specified in DAILY_CHANGES file">
+      <created>1649275096931</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1649275096931</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

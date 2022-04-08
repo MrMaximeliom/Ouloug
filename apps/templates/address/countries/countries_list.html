@@ -96,10 +96,10 @@
             {% else %}
 
                {% if request.user.user_type == "administrator"  %}
-<h3 class="delete-warning">{{no_records_admin}}
+<h3 class="no-results">{{no_records_admin}}
     <a href="{% url 'addCountries' %}">{% trans 'Here' %}</a></h3>
             {% else %}
-            <h3 class="delete-warning">{{no_records_monitor}}</h3>
+            <h3 class="no-results">{{no_records_monitor}}</h3>
             {% endif %}
 
             {% endif %}

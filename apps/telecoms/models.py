@@ -4,7 +4,7 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
 
 from Util.utils import rand_slug
-from apps.authentication.models  import  User
+from apps.authentication.models import  User
 from Util.lists_of_data import TELECOM_STATUS,TELECOM_NUMBER_STATUS,TELECOM_NUMBER_TYPE
 # Create your models here.
 
@@ -52,7 +52,7 @@ class TelecomOperator(models.Model):
         db_table = "telecom_operator"
 
     def save(self, *args, **kwargs):
-        value = str(self.name) + '' + str(rand_slug())
+        value =  str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 
@@ -103,7 +103,7 @@ class TelecomNumber(models.Model):
         db_table = "telecom_number"
 
     def save(self, *args, **kwargs):
-        value = str(self.number) + '' + str(rand_slug())
+        value = str(rand_slug())
         self.slug = slugify(value)
         super().save(*args, **kwargs)
 

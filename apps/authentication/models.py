@@ -3,10 +3,10 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 from django.contrib.auth.models import PermissionsMixin
+
 from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-import uuid
 from Util.lists_of_data import USER_TYPES, USER_STATUS
 from Util.utils import rand_slug
 
@@ -16,44 +16,45 @@ used as a user manager for the User model
 """
 
 
-class SpecialUserAccountManager(BaseUserManager):
-    # this function is responsible for creating users
-    # the parameters passed to it are required to create user object
-    def create_user(self, email, username, first_name, phone_number, password=None, **extra_fields):
-        # check if username not null
+
+class UserAccountManager(BaseUserManager):
+
+    def create_user(self, username,first_name, phone_number, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError(_('Users must provide their email'))
         if not username:
-            raise ValueError(_('Users must have a username'))
-        # check if full_name not null
+            raise ValueError(_('Users must provide their username'))
         if not first_name:
             raise ValueError(_('Users must provide their first name'))
         if not phone_number:
             raise ValueError(_('Users must provide their phone number'))
-        if not email:
-            raise ValueError(_('Users must provide their email'))
 
+        # phone_number.setdefault('is_staff', True)
         user = self.model(
             username=username,
             first_name=first_name,
             phone_number=phone_number,
-            email=self.normalize_email(email)
+            email=email
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, first_name, phone_number,
+    def create_superuser(self, username,email, first_name, phone_number,
                          password):
         user = self.create_user(
             username=username,
+            email=email,
             first_name=first_name,
             phone_number=phone_number,
-            password=password,
-            email=self.normalize_email(email)
+            password=password
         )
+        # user.set_password(password)
         user.admin = True
         user.staff = True
         user.save(using=self._db)
         return user
+
 
 
 """
@@ -70,11 +71,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         unique=True,
         default=slugify(rand_slug())
     )
-    # this field represents the primary key of the model
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False)
+    # # this field represents the primary key of the model
+    # id = models.UUIDField(
+    #     primary_key=True,
+    #     default=uuid.uuid4,
+    #     editable=False)
     # this field represents the first name
     first_name = models.CharField(
         verbose_name=_('First Name'),
@@ -155,10 +156,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_login = models.DateTimeField(auto_now=True, blank=True, null=True)
     # this field represents the registration date and time
     registration_datetime = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
     # this field represents the username field
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['password', 'first_name', 'email', 'phone_number']  # Email & Password are required by default.
-    objects = SpecialUserAccountManager()
+    objects = UserAccountManager()
 
     def save(self, *args, **kwargs):
         if self.user_type == "administrator":
@@ -166,6 +168,7 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.admin = True
         if self.user_type == "monitor":
             self.staff = True
+        return super().save(*args, **kwargs)
 
 
 
@@ -200,9 +203,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         # return self.user_role == 1
         return self.admin
 
-    class Meta:
-        # this is the actual model's name in the database
-        db_table = "user"
 
     def get_absolute_url(self):
         return reverse_lazy("usersList")

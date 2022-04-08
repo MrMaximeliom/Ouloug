@@ -4,9 +4,12 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.contrib import admin
+from django.conf.urls.static import static
+
 from django.urls import path, include  # add this
 from django.contrib.auth import views as auth_views #import this
 
+from django.conf import settings
 
 admin.site.site_title  = "Ouloug Administration"
 admin.site.site_header = "Ouloug Administration"
@@ -50,3 +53,6 @@ handler404 = 'apps.error_handler.views.error_404'
 handler500 = 'apps.error_handler.views.error_500'
 handler403 = 'apps.error_handler.views.error_403'
 handler400 = 'apps.error_handler.views.error_400'
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -5,7 +5,7 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse_lazy
 
 from Util.utils import rand_slug
-from apps.authentication.models  import  User
+from apps.authentication.models import  User
 from apps.address.models import Country
 
 
@@ -62,3 +62,8 @@ class Team(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy("teamsList")
+
+    def save(self, *args, **kwargs):
+        value =  str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)

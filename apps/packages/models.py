@@ -44,7 +44,7 @@ class Package(models.Model):
     # this field represents the status of the package
     status = models.CharField(choices=PACKAGE_STATUS,max_length=20)
     # this field represents the price of the package
-    price = models.DecimalField(decimal_places=10, max_digits=12)
+    price = models.DecimalField(decimal_places=5, max_digits=12)
     # this is a boolean field represents weather
     # there is a free trial or not
     grace = models.BooleanField(blank=True, null=True)
@@ -66,6 +66,11 @@ class Package(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy("packagesList")
+
+    def save(self, *args, **kwargs):
+        value = str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
 
 """
@@ -114,6 +119,11 @@ class PackageService(models.Model):
     class Meta:
         # this is the actual model's name in the database
         db_table = "package_service"
+
+    def save(self, *args, **kwargs):
+        value = str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
 
 
 """
@@ -166,3 +176,8 @@ class PackageBillingType(models.Model):
     @staticmethod
     def get_absolute_url():
         return reverse_lazy("packageBillingTypesList")
+
+    def save(self, *args, **kwargs):
+        value = str(rand_slug())
+        self.slug = slugify(value)
+        super().save(*args, **kwargs)
