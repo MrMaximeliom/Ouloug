@@ -7,20 +7,12 @@
 <!-- Specific CSS goes HERE -->
 {% block stylesheets %}{% endblock stylesheets %}
 {% block pages_name %}
-<<<<<<< HEAD
-{% trans 'Packages' %}
-=======
 {% trans 'Update Package' %}
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 {% endblock pages_name %}
 
 {% block header%}
  {% include 'package/package_includes/header.html' %}
-<<<<<<< HEAD
-<li class="breadcrumb-item"><a href="{% url 'addPackages' %}">{% trans 'Add Packages' %}</a></li>
-=======
 <li class="breadcrumb-item current-page">{% trans 'Update Packages' %}</li>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
 
 
 {% endblock header %}
@@ -32,11 +24,9 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-<<<<<<< HEAD
-                                <h5>{% trans 'Add Package' %}</h5>
-=======
+
+
                                 <h5>{% trans 'Update Package' %}</h5>
->>>>>>> 972d8c07bdd9dfccea8d83fd64742c76ccdc5198
                             </div>
                             <div class="card-body">
                                 <div class="row">

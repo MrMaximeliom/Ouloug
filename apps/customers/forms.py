@@ -6,11 +6,16 @@ from apps.customers.models import Customer, AgentShift, CustomerAgentShift, \
     CustomerPackageService, CustomerTeam, \
     CustomerTelecomNumber, BusinessType
 from apps.common_views.widgets import DatePickerInput, TimePickerInput, DateTimePickerInput
-
+from apps.authentication.models import User
 # Customer form used to do CRUD operations to Customer model
 class CustomerForm(forms.ModelForm):
+
+    user = forms.ModelChoiceField(
+        queryset=User.objects.filter(user_type="customer"))
+
     class Meta:
         model = Customer
+
         fields = "__all__"
         exclude = ("added_datetime",)
         widgets = {

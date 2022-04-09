@@ -42,7 +42,7 @@ urlpatterns = [
     ), login_url="login"), name="addPackages"),
     path('packages/updatePackage/<slug:slug>', staff_member_required(UpdateModelView.as_view(
         model=Package,
-        fields=["telecom", "currency", "name", "arabic_name", "priority", "type", "status", "price", "grace_period_day",
+        fields=["telecom", "currency", "name", "arabic_name", "priority", "type", "status", "price","grace", "grace_period_day",
                 "discount", "discount_price"],
         active_flag="package",
         main_active_flag="ouloug_services",

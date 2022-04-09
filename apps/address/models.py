@@ -28,7 +28,7 @@ class Country(models.Model):
     # this field represents the country's name in Arabic
     arabic_name = models.CharField(max_length=200)
     # this field represents the country telephone access code
-    access_code = models.IntegerField()
+    access_code = models.CharField(max_length=30)
     # this field is a boolean flag represents weather Ouloug
     # system is working in this country with telecom company or not
     is_service_country = models.BooleanField()
@@ -87,6 +87,7 @@ class State(models.Model):
     arabic_name = models.CharField(max_length=145)
     # this field represents the state's status
     status = models.CharField(max_length=20, choices=STATE_STATUS)
+
     # this field is a foreign key references the User model ,
     # which represents the User that added this state
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL,
@@ -137,7 +138,7 @@ class City(models.Model):
     # this field represents the city's name in Arabic
     arabic_name = models.CharField(max_length=145)
     # this field represents the telephone access code
-    access_code = models.IntegerField()
+    access_code = models.CharField(max_length=30)
     # this field is a foreign key referenced from the User model
     # which represents the user that added this record
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL,

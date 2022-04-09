@@ -2,6 +2,7 @@ from django import forms
 from .models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
+from Util.lists_of_data import USER_TYPES
 class UserLoginForm(AuthenticationForm):
     def clean(self):
         username = self.cleaned_data.get('username')
@@ -84,14 +85,7 @@ class SignUpForm(forms.ModelForm):
                 "class": "form-control"
             }
         ))
-    user_type = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "User Type",
-                "class": "form-control",
 
-            }
-        ))
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
@@ -200,14 +194,7 @@ class UserAdminForm(forms.ModelForm):
                 "class": "form-control"
             }
         ))
-    user_type = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "User Type",
-                "class": "form-control",
 
-            }
-        ))
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
