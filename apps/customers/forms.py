@@ -11,7 +11,7 @@ from apps.authentication.models import User
 class CustomerForm(forms.ModelForm):
 
     user = forms.ModelChoiceField(
-        queryset=User.objects.filter(user_type="customer"))
+        queryset=User.objects.filter(customer__isnull=True,user_type="customer") )
 
     class Meta:
         model = Customer

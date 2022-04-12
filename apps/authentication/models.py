@@ -168,6 +168,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             self.admin = True
         if self.user_type == "monitor":
             self.staff = True
+        value = str(self.username) + '' + str(rand_slug())
+        self.slug = slugify(value)
         return super().save(*args, **kwargs)
 
 

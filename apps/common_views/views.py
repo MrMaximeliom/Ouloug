@@ -45,12 +45,13 @@ class ModelListView(ListView):
 
     def get(self, request, *args, **kwargs):
         searchManObj = SearchMan(self.model_name)
-        queryset = self.get_queryset()
+        queryset = self.searchManObj.get_queryset()
         paginator = Paginator(queryset, 5)
         if 'page' not in request.GET:
             instances = self.model.objects.all().order_by('-id')
             searchManObj.setPaginator(instances)
             searchManObj.setSearch(False)
+            self.searchManObj.set_querySet(instances)
         if request.GET.get('page'):
             # Grab the current page from query parameter consultant
             page = int(request.GET.get('page'))
@@ -79,7 +80,7 @@ class ModelListView(ListView):
             "no_records_monitor": self.no_records_monitor,
             "add_tool_tip_text": self.add_tool_tip_text,
             "update_tool_tip_text": self.update_tool_tip_text,
-            "instances_count": len(self.get_queryset()),
+            "instances_count": len(self.searchManObj.get_queryset()),
             'current_page': page,
             'title': self.title
         }
